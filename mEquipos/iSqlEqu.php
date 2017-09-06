@@ -1,6 +1,8 @@
 
 <?php
 
+jhgbjhgjhgjhgjhg
+
 	include_once("../lib/objequipo.php");
 	$iEqu=new classEquipo();
 
@@ -24,24 +26,6 @@
 			$datsEqu ["atributos"]=explode(",",$_POST["equ_atr"]);
 
 			$iEqu->updateEqu($datsEqu);
-
-
-			/*if(!empty($_POST["equ_atr"])){
-				$iatr=explode(',', $_POST["equ_atr"]);
-				foreach ($iatr as $iAtrEq) {
-					$iA=explode(':', $iAtrEq);
-					$stSql="INSERT INTO `db_cid_inv`.`atributoequipo` (`atr_equ_id`,`atr_id`,`atr_tae_id`,`atr_atributo`) ".
-							"VALUES (".$iA[0].",".$iA[1].",".$iA[2].",'".$iA[3]."') ON DUPLICATE KEY UPDATE ".
-							"`atr_tae_id`=".$iA[2].", `atr_atributo`=\"".$iA[3]."\";";
-					$dbEqu->conectar($stSql);
-
-				}*/
-
-			//}
-
-			//echo $stSql;
-
-			
 		}
 
 	}

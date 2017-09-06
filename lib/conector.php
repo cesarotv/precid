@@ -1,5 +1,5 @@
 <?php
-
+jkhkuhkjhjkhjkh
  class ConectorDB{
  	var $DBconect;
  	var $Result;
@@ -34,7 +34,7 @@
 	function ejectSql($query){
 		$this->ResultEject=odbc_exec($this->DBconect,$query);
 	}
-	
+
 	function getConectar(){return $this->DBconect;}
 	function getResult(){return $this->Result;}
 	//function getnumReg(){return odbc_num_rows($this->Result);}
