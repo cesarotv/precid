@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+body{
+	margin: 0;
+	width:100%;
+}
+#cp{
+	width:400px;
+	margin: 100px auto 0 auto;
+	text-align:center;
+
+}
+#cTit {
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;}
+#cTit span{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:60px;
+	vertical-align: middle;
+	display: inline-block;
+	font-weight:bold;
+	
+}
+#cDat{
+	background:#ffffff url(img/fi.jpg) repeat-x top;
+	padding:10px;
+	border-left: 1px solid #eeeeee;
+	border-right: 1px solid #eeeeee;
+}
+
+#cDat input{
+	display: block;
+	margin: 10px auto;
+	padding:5px;
+	width:150px;
+}
+
+#cp a{display: block; background:#1A8C04;width:140px; padding:5px;margin:0px auto; cursor:pointer;color:#FFFFFF;}
+
+
+#msj{border: 2px solid #F9CA00;padding: 7px;}
+
+.eo{display:none;}
+.em{display:block;}
+
+#msj span{display: inline-block;vertical-align: middle;}
+
+#titmsj{
+	border-bottom: 2px solid #dddddd;
+	padding-bottom: 7px;
+}
+
+#titmsj,#contmsj{
+	margin-left: 10px;
+	text-align: left;
+}
+#titmsj{font-weight:bold; font-size:20px; color:#DA251D;}
+
+#contmsj{font-style:italic;font-size:17px;width: 300px;}
