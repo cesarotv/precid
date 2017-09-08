@@ -1,6 +1,6 @@
 body{
 	margin: 0;padding: 0;background:#dddddd;
-	font-family: Verdaba, Geneva, Arial
+	font-family: Verdaba, Geneva, Arial;
 }
 
 div#content{
@@ -34,16 +34,20 @@ div#contentBarSup{
 
 div.contMod{
 	height: 100%;width: 940px;
-	display: table;padding: 30px;
+	display: table;padding: 20px 30px;
 }
 
 div#conListado{width: 60%;}
-div#conRegistro{width: 40%;}
+div#conRegistro{width: 40%;overflow-y: auto;}
 
 
-div#conListado, div#conRegistro{ border: 1px solid #bbbbbb;display: table-cell;overflow-y: auto;vertical-align: top;}
+div#conListado, div#conRegistro{ border: 1px solid #bbbbbb;display: table-cell;vertical-align: top;}
+div#conListado {position: relative;}
+div#conListado>div#iListado{overflow-y: auto;margin: 0;}
+div#conListado>div#iListado{position: absolute;right: 0;left: 0;bottom: 0;top: 33px;}
+div#conListado .barra{padding: 5px;border-bottom: 1px solid #dddddd;background-color: #eeeeee;}
 
-div#conListado>div, div#conRegistro>div {height: 100px;}
+div#conRegistro>div {height: 100px;}
 
 .iElemList{
 	border-bottom: 1px solid #dddddd;
@@ -54,59 +58,8 @@ div#conListado>div, div#conRegistro>div {height: 100px;}
 	background:#dfdfdf;
 }
 
-/*------------- MODULO EQUIPO ----------------------*/
-.iElemList>span{margin-right: 4px;}
-.iElemList .tipoElem{font-size: 1.3em; font-weight: bold;}
-.iElemList .marcaElem, .iElemList .modeloElem {font-size: 1em; font-weight: bold;}
-.iElemList .serialElem{font-size: 1em; font-style: italic; color:#aaaaaa;}
 
-div#conRegistro>div{margin:15px;}
-div#conRegistro #vMenu{text-align:right;font-size: 0.8em;margin:-7px 0 7px;}
-div#conRegistro #vMenu span{cursor:pointer;}
-div#conRegistro .iniDats{border-bottom: 1px solid #dddddd;}
-.iniDats .Datsprinc{font-size: 0.9em;}
 
-div#conRegistro .tipoElem{font-size: 1.3em; font-weight: bold;}
-div#conRegistro select.tipoElem{font-size: 1em;padding: 0;display: block;border: 1px solid #dddddd;}
-
-div#conRegistro .tipoElem .iDat.v>input{display: none;}
-div#conRegistro .tipoElem .iDat.v>select{display: none;}
-div#conRegistro .tipoElem .iDat.e>input{display: initial;}
-div#conRegistro .tipoElem .iDat.e>select{display: initial;}
-
-div#conRegistro .tipoElem .iDat.v>span{display: initial;}
-div#conRegistro .tipoElem .iDat.e>span{display: none;}
-
-div#conRegistro .nDatos{padding: 7px 0;}
-div#conRegistro .nDatos .iDat.v .vpDats{display: initial;}
-div#conRegistro .nDatos .iDat.v .epDats{display: none;}
-div#conRegistro .nDatos .iDat.e .epDats{display: initial;}
-div#conRegistro .nDatos .iDat.e .vpDats{display: none;}
-
-.epDats{display:table;}
-.epDats .irDat{display:table-row;}
-.epDats .irDat>span{display:table-cell;}
-div#conRegistro .epDats .irDat .tDat{text-align:right;font-size: 0.9em;padding: 3px;}
-div#conRegistro input.ieDat,  div#conRegistro input.iAtrEq,  div#conRegistro input.inAtrEq{font-size: 0,95em;padding: 1px 5px;display: block;border: 1px solid #dddddd;}
-div#conRegistro input.inAtrEq{text-align: right;width: 110px;margin-right: -5px; background-color:#dedede; font-weight: bold; }
-
-#contListAtrb{padding: 5px 0;}
-#contListAtrb .tit{font-size: 0.8em;font-style: italic;color:#bbbbbb;}
-div#conRegistro .ListAtrib{display:table;margin: 10px 10px; width: 100%}
-.ListAtrib .iAtr{display:table-row;}
-.ListAtrib .iAtr .tAtr, .ListAtrib .iAtr .vAtr{font-size: 0.9em;display:table-cell;padding:3px 5px;vertical-align: top;position: relative;}
-.ListAtrib .iAtr .tAtr{text-align: right;padding-right: 5px;font-weight: bold;}
-
-div#conRegistro .iDat.v #lAtrV{display: initial;}
-div#conRegistro .iDat.v #lAtrE{display: none;}
-div#conRegistro .iDat.e #lAtrE{display: initial;}
-div#conRegistro .iDat.e #lAtrV{display: none;}
-
-#listObs.v{display: initial;}
-#listObs.e{display: none;}
-.iObs{ background: #E3E3E3;border-bottom: 1px solid #dddddd;margin-bottom: 5px;padding: 7px;font-size: 0.95em;}
-.iObs .iFechObs{text-align: right;font-size: 0.8em;color: #aaaaaa;border-bottom: 1px solid #d7d7d7;margin-bottom: 5px;}
-.iObs .iContObs{max-height: 100px;overflow-y: auto;color: #444444;}
 
 /*------------- UI ----------------------*/
 

@@ -3,9 +3,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=Cp1252">
 <title>Inventario CID</title>
-<link media="screen" href="home.css" type="text/css" rel="stylesheet"></link>
-<script type="text/javascript" src="lib/objEventos.js"></script>
+<link media="screen" href="../home.css" type="text/css" rel="stylesheet"></link>
 
+<?php
+		switch ($_GET["mod"]) {
+			case 'usuarios':
+?>					<!-- Archivos ModUsuarios-->
+					<link media="screen" href="../mUsuarios/modUsr.css" type="text/css" rel="stylesheet"></link>
+					<script type="text/javascript" src="../mUsuarios/EvtsUsr.js"></script>
+<?php 			break;
+			default:
+?>					<!-- Archivos ModEquipos-->
+					<link media="screen" href="../mEquipos/modEqu.css" type="text/css" rel="stylesheet"></link>
+					<script type="text/javascript" src="../mEquipos/objEvts.js"></script>
+<?php
+				break;
+		}
+?>
+
+
+<!--
+-->
 </head>
 <body>
 	<div id="content">
@@ -19,7 +37,21 @@
 		
 		<div id="contentBarSup">
 			<?php 
-				include_once("mEquipos/modulo.php");
+			
+			
+				switch ($_GET["mod"]) {
+					case 'usuarios':
+						include_once("mUsuarios/modUsr.php");   //contenido ModUsuarios
+						break;
+					default:
+						include_once("mEquipos/modEqu.php");    //contenido ModEquipos
+						break;
+				}
+				
+				//
+
+				
+				
 			?>
 		</div>
 	</div>

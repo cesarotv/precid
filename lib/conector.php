@@ -1,5 +1,5 @@
 <?php
-jkhkuhkjhjkhjkh
+
  class ConectorDB{
  	var $DBconect;
  	var $Result;
@@ -10,11 +10,7 @@ jkhkuhkjhjkhjkh
  	var $Numreg;
 
  	function ConectorDB(){
- 		/*if(!($conn = odbc_connect("Driver={Microsoft Access Driver (*.mdb)};Dbq=J:/xampp/htdocs/miagenda/db/MiAgenda.mdb;",'',''))){
- 			echo "Error al conectar a la base de datos";
-    		return false;
-    		exit();
-		}*/
+
 		if(!($conn =  mysql_connect("localhost", "root", ""))){
 			echo "Error al conectar a la base de datos";
 			return false;
@@ -27,7 +23,7 @@ jkhkuhkjhjkhjkh
 
 	function conectar($query){
 		//echo $query;
-		$this->Result=mysql_query($query) or die("Error en: $busqueda: " . mysql_error().">>> ".$query);
+		$this->Result=mysql_query($query) or die("Error en: " . mysql_error().">>> ".$query);
 	}
 
 	

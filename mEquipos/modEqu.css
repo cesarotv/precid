@@ -1,0 +1,58 @@
+
+/*------------- MODULO EQUIPO ----------------------*/
+
+.iElemList>span{margin-right: 4px;}
+.iElemList .tipoElem{font-size: 1.3em; font-weight: bold;}
+.iElemList .marcaElem, .iElemList .modeloElem {font-size: 1em; font-weight: bold;}
+.iElemList .serialElem{font-size: 1em; font-style: italic; color:#aaaaaa;}
+
+div#conRegistro>div{margin:15px;}
+div#conRegistro #vMenu{text-align:right;font-size: 0.8em;margin:-7px 0 7px;}
+div#conRegistro #vMenu span{cursor:pointer;}
+div#conRegistro .iniDats{border-bottom: 1px solid #dddddd;}
+.iniDats .Datsprinc{font-size: 0.9em;}
+
+div#conRegistro .tipoElem{font-size: 1.3em; font-weight: bold;}
+div#conRegistro select.tipoElem{font-size: 1em;padding: 0;display: block;border: 1px solid #dddddd;}
+
+div#conRegistro .tipoElem .iDat.v>input{display: none;}
+div#conRegistro .tipoElem .iDat.v>select{display: none;}
+div#conRegistro .tipoElem .iDat.e>input{display: initial;}
+div#conRegistro .tipoElem .iDat.e>select{display: initial;}
+
+div#conRegistro .tipoElem .iDat.v>span{display: initial;}
+div#conRegistro .tipoElem .iDat.e>span{display: none;}
+
+div#conRegistro .nDatos{padding: 7px 0;}
+div#conRegistro .nDatos .iDat.v .vpDats{display: initial;}
+div#conRegistro .nDatos .iDat.v .epDats{display: none;}
+div#conRegistro .nDatos .iDat.e .epDats{display: initial;}
+div#conRegistro .nDatos .iDat.e .vpDats{display: none;}
+
+.epDats{display:table;}
+.epDats .irDat{display:table-row;}
+.epDats .irDat>span{display:table-cell;}
+div#conRegistro .epDats .irDat .tDat{text-align:right;font-size: 0.9em;padding: 3px;}
+div#conRegistro input.ieDat,  div#conRegistro input.iAtrEq,  div#conRegistro input.inAtrEq{font-size: 0,95em;padding: 1px 5px;display: block;border: 1px solid #dddddd;}
+div#conRegistro input.inAtrEq{text-align: right;width: 110px;margin-right: -5px; background-color:#dedede; font-weight: bold; }
+
+#contListAtrb{padding: 5px 0;}
+#contListAtrb .tit{font-size: 0.8em;font-style: italic;color:#bbbbbb;}
+div#conRegistro .ListAtrib{display:table;margin: 10px 10px; width: 100%}
+.ListAtrib .iAtr{display:table-row;}
+.ListAtrib .iAtr .tAtr, .ListAtrib .iAtr .vAtr {font-size: 0.9em;display:table-cell;padding:3px 5px;vertical-align: top;position: relative;}
+.ListAtrib .iAtr .tAtr{text-align: right;padding-right: 5px;font-weight: bold;}
+
+div#conRegistro .iDat.v #lAtrV{display: initial;}
+div#conRegistro .iDat.v #lAtrE{display: none;}
+div#conRegistro .iDat.e #lAtrE{display: initial;}
+div#conRegistro .iDat.e #lAtrV{display: none;}
+
+#listObs.v{display: initial;}
+#listObs.e{display: none;}
+.iObs{ background: #E3E3E3;border-bottom: 1px solid #dddddd;margin-bottom: 5px;padding: 7px;font-size: 0.95em;}
+.iObs .iFechObs{text-align: right;font-size: 0.8em;color: #aaaaaa;border-bottom: 1px solid #d7d7d7;margin-bottom: 5px;}
+.iObs .iContObs{max-height: 100px;overflow-y: auto;color: #444444;}
+
+#listObs #addObs{padding-bottom: 10px;}
+#listObs textarea{width: 100%; display:block;font-family: Arial;}

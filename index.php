@@ -1,7 +1,5 @@
 <?php
 
-
-sajdhajsdhajksdh
 	session_start();
 	$e="eo";
 	if (!empty($_POST["USR"])){

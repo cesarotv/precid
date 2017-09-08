@@ -10,7 +10,7 @@ if (!empty($_POST)){include_once("../lib/objequipo.php");
 		<div>
 			<div id="vMenu">
 				<span id="edEqu" onclick="javascript:editDlle('conRegistro','e');"> [Editar] </span>
-				<span id="nEqu" onclick="javascript:nDlle();"> [Nuevo] </span>
+				<span id="nEqu" onclick="javascript:nEqu();"> [Nuevo] </span>
 				<span id="gEqu" onclick="javascript:saveDlle();" style="display:none;"> [Guardar] </span>
 				<span id="cEqu" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;"> [Cancelar] </span>
 			</div>
@@ -28,6 +28,7 @@ if (!empty($_POST)){include_once("../lib/objequipo.php");
 							<b>Marca:</b><span><?php echo $iEquipo->marca;?></span>
 							<b>Modelo:</b><span><?php echo $iEquipo->modelo;?></span>
 							<b>Serial:</b><span><?php echo $iEquipo->serial;?></span>
+							<b>Código:</b><span><?php echo $iEquipo->cod;?></span>
 						</div>
 						<div class='epDats'>
 							<div class='irDat'>
@@ -41,6 +42,10 @@ if (!empty($_POST)){include_once("../lib/objequipo.php");
 							<div class='irDat'>
 								<span class='tDat'><b>Serial:</b></span>
 								<span class='vDat'><input id="equ_serial" class="ieDat" name="equ_serial"  value="<?php echo $iEquipo->serial;?>"/></span>
+							</div>
+							<div class='irDat'>
+								<span class='tDat'><b>C&oacute;digo:</b></span>
+								<span class='vDat'><input id="equ_cod" class="ieDat" name="equ_serial"  value="<?php echo $iEquipo->cod;?>"/></span>
 							</div>
 						</div>
 					</div>
@@ -68,17 +73,26 @@ if (!empty($_POST)){include_once("../lib/objequipo.php");
 							 		<input id=\"".
 							 			$_POST["equ_id"]."|".$iEquipo->atributos[$i]["atr_id"]."|".$iEquipo->atributos[$i]["tae_id"].
 							 			"\" class=\"iAtrEq\" name=\"atr_atributo\"  value=\"".$iEquipo->atributos[$i]["atr_atributo"]."\"/></span>".
+							 	"<span class='vAtr' style=\"cursor:pointer;\" onclick=\"javascript:delAtrib(this.parentNode);\">[-]</span>".
 							 "</div>";
 					}
 
 	?>				</div>	
 					<div style="text-align: center;"><span style="cursor:pointer;" onclick="javascript:nAtrib(this.parentNode.parentNode);">[+]</span></div>
+					<div><span style="cursor:pointer;" onclick="javascript:descEqu();">[descartar]</span></div>
 				</div>
 
 			</div>
 
 			<div id="listObs" class="iDat v">
+				<span>Observaciones</span>
+				<div id="addObs" style="text-align:center;">  
+					<textarea></textarea>
+					<span style="cursor:pointer;" onclick="javascript:nObs(this.parentNode);">[+]</span>
+				</div>
+
 <?php
+				echo "";
 				for($i=0; $i<count($iEquipo->obs); $i++){
 					echo "<div class='iObs'>".
 						 "<div class='iFechObs'>".date_create($iEquipo->obs[$i]["obsequ_fecha"])->format('d/m/y  h:i a')."</div>".
@@ -87,5 +101,4 @@ if (!empty($_POST)){include_once("../lib/objequipo.php");
 				}
 ?>	
 			</div>
-<?php //} ?>
 		</div>

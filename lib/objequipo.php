@@ -70,28 +70,55 @@ include_once("../lib/conector.php");
 		return $tmp;
 	}
 
-	function updateEqu($idEqu){$this->access=new ConectorDB;
-		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo`;");
-		$stSql="UPDATE `db_cid_inv`.`equipo` SET `equ_teq_id` = :id, `equ_marca` = ':marca',`equ_modelo` = ':modelo',".
-					"`equ_serial` = ':serial' WHERE `equ_id` = :id";
-		$stSql=$this->sqlReplace($stSql,$idEqu);
-		$this->access->conectar($stSql);
+	function saveEqu($idEqu){$this->access=new ConectorDB;
+		if($idEqu["id"]==0){
+			$idEqu["id"] = $this->maxIdEqu()+1;
+			$stSql="INSERT INTO `db_cid_inv`.`equipo` (`equ_id`,`equ_cod`,`equ_IDBarras`,`equ_teq_id`,`equ_marca`,`equ_modelo`,`equ_serial`,`equ_estado`)".
+			"VALUES (:id,':codigo',null,:tipo,':marca',':modelo',':serial',1)";
+			$stSql=$this->sqlReplace($stSql,$idEqu);
+			$this->access->conectar($stSql);
 
-		$iAtr="";$maxAtr = $this->maxIdAtrEqu($idEqu["id"]);
-		
-		foreach ($idEqu["atributos"] as $iAtr) {
-			list($idEq,$idatrEq,$idAtr) =explode("|",explode(":", $iAtr)[0]);
-			
-			if($idatrEq==0){$maxAtr++;$idatrEq=$maxAtr;} // incrementa IDAtrib para atributos nuevos
-
-			$vAtr=explode(":",$iAtr)[1];
-
-			$stSql="INSERT INTO `db_cid_inv`.`atributoequipo` (`atr_equ_id`,`atr_id`,`atr_tae_id`,`atr_atributo`) ".
-					"VALUES (".$idEq.",".$idatrEq.",".$idAtr.",'".$vAtr."') ON DUPLICATE KEY UPDATE ".
-					"`atr_tae_id`=".$idAtr.", `atr_atributo`=\"".$vAtr."\";";
-
+		}else{
+			//$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo`;");
+			$stSql="UPDATE `db_cid_inv`.`equipo` SET `equ_teq_id` = :tipo, `equ_cod` = ':codigo', `equ_marca` = ':marca',`equ_modelo` = ':modelo',`equ_serial` = ':serial' WHERE `equ_id` = :id";
+			$stSql=$this->sqlReplace($stSql,$idEqu);
 			$this->access->conectar($stSql);
 		}
+		
+		// ---- Atributos
+		if (!empty($idEqu["atributos"])){
+			$iAtr="";$maxAtr = $this->maxIdAtrEqu($idEqu["id"]);
+
+			foreach ($idEqu["atributos"] as $iAtr) {
+				list($idEq,$idatrEq,$idAtr) = explode("|",explode(":", $iAtr)[0]);
+				if($idEq==-1){$idEq=$idEqu["id"];}
+				if($idatrEq==0){$maxAtr++;$idatrEq=$maxAtr;} // --- incrementa IDAtrib para atributos nuevos
+				$vAtr=explode(":",$iAtr)[1];
+				
+				if(strlen($vAtr)>0){
+					$stSql="INSERT INTO `db_cid_inv`.`atributoequipo` (`atr_equ_id`,`atr_id`,`atr_tae_id`,`atr_atributo`) ".
+							"VALUES (".$idEq.",".$idatrEq.",".$idAtr.",'".$vAtr."') ON DUPLICATE KEY UPDATE ".
+							"`atr_tae_id`=".$idAtr.", `atr_atributo`=\"".$vAtr."\";";
+					$this->access->conectar($stSql);
+				}elseif($idatrEq>0){
+					$stSql="DELETE FROM `db_cid_inv`.`atributoequipo` WHERE `atributoequipo`.`atr_equ_id`=".$idEq." AND `atributoequipo`.`atr_id`=".$idatrEq;
+					$this->access->conectar($stSql);
+				}
+			}
+		}
+
+		return $idEqu["id"];
+	}
+
+	function saveObsEqu($idEq,$obs){
+		if(strlen($obs)>5){
+			$this->access->conectar("INSERT INTO `db_cid_inv`.`obsequipo` (`obsequ_equ_id`,`obsequ_observacion`) VALUES (".$idEq.",'".utf8_decode($obs)."')");
+		}
+	}
+
+	function descEqu($idEq){
+		$stSql="UPDATE `db_cid_inv`.`equipo` SET `equipo`.`equ_estado`=0 WHERE `equipo`.`equ_id`=".$idEq;
+		$this->access->conectar($stSql);
 	}
 
 
@@ -101,6 +128,11 @@ include_once("../lib/conector.php");
 		foreach ($iCampos as $iCmp=>$vCmp) {
 			if(!is_array($vCmp))$txtSql=str_replace(":".$iCmp,$vCmp,$txtSql);}
 		return $txtSql;
+	}
+
+	function maxIdEqu(){
+		$this->access->conectar("SELECT MAX(equ_id) FROM db_cid_inv.equipo");
+		return mysql_fetch_array($this->access->getResult())[0];
 	}
 
  	function maxIdAtrEqu($idequ){
@@ -127,20 +159,7 @@ echo "<br>"."<br>"."<br>";
 		*/
 
 
-
-
-
-
-
-
  }
-
- if (!empty($_POST["iAtr"])){
-		
-		$iEquipo=new classEquipo($_POST["iAtr"]);
-			echo "<span class='tAtr'>".$iEquipo->selTAtr("")."</span>".
-					"<span class='vAtr'><input id=\"".$_POST["iAtr"].":".$_POST["nAtrib"]."\" class=\"iAtrEq\" name=\"atr_atributo\"  value=\"\"/></span>";
-		}
 
 
 
