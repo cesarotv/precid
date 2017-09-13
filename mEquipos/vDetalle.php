@@ -1,87 +1,112 @@
 
 <?php 
-if (!empty($_POST)){include_once("../lib/objequipo.php");
-	}else{include_once("lib/objequipo.php");$_POST["equ_id"]=-1;}
+if (!empty($_POST)){include_once("../lib/objequipo.php");include_once("../lib/objUsuario.php");
+	}else{include_once("lib/objequipo.php");include_once("lib/objUsuario.php");$_POST["equ_id"]=-1;}
 
 		$iEquipo=new classEquipo();
 		$iEquipo->diEquipo($_POST["equ_id"]);
 
+		$iUsr=new classUsuario();
+		//<span><select><option></option><?php echo utf8_encode($iUsr->iUsr()); </select></span>
 ?>
 		<div>
-			<div id="vMenu">
-				<span id="edEqu" onclick="javascript:editDlle('conRegistro','e');"> [Editar] </span>
-				<span id="nEqu" onclick="javascript:nEqu();"> [Nuevo] </span>
-				<span id="gEqu" onclick="javascript:saveDlle();" style="display:none;"> [Guardar] </span>
-				<span id="cEqu" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;"> [Cancelar] </span>
-			</div>
-			<input class="idElem" id="equ_id" name="equ_id" value="<?php echo $iEquipo->id;?>" style="display:none;" />
-			<div class="iniDats">
-				<div class="tipoElem">
-					<div class="iDat v">
-						<span id="tequ_nombre"><?php echo utf8_encode($iEquipo->tipo);?></span>
-						<select id="equ_tipo" class="tipoElem"><option></option><?php echo utf8_encode($iEquipo->selTEqu($iEquipo->idTipo)); ?></select>
-					</div>
-				</div>
-				<div class="nDatos">
-					<div class="iDat v">
-						<div class="vpDats">
-							<b>Marca:</b><span><?php echo $iEquipo->marca;?></span>
-							<b>Modelo:</b><span><?php echo $iEquipo->modelo;?></span>
-							<b>Serial:</b><span><?php echo $iEquipo->serial;?></span>
-							<b>Código:</b><span><?php echo $iEquipo->cod;?></span>
+			<div id="SecPrest">
+				<span id="bdispon" onclick="javascript:vnPrest(this);">Disponible <span class="b_despl">&#9660;</span></span>
+				<div id="contPrest" style="display:none;">
+					<div class="DatnPres" >
+						<div class="rDatnPres">
+							<span class="cText">Prestamo para </span>
+							<span class="UIselect">
+								<input  class="idElem" id="pre_usr_id"  value="" />
+								<ul></ul>
+							</span>
 						</div>
-						<div class='epDats'>
-							<div class='irDat'>
-								<span class='tDat'><b>Marca:</b></span>
-								<span class='vDat'><input id="equ_marca" class="ieDat" name="equ_marca"  value="<?php echo $iEquipo->marca;?>"/></span>
-							</div>
-							<div class='irDat'>
-								<span class='tDat'><b>Modelo:</b></span>
-								<span class='vDat'><input id="equ_modelo" class="ieDat" name="equ_modelo"  value="<?php echo $iEquipo->modelo;?>"/></span>
-							</div>
-							<div class='irDat'>
-								<span class='tDat'><b>Serial:</b></span>
-								<span class='vDat'><input id="equ_serial" class="ieDat" name="equ_serial"  value="<?php echo $iEquipo->serial;?>"/></span>
-							</div>
-							<div class='irDat'>
-								<span class='tDat'><b>C&oacute;digo:</b></span>
-								<span class='vDat'><input id="equ_cod" class="ieDat" name="equ_serial"  value="<?php echo $iEquipo->cod;?>"/></span>
-							</div>
+						<div class="rDatnPres"><span class="cText">Devolución para </span>
+							<input  class="idElem" id="pre_fecha"  value="" />
 						</div>
 					</div>
+					<div style="text-align: center;padding:5px; cursor: pointer;"><span>[Crear Prestamo]</span></div>
 				</div>
 			</div>
-			<div id="contListAtrb" class="iDat v">
-			<div class="tit">Especificaciones:</div>
-			<div id="lAtrV" class="ListAtrib">
-	<?php
-					for($i=0; $i<count($iEquipo->atributos); $i++){
-						echo "<div class='iAtr'>".
-							 "<span class='tAtr'>".$iEquipo->atributos[$i]["tae_nombre"].":</span>".
-							 "<span class='vAtr'>".$iEquipo->atributos[$i]["atr_atributo"]."</span>".
-							 "</div>";
-					}
-	?>		
+			<script type="text/javascript"> 
+				loadEvents();
+			</script>
+			<div id="SecInfEqu">
+				<div id="vMenu">
+					<span id="edEqu" onclick="javascript:editDlle('conRegistro','e');"> [Editar] </span>
+					<span id="nEqu" onclick="javascript:nEqu();"> [Nuevo] </span>
+					<span id="gEqu" onclick="javascript:saveDlle();" style="display:none;"> [Guardar] </span>
+					<span id="cEqu" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;"> [Cancelar] </span>
 				</div>
-				<div id="lAtrE" class="ListAtrib">
-					<div class="lAtr">
-	<?php
-					for($i=0; $i<count($iEquipo->atributos); $i++){
-						echo "<div class='iAtr'>".
-							 	"<span class='tAtr'>".$iEquipo->selTAtr($iEquipo->atributos[$i]["tae_id"])."</span>".
-							 	"<span class='vAtr'>
-							 		<input id=\"".
-							 			$_POST["equ_id"]."|".$iEquipo->atributos[$i]["atr_id"]."|".$iEquipo->atributos[$i]["tae_id"].
-							 			"\" class=\"iAtrEq\" name=\"atr_atributo\"  value=\"".$iEquipo->atributos[$i]["atr_atributo"]."\"/></span>".
-							 	"<span class='vAtr' style=\"cursor:pointer;\" onclick=\"javascript:delAtrib(this.parentNode);\">[-]</span>".
-							 "</div>";
-					}
-
-	?>				</div>	
-					<div style="text-align: center;"><span style="cursor:pointer;" onclick="javascript:nAtrib(this.parentNode.parentNode);">[+]</span></div>
-					<div><span style="cursor:pointer;" onclick="javascript:descEqu();">[descartar]</span></div>
+				<input class="idElem" id="equ_id" name="equ_id" value="<?php echo $iEquipo->id;?>" style="display:none;" />
+				<div class="iniDats">
+					<div class="tipoElem">
+						<div class="iDat v">
+							<span id="tequ_nombre"><?php echo utf8_encode($iEquipo->tipo);?></span>
+							<select id="equ_tipo" class="tipoElem"><option></option><?php echo utf8_encode($iEquipo->selTEqu($iEquipo->idTipo)); ?></select>
+						</div>
+					</div>
+					<div class="nDatos">
+						<div class="iDat v">
+							<div class="vpDats">
+								<b>Marca:</b><span><?php echo $iEquipo->marca;?></span>
+								<b>Modelo:</b><span><?php echo $iEquipo->modelo;?></span>
+								<b>Serial:</b><span><?php echo $iEquipo->serial;?></span>
+								<b>Código:</b><span><?php echo $iEquipo->cod;?></span>
+							</div>
+							<div class='epDats'>
+								<div class='irDat'>
+									<span class='tDat'><b>Marca:</b></span>
+									<span class='vDat'><input id="equ_marca" class="ieDat" name="equ_marca"  value="<?php echo $iEquipo->marca;?>"/></span>
+								</div>
+								<div class='irDat'>
+									<span class='tDat'><b>Modelo:</b></span>
+									<span class='vDat'><input id="equ_modelo" class="ieDat" name="equ_modelo"  value="<?php echo $iEquipo->modelo;?>"/></span>
+								</div>
+								<div class='irDat'>
+									<span class='tDat'><b>Serial:</b></span>
+									<span class='vDat'><input id="equ_serial" class="ieDat" name="equ_serial"  value="<?php echo $iEquipo->serial;?>"/></span>
+								</div>
+								<div class='irDat'>
+									<span class='tDat'><b>C&oacute;digo:</b></span>
+									<span class='vDat'><input id="equ_cod" class="ieDat" name="equ_serial"  value="<?php echo $iEquipo->cod;?>"/></span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+				<div id="contListAtrb" class="iDat v">
+				<div class="tit">Especificaciones:</div>
+				<div id="lAtrV" class="ListAtrib">
+		<?php
+						for($i=0; $i<count($iEquipo->atributos); $i++){
+							echo "<div class='iAtr'>".
+								 "<span class='tAtr'>".$iEquipo->atributos[$i]["tae_nombre"].":</span>".
+								 "<span class='vAtr'>".$iEquipo->atributos[$i]["atr_atributo"]."</span>".
+								 "</div>";
+						}
+		?>		
+					</div>
+					<div id="lAtrE" class="ListAtrib">
+						<div class="lAtr">
+		<?php
+						for($i=0; $i<count($iEquipo->atributos); $i++){
+							echo "<div class='iAtr'>".
+								 	"<span class='tAtr'>".$iEquipo->selTAtr($iEquipo->atributos[$i]["tae_id"])."</span>".
+								 	"<span class='vAtr'>
+								 		<input id=\"".
+								 			$_POST["equ_id"]."|".$iEquipo->atributos[$i]["atr_id"]."|".$iEquipo->atributos[$i]["tae_id"].
+								 			"\" class=\"iAtrEq\" name=\"atr_atributo\"  value=\"".$iEquipo->atributos[$i]["atr_atributo"]."\"/></span>".
+								 	"<span class='vAtr' style=\"cursor:pointer;\" onclick=\"javascript:delAtrib(this.parentNode);\">[-]</span>".
+								 "</div>";
+						}
 
+		?>				</div>	
+						<div style="text-align: center;"><span style="cursor:pointer;" onclick="javascript:nAtrib(this.parentNode.parentNode);">[+]</span></div>
+						<div><span style="cursor:pointer;" onclick="javascript:descEqu();">[descartar]</span></div>
+					</div>
+
+				</div>
 			</div>
 
 			<div id="listObs" class="iDat v">

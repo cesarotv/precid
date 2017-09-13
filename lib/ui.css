@@ -1,0 +1,6 @@
+
+.UIselect{position: relative;}
+.UIselect>ul{position: absolute;display: block;margin:0px;padding: 0;background-color: #ffffff;border: 1px solid #dddddd;}
+.UIselect>ul>li{display: block;padding: 2px 3px;border-bottom: 1px solid #dddddd;}
+.UIselect>ul li.is{background-color: #dddddd !important;}
+.UIselect>ul>li:hover{background-color: #dddddd;}

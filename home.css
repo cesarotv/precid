@@ -8,11 +8,8 @@ div#content{
 	background:#ffffff;	display: table;
 }
 
-#barSup{
-	display: table-row;
-}
 
-ul#contBarSup{
+ul#contBarSup{display: block;position: relative;
 	list-style: none;padding: 15px 20px 4px;
     margin: 0;border-bottom: 1px solid;
 }
@@ -22,8 +19,10 @@ ul#contBarSup li{
     border-width: 0 1px 0 0;margin: 0;
     padding: 15px 5px 5px 5px;cursor: pointer;
     font-size: 1em;
-
 }
+ul#contBarSup li a{text-decoration: none;text-decoration: none;}
+
+ul#contBarSup li:last-child{ position: absolute;top:0;right: 10px;}
 
 div#contentBarSup{
 	width: 100%;height: 100%;display: table-row;

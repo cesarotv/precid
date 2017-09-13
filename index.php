@@ -10,7 +10,7 @@
 			$tUsr=$access->access($_POST["USR"],$_POST["PASS"]);
 			if($tUsr[0]==true){
 				$_SESSION["USR"] = $tUsr;
-				header("Location:home.php");
+				header("Location:home/equipos");
 				//echo "<script>alert('hola ".utf8_encode ($_SESSION["USR"][3])." te logeaste!!!!!')</script>";
 
 			}else{

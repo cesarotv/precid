@@ -1,7 +1,6 @@
 <?php
-if (!empty($_POST)){
-include_once("../lib/conector.php");
-}else{include_once("lib/conector.php");}
+if (!empty($_POST)){include_once("../lib/conector.php");
+}else{include_once("/lib/conector.php");}
 
  class classUsuario{
 
@@ -39,9 +38,26 @@ include_once("../lib/conector.php");
 			$this->nom_proceso=$tdEqu["pro_nombre"];
 			$this->username=$tdEqu["usr_username"];
 			$this->pass=$tdEqu["usr_password"];
-
 		}
  	}
+
+ 	 function iUsr(){
+ 		$this->access=new ConectorDB;
+		$this->access->conectar("SELECT usuario.usr_id, usuario.usr_nombres, usuario.usr_apellidos FROM db_cid_inv.usuario");
+		$tmp="";
+		while ($row=mysql_fetch_array($this->access->getResult())){
+			$tmp=$tmp."<option value=\"".$row["usr_id"]."\" >".$row["usr_nombres"]." ".$row["usr_apellidos"]."</option>";}
+		return $tmp;
+	}
+
+	function uiSelUsr($tBqu){
+ 		$this->access=new ConectorDB;
+		$this->access->conectar("SELECT usuario.usr_id, usuario.usr_nombres, usuario.usr_apellidos FROM db_cid_inv.usuario where concat(usuario.usr_nombres,' ', usuario.usr_apellidos) like '%".$tBqu."%'");
+		$tmp="";
+		while ($row=mysql_fetch_array($this->access->getResult())){
+			$tmp=$tmp."<li id=\"".$row["usr_id"]."\" >".$row["usr_nombres"]." ".$row["usr_apellidos"]."</li>";}
+		return $tmp;
+	}
 
  	function selProc($iProc){
  		$this->access=new ConectorDB;
@@ -61,6 +77,7 @@ include_once("../lib/conector.php");
 		}	
 		return $tmp;
 	}
+
 
 	function saveUsr($iUsr){$this->access=new ConectorDB;
 		if($iUsr["idUsr"]==0){
