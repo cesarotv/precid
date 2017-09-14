@@ -1,33 +1,27 @@
 
 <?php 
-if (!empty($_POST)){include_once("../lib/objequipo.php");include_once("../lib/objUsuario.php");
-	}else{include_once("lib/objequipo.php");include_once("lib/objUsuario.php");$_POST["equ_id"]=-1;}
+if (!empty($_POST)){
+		include_once("../lib/objequipo.php");
+		include_once("../lib/objPrestamo.php");
+	}else{
+		include_once("lib/objequipo.php");
+		include_once("lib/objPrestamo.php");
+		$_POST["equ_id"]=-1;
+	}
 
 		$iEquipo=new classEquipo();
 		$iEquipo->diEquipo($_POST["equ_id"]);
 
-		$iUsr=new classUsuario();
-		//<span><select><option></option><?php echo utf8_encode($iUsr->iUsr()); </select></span>
+
 ?>
 		<div>
 			<div id="SecPrest">
-				<span id="bdispon" onclick="javascript:vnPrest(this);">Disponible <span class="b_despl">&#9660;</span></span>
-				<div id="contPrest" style="display:none;">
-					<div class="DatnPres" >
-						<div class="rDatnPres">
-							<span class="cText">Prestamo para </span>
-							<span class="UIselect">
-								<input  class="idElem" id="pre_usr_id"  value="" />
-								<ul></ul>
-							</span>
-						</div>
-						<div class="rDatnPres"><span class="cText">Devolución para </span>
-							<input  class="idElem" id="pre_fecha"  value="" />
-						</div>
-					</div>
-					<div style="text-align: center;padding:5px; cursor: pointer;"><span>[Crear Prestamo]</span></div>
-				</div>
+				<?php include("secPrestamo.php");?>
+
 			</div>
+
+
+
 			<script type="text/javascript"> 
 				loadEvents();
 			</script>

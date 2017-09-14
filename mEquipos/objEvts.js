@@ -20,8 +20,6 @@ window.onload=function() {
 }
 
 
-
-
 function vnPrest(cmp){
 	ecmp=document.getElementById('contPrest');
 	if (ecmp.style.display=="none"){
@@ -30,6 +28,41 @@ function vnPrest(cmp){
 	}else{ecmp.style.display="none";
 	    cmp.getElementsByClassName("b_despl")[0].innerHTML="&#9660;";}
 	
+}
+
+function SavenPrest(){
+	idEqu=document.getElementById("equ_id").value;
+	prms="savenPrest=true&";
+	prms=prms+"equ_id="+idEqu+"&";
+	prms=prms+"pre_usr="+document.getElementById("pre_usr_id").name+"&";
+	prms=prms+"pre_tipo="+document.getElementById("pre_tipo").value+"&";
+	prms=prms+"pre_devprog="+document.getElementById("pre_fechadev").value+"&";
+
+	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
+	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		//alert(procAjax.responseText);
+		vDetalle(procAjax.responseText,'conRegistro');
+		til=document.getElementById("il."+idEqu);
+		refreshList();
+	}}}
+	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	procAjax.send(prms);
+
+}
+
+function DevPrest(cmp){
+	//nObs(cmp);
+	prms="DevPrest=true&";
+	prms=prms+"equ_id="+document.getElementById("equ_id").value;
+	
+	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
+	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		//alert(procAjax.responseText);
+		vDetalle(procAjax.responseText,'conRegistro');
+		refreshList();
+	}}}
+	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	procAjax.send(prms);
 }
 
 function vDetalle(iEqu, cmpv){
@@ -85,8 +118,7 @@ function saveDlle(){
 	prms=prms+"equ_modelo="+document.getElementById("equ_modelo").value+"&";
 	prms=prms+"equ_serial="+document.getElementById("equ_serial").value;
 
-	arrAtr= new Array();
-	tlAtr=document.getElementById("lAtrE").getElementsByClassName("iAtrEq");
+	arrAtr= new Array();tlAtr=document.getElementById("lAtrE").getElementsByClassName("iAtrEq");
 	if(tlAtr.length>0){for (i=0;i<tlAtr.length;i++){arrAtr.push (tlAtr[i].id+":"+tlAtr[i].value);}prms=prms+"&equ_atr="+arrAtr;}
 
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
@@ -162,7 +194,7 @@ function descEqu(){
 
 function loadEvents(){
 
-	document.getElementById("pre_fecha").value =new Date().getDate()+"/"+new Date().getMonth()+"/"+new Date().getFullYear();
+	document.getElementById("pre_fechadev").value =new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear();
 
 	iS1=new uiSelect;
 	iS1.urlList="../mEquipos/uilist.php";
@@ -199,7 +231,9 @@ var uiSelect= function(){
 	function genList(){
 		procAjax=ObjAjax();procAjax.open("POST",tthis.urlList,true);
 		procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-	 		tthis.iList.innerHTML=procAjax.responseText;tthis.is=-1;
+	 		tthis.iList.innerHTML=procAjax.responseText;
+	 		tthis.is=-1;
+	 		new selClick();
 		}}}
 		procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		procAjax.send(tthis.iPOST+"="+tthis.iInput.value);
@@ -212,9 +246,17 @@ var uiSelect= function(){
 		}
 	}
 
+	function selClick(){
+		iop=tthis.iList.getElementsByTagName("li");
+		for (var i=0;i<iop.length;i++){
+			iop[i].onclick=function(){tthis.is=this.dataset.id;tthis.selectOp();tthis.iList.innerHTML="";}
+		}
+	}
+
 	this.selectOp=function(){
 		tthis.iInput.value=iop[tthis.is].innerHTML;
 		tthis.iInput.name=iop[tthis.is].id;
 	}
+
 
 }

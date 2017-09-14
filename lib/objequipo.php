@@ -18,6 +18,11 @@ include_once("../lib/conector.php");
  	var $atributos = array();
  	var $obs = array();
 
+ 	var $pres_usr_id=""; // Datos de prestamos vigentes a quien le ha sido prestado el equipo
+ 	var $pres_usr_nombre="";
+ 	var $pres_usr_fechadev="";
+
+
  	var $iselTAtrl;
 
  
@@ -40,6 +45,13 @@ include_once("../lib/conector.php");
 			$this->marca=$tdEqu["equ_marca"];
 			$this->modelo=$tdEqu["equ_modelo"];
 			$this->serial=$tdEqu["equ_serial"];
+
+
+			$this->access->conectar("SELECT `prestamos`.`pre_usr_id`, concat(`usuario`.`usr_nombres`, ' ', `usuario`.`usr_apellidos`) as usr_nombre,DATE_FORMAT(`prestamos`.`pre_fechaprogdev`, '%d/%m/%Y') as pre_fechaprogdev FROM db_cid_inv.prestamos,db_cid_inv.usuario where `prestamos`.`pre_usr_id`=`usuario`.`usr_id` and `prestamos`.`pre_equ_id`= ".$tID." and `prestamos`.`pre_fechadev`is null;");
+			$row= mysql_fetch_array($this->access->getResult(), MYSQL_ASSOC);
+			$this->pres_usr_id=$row["pre_usr_id"];
+			$this->pres_usr_nombre=$row["usr_nombre"];
+			$this->pres_usr_fechadev=$row["pre_fechaprogdev"];
 
 			$this->access->conectar("SELECT `atributoequipo`.`atr_id`,`tipoatributoequipo`.`tae_id`,`tipoatributoequipo`.`tae_nombre`, `atributoequipo`.`atr_atributo` FROM `atributoequipo`, `tipoatributoequipo`"." WHERE `atributoequipo`.`atr_tae_id`=`tipoatributoequipo`.`tae_id` AND `atributoequipo`.`atr_equ_id`=".$tID.";");
 			while ($row=mysql_fetch_array($this->access->getResult())){$this->atributos[] = $row;}
@@ -79,7 +91,6 @@ include_once("../lib/conector.php");
 			$this->access->conectar($stSql);
 
 		}else{
-			//$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo`;");
 			$stSql="UPDATE `db_cid_inv`.`equipo` SET `equ_teq_id` = :tipo, `equ_cod` = ':codigo', `equ_marca` = ':marca',`equ_modelo` = ':modelo',`equ_serial` = ':serial' WHERE `equ_id` = :id";
 			$stSql=$this->sqlReplace($stSql,$idEqu);
 			$this->access->conectar($stSql);
@@ -106,7 +117,6 @@ include_once("../lib/conector.php");
 				}
 			}
 		}
-
 		return $idEqu["id"];
 	}
 

@@ -32,4 +32,29 @@
 	if (!empty($_POST["idDescEqu"])){$iEqu->descEqu($_POST["idDescEqu"]); }
 
 	
+	if (!empty($_POST["savenPrest"])){
+
+		include_once("../lib/objPrestamo.php");
+		$iPres=new classPrestamo();
+
+		$datsPres= array();
+		$datsPres ["equ_id"]=$_POST["equ_id"];
+		$datsPres ["usr_id"]=$_POST["pre_usr"];
+		$datsPres ["pre_tipo"]=$_POST["pre_tipo"];
+		$datsPres ["pre_progdev"]=$_POST["pre_devprog"];
+
+		echo $iPres->presEquipo($datsPres);
+	}
+	if (!empty($_POST["DevPrest"])){
+
+		include_once("../lib/objPrestamo.php");
+		$iPres=new classPrestamo();
+
+		$datsPres= array();
+		$datsPres ["equ_id"]=$_POST["equ_id"];
+		
+		echo $iPres->DevEquipo($datsPres);
+
+	}
+
 ?>

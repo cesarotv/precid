@@ -2,11 +2,16 @@
 /*------------- MODULO EQUIPO ----------------------*/
 .b_despl {font-size: 0.6em;vertical-align: middle;}
 
+.iListTable{display:table; width: 100%;border-collapse: collapse;}
+.iList{	border-bottom: 1px solid #dddddd;padding: 5px;cursor:pointer;display:table-row;}
+.iList:hover{background:#dfdfdf;}
 
-.iElemList>span{margin-right: 4px;}
-.iElemList .tipoElem{font-size: 1.3em; font-weight: bold;}
-.iElemList .marcaElem, .iElemList .modeloElem {font-size: 1em; font-weight: bold;}
-.iElemList .serialElem{font-size: 1em; font-style: italic; color:#aaaaaa;}
+.iList .colList{display:table-cell;}
+.iList .iequ_tipo{font-size: 1.6em; font-weight: bold;margin-right: 4px;}
+.iList .iequ_marca, .iList .iequ_model {font-family: "Verdana"; font-size: 0.75em; font-weight: bold;}
+.iList .iequ_id{font-family: "Verdana";font-size: 0.75em; font-style: italic; color:#aaaaaa;display:block;}
+.iList .iprest{color:#999999;font-size: 0.9em;}
+.iList .iDisp{font-size: 0.9em;color:#009000;font-weight: bold;}
 
 div#conRegistro>div{margin:15px;}
 
@@ -68,4 +73,4 @@ div#conRegistro .iDat.e #lAtrV{display: none;}
 .iObs .iContObs{max-height: 100px;overflow-y: auto;color: #444444;}
 
 #listObs #addObs{padding-bottom: 10px;}
-#listObs textarea{width: 100%; display:block;font-family: Arial;}
+#contPrest textarea, #listObs textarea{width: 100%; display:block;font-family: Arial;}
