@@ -43,6 +43,7 @@
 		$datsPres ["pre_tipo"]=$_POST["pre_tipo"];
 		$datsPres ["pre_progdev"]=$_POST["pre_devprog"];
 
+		//echo $datsPres["equ_id"]."/".$datsPres["usr_id"]."/".$datsPres["pre_tipo"]."/".$datsPres["pre_progdev"];
 		echo $iPres->presEquipo($datsPres);
 	}
 	if (!empty($_POST["DevPrest"])){

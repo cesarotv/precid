@@ -56,7 +56,7 @@ include_once("../lib/conector.php");
 			$this->access->conectar("SELECT `atributoequipo`.`atr_id`,`tipoatributoequipo`.`tae_id`,`tipoatributoequipo`.`tae_nombre`, `atributoequipo`.`atr_atributo` FROM `atributoequipo`, `tipoatributoequipo`"." WHERE `atributoequipo`.`atr_tae_id`=`tipoatributoequipo`.`tae_id` AND `atributoequipo`.`atr_equ_id`=".$tID.";");
 			while ($row=mysql_fetch_array($this->access->getResult())){$this->atributos[] = $row;}
 			
-			$this->access->conectar("SELECT * FROM `obsequipo` WHERE `obsequipo`.`obsequ_equ_id`=".$tID." order by `obsequ_fecha` desc;");
+			$this->access->conectar("SELECT obsequipo.*, `usuario`.usr_nombres, `usuario`.usr_apellidos  FROM db_cid_inv.`obsequipo` left join db_cid_inv.`usuario` on `obsequipo`.obsequ_usr_id= `usuario`.usr_id WHERE `obsequipo`.`obsequ_equ_id`=".$tID." order by `obsequ_fecha` desc;");
 			while ($row=mysql_fetch_array($this->access->getResult())){$this->obs[] = $row;}
 		}
 
@@ -69,6 +69,16 @@ include_once("../lib/conector.php");
 		while ($row=mysql_fetch_array($this->access->getResult())){
 			if ($row["tequ_id"]==$itequ){$tsel=" selected ";}else{$tsel="";}
 			$tmp=$tmp."<option value=\"".$row["tequ_id"]."\" ".$tsel.">".$row["tequ_nombre"]."</option>";}
+		return $tmp;
+	}
+
+	function uiselTEqu($itequ){
+ 		$this->access=new ConectorDB;
+		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoequipo`;");
+		$tmp="";$op=0;
+		while ($row=mysql_fetch_array($this->access->getResult())){
+			if ($row["tequ_id"]==$itequ){$tsel=" selected ";}else{$tsel="";}
+			$tmp=$tmp."<li id=\"".$row["tequ_id"]."\" data-id=\"".$op."\" ".$tsel.">".$row["tequ_nombre"]."</li>";$op++;}
 		return $tmp;
 	}
 
@@ -122,7 +132,8 @@ include_once("../lib/conector.php");
 
 	function saveObsEqu($idEq,$obs){
 		if(strlen($obs)>5){
-			$this->access->conectar("INSERT INTO `db_cid_inv`.`obsequipo` (`obsequ_equ_id`,`obsequ_observacion`) VALUES (".$idEq.",'".utf8_decode($obs)."')");
+			
+			$this->access->conectar("INSERT INTO `db_cid_inv`.`obsequipo` (`obsequ_equ_id`,`obsequ_usr_id`,`obsequ_observacion`) VALUES (".$idEq.",".$this->getUsr($idEq).",'".utf8_decode($obs)."')");
 		}
 	}
 
@@ -149,6 +160,12 @@ include_once("../lib/conector.php");
  		$this->access->conectar("SELECT MAX(`atributoequipo`.`atr_id`) AS MaxAtr FROM `db_cid_inv`.`atributoequipo` WHERE `atributoequipo`.`atr_equ_id`=".$idequ);
  		return mysql_fetch_array($this->access->getResult())[0];
  	}
+ 	function getUsr($idequ){
+ 		$this->access->conectar("SELECT prestamos.pre_usr_id FROM db_cid_inv.prestamos where prestamos.pre_equ_id=".$idequ." and prestamos.pre_fechadev is null");
+ 		$tusr=mysql_fetch_array($this->access->getResult())[0];
+ 		return isset($tusr) ? $tusr : "null";
+ 	}
+
 
 
 

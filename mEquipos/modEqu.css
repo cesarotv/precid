@@ -9,7 +9,7 @@
 .iList .colList{display:table-cell;}
 .iList .iequ_tipo{font-size: 1.6em; font-weight: bold;margin-right: 4px;}
 .iList .iequ_marca, .iList .iequ_model {font-family: "Verdana"; font-size: 0.75em; font-weight: bold;}
-.iList .iequ_id{font-family: "Verdana";font-size: 0.75em; font-style: italic; color:#aaaaaa;display:block;}
+.iList .iequ_id{font-family: "Verdana";font-size: 0.68em; font-style: italic; color:#aaaaaa;display:block;}
 .iList .iprest{color:#999999;font-size: 0.9em;}
 .iList .iDisp{font-size: 0.9em;color:#009000;font-weight: bold;}
 
@@ -33,6 +33,7 @@ div#conRegistro .iniDats{border-bottom: 1px solid #dddddd;}
 div#conRegistro .tipoElem{font-size: 1.3em; font-weight: bold;}
 div#conRegistro select.tipoElem{font-size: 1em;padding: 0;display: block;border: 1px solid #dddddd;}
 
+div#conRegistro #secPrest.iDat.e{display: none;}
 div#conRegistro .tipoElem .iDat.v>input{display: none;}
 div#conRegistro .tipoElem .iDat.v>select{display: none;}
 div#conRegistro .tipoElem .iDat.e>input{display: initial;}
@@ -68,9 +69,9 @@ div#conRegistro .iDat.e #lAtrV{display: none;}
 
 #listObs.v{display: initial;}
 #listObs.e{display: none;}
-.iObs{ background: #E3E3E3;border-bottom: 1px solid #dddddd;margin-bottom: 5px;padding: 7px;font-size: 0.95em;}
-.iObs .iFechObs{text-align: right;font-size: 0.8em;color: #aaaaaa;border-bottom: 1px solid #d7d7d7;margin-bottom: 5px;}
-.iObs .iContObs{max-height: 100px;overflow-y: auto;color: #444444;}
+.iObs{font-family: "Verdana"; background: #E3E3E3;border-bottom: 1px solid #dddddd;margin-bottom: 5px;padding: 7px;font-size: 0.95em;}
+.iObs .iFechObs{font-size: 0.65em;color: #aaaaaa;border-bottom: 1px solid #d7d7d7;margin-bottom: 3px;position: relative; height: 11px;}
+.iObs .iContObs{max-height: 100px;font-size: 0.85em;overflow-y: auto;color: #666666;}
 
 #listObs #addObs{padding-bottom: 10px;}
 #contPrest textarea, #listObs textarea{width: 100%; display:block;font-family: Arial;}

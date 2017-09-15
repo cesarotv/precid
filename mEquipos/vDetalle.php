@@ -15,12 +15,9 @@ if (!empty($_POST)){
 
 ?>
 		<div>
-			<div id="SecPrest">
+			<div id="SecPrest" class="iDat v">
 				<?php include("secPrestamo.php");?>
-
 			</div>
-
-
 
 			<script type="text/javascript"> 
 				loadEvents();
@@ -37,7 +34,11 @@ if (!empty($_POST)){
 					<div class="tipoElem">
 						<div class="iDat v">
 							<span id="tequ_nombre"><?php echo utf8_encode($iEquipo->tipo);?></span>
-							<select id="equ_tipo" class="tipoElem"><option></option><?php echo utf8_encode($iEquipo->selTEqu($iEquipo->idTipo)); ?></select>
+							<span class="UIselect">
+								<input class="tipoElem" id="equ_tipo"  data-id="<?php echo $iEquipo->idTipo; ?>" value="<?php echo utf8_encode($iEquipo->tipo);?>" />
+								<ul id="tipo"></ul>
+							</span>
+							<select id="equ_tipo0" class="tipoElem"><option></option><?php echo utf8_encode($iEquipo->selTEqu($iEquipo->idTipo)); ?></select>
 						</div>
 					</div>
 					<div class="nDatos">
@@ -114,7 +115,9 @@ if (!empty($_POST)){
 				echo "";
 				for($i=0; $i<count($iEquipo->obs); $i++){
 					echo "<div class='iObs'>".
-						 "<div class='iFechObs'>".date_create($iEquipo->obs[$i]["obsequ_fecha"])->format('d/m/y  h:i a')."</div>".
+						 "<div class='iFechObs'>".
+						 	"<span>".utf8_encode($iEquipo->obs[$i]["usr_nombres"]." ".$iEquipo->obs[$i]["usr_apellidos"])."</span>".
+						 	"<span style=\"position: absolute; right:0;\">".date_create($iEquipo->obs[$i]["obsequ_fecha"])->format('d/m/y  h:i a')."</span></div>".
 						 "<div class='iContObs'><div>".utf8_encode($iEquipo->obs[$i]["obsequ_observacion"])."</div></div>".
 						 "</div>";
 				}

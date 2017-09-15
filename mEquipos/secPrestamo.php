@@ -1,12 +1,11 @@
 
 <?php 
 
-
 $iPres=new classPrestamo();
 
 if ($iEquipo->pres_usr_id){
 ?>
-				<div id="SecPrest">
+				<div id="SecPrest" >
 					<span id="bdispon" onclick="javascript:vnPrest(this);">Prestado a <?php echo utf8_encode($iEquipo->pres_usr_nombre);?>
 					<span class="b_despl">&#9660;</span></span>
 					</span>
@@ -16,7 +15,6 @@ if ($iEquipo->pres_usr_id){
 							<input  class="idElem" id="pre_fechadev"  value="" />
 						</div>
 						<div>
-							<textarea></textarea>
 							<div style="text-align: center;padding-top: 10px;">
 								<span style="cursor:pointer;" onclick="javascript:DevPrest(this); ">[Registrar Devolución]</span></div>
 						</div>
@@ -28,7 +26,7 @@ if ($iEquipo->pres_usr_id){
 }else{
 
 ?>
-				<div id="SecDispon">
+				<div id="SecDispon" >
 					<span id="bdispon" onclick="javascript:vnPrest(this);">Disponible <span class="b_despl">&#9660;</span></span>
 					<div id="contPrest" style="display:none;">
 						<div class="DatnPres" >
@@ -45,7 +43,7 @@ if ($iEquipo->pres_usr_id){
 								<span class="cText">Prestamo para </span>
 								<span class="UIselect">
 									<input  class="idElem" id="pre_usr_id"  value="" />
-									<ul></ul>
+									<ul id="usr"></ul>
 								</span>
 							</div>
 							<div class="rDatnPres"><span class="cText"> para Devolver de día </span>
