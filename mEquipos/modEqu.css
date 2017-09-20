@@ -13,7 +13,7 @@
 .iList .iprest{color:#999999;font-size: 0.9em;}
 .iList .iDisp{font-size: 0.9em;color:#009000;font-weight: bold;}
 
-div#conRegistro>div{margin:15px;}
+div#conRegistro>div{margin:15px;position: relative;}
 
 div#conRegistro div#SecPrest{background: #dfdfdf;padding: 2px 5px;}
 
@@ -34,10 +34,10 @@ div#conRegistro .tipoElem{font-size: 1.3em; font-weight: bold;}
 div#conRegistro select.tipoElem{font-size: 1em;padding: 0;display: block;border: 1px solid #dddddd;}
 
 div#conRegistro #secPrest.iDat.e{display: none;}
-div#conRegistro .tipoElem .iDat.v>input{display: none;}
-div#conRegistro .tipoElem .iDat.v>select{display: none;}
+div#conRegistro ·tipoElem .iDat.v>input{display: none;}
+div#conRegistro .tipoElem .iDat.v>.UIselect{display: none;}
 div#conRegistro .tipoElem .iDat.e>input{display: initial;}
-div#conRegistro .tipoElem .iDat.e>select{display: initial;}
+div#conRegistro .tipoElem .iDat.e>.UIselect{display: initial;}
 
 div#conRegistro .tipoElem .iDat.v>span{display: initial;}
 div#conRegistro .tipoElem .iDat.e>span{display: none;}

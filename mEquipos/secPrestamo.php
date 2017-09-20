@@ -43,7 +43,6 @@ if ($iEquipo->pres_usr_id){
 								<span class="cText">Prestamo para </span>
 								<span class="UIselect">
 									<input  class="idElem" id="pre_usr_id"  value="" />
-									<ul id="usr"></ul>
 								</span>
 							</div>
 							<div class="rDatnPres"><span class="cText"> para Devolver de día </span>

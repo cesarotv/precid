@@ -33,7 +33,7 @@ function SavenPrest(){
 	idEqu=document.getElementById("equ_id").value;
 	prms="savenPrest=true&";
 	prms=prms+"equ_id="+idEqu+"&";
-	prms=prms+"pre_usr="+document.getElementById("pre_usr_id").name+"&";
+	prms=prms+"pre_usr="+document.getElementById("pre_usr_id").dataset.idop+"&";
 	prms=prms+"pre_tipo="+document.getElementById("pre_tipo").value+"&";
 	prms=prms+"pre_devprog="+document.getElementById("pre_fechadev").value+"&";
 	//alert(prms);
@@ -112,7 +112,7 @@ function saveDlle(){
 	prms="saveEqu=true&";
 	prms=prms+"equ_id="+idEqu+"&";
 	prms=prms+"equ_cod="+document.getElementById("equ_cod").value+"&";
-	prms=prms+"equ_tipo="+document.getElementById("equ_tipo").value+"&";
+	prms=prms+"equ_tipo="+document.getElementById("equ_tipo").dataset.id+"&";
 	prms=prms+"equ_marca="+document.getElementById("equ_marca").value+"&";
 	prms=prms+"equ_modelo="+document.getElementById("equ_modelo").value+"&";
 	prms=prms+"equ_serial="+document.getElementById("equ_serial").value;
@@ -195,27 +195,36 @@ function loadEvents(){
 
 	document.getElementById("pre_fechadev").value =new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear();
 
-	iS1=new uiSelect;iS1.urlList="../mEquipos/uilist.php";iS1.iPOST="txtUsr";
-	//iS1.selectOp=function(){tthis.iInput.value=iop[tthis.is].innerHTML;alert(iop[tthis.is].id);}
-	iS1.ini('pre_usr_id');
+	iS1=new uiSelect;
+	iS1.urlList="../mEquipos/uilist.php";
+	iS1.iPOST="txtUsr";
+	iS1.ini(document.getElementById('pre_usr_id'));
 
 	iSTEqu=new uiSelect;
-	iSTEqu.urlList="../mEquipos/uilist.php";iSTEqu.iPOST="tEqu";
-	iSTEqu.ini('equ_tipo');
-	
+	iSTEqu.idContent="contentReg";
+	iSTEqu.urlList="../mEquipos/uilist.php";
+	iSTEqu.iPOST="tEqu";
+	iSTEqu.ini(document.getElementById('equ_tipo'));
+
 }
 
 //-------------=============================================----------------------------------
 
 
 var uiSelect= function(){
+	
 
-	var params;
+	var content;
+
 	var iInput;
+	var iAtrDest;
 	var iList;
-	var urlList;
 	var is;
 	var iPOST;
+	
+	var urlList;
+	var params;
+
 
 function ObjAjax(){
 		var xmlhttp=false;try{ xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
@@ -223,24 +232,36 @@ function ObjAjax(){
 		if (!xmlhttp && typeof XMLHttpRequest!="undefined") {xmlhttp=new XMLHttpRequest();}return xmlhttp;
 	}
 
-	this.ini=function(idInput){
+	this.ini=function(iInputElem){
 		is=-1;
+		
+		iInput=iInputElem;
 		iPOST=this.iPOST;
 		urlList=this.urlList;
-		this.iInput=document.getElementById(idInput);
-		iInput=this.iInput;
-		this.iList=this.iInput.parentNode.getElementsByTagName("ul")[0];
-		iList=this.iList;
+		ichange=this.ichange;
+
+		iAtrDest=(this.iAtrDest)?this.iAtrDest:"data-id";
+
+		content=(this.idContent)?document.getElementById(this.idContent):iInput.parentNode;
+
+		iList=document.createElement("ul");
+		iList.className="UIselectUL";
+		content.appendChild(iList);
+
 		iInput.onkeyup = function(e){
-			if (e.keyCode=="38"){ new despKey(-1);//sube
-			}else if(e.keyCode=="40"){ new despKey(1);//baja
+			iList.style.minWidth = iInput.offsetWidth+"px";
+	 		iList.style.top=(iInput.parentNode.offsetTop+iInput.offsetHeight+2)+"px";
+	 		iList.style.left=iInput.offsetLeft+"px";
+			if (e.keyCode=="38"){ despKey(-1);//sube
+			}else if(e.keyCode=="40"){ despKey(1);//baja
 			}else if(e.keyCode=="13"){ selectOp();iList.innerHTML="";//Enter
-			}else if (e.keyCode=="27"){ iList.innerHTML="";//esc
+			}else if (e.keyCode=="27"){ iList.innerHTML="";iList.style.display="none";//esc
 			}else{genList();}
 		}
 	}
 
 	function genList(){
+		iList.style.display="initial";
 		procAjax=ObjAjax();procAjax.open("POST",urlList,true);
 		procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 	 		iList.innerHTML=procAjax.responseText;
@@ -261,14 +282,18 @@ function ObjAjax(){
 	function selClick(){
 		iop=iList.getElementsByTagName("li");
 		for (var i=0;i<iop.length;i++){
-			iop[i].onclick=function(){is=this.dataset.id;selectOp();iList.innerHTML="";}
+			iop[i].onclick=function(){is=this.dataset.idop;selectOp();iList.innerHTML="";}
 		}
 	}
 
 	function selectOp(){
+		iInput.setAttribute(iAtrDest,iop[is].id);iList.style.display="none";
 		iInput.value=iop[is].innerHTML;
-		iInput.name=iop[is].id;
+		this.iInput=iInput;
+		
+		ichange();
 	}
 
+	this.ichange=function(){}
 
 }

@@ -62,7 +62,7 @@ include_once("../lib/conector.php");
 
  	}
 
-	function selTEqu($itequ){
+/*	function selTEqu($itequ){
  		$this->access=new ConectorDB;
 		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoequipo`;");
 		$tmp="";
@@ -70,18 +70,18 @@ include_once("../lib/conector.php");
 			if ($row["tequ_id"]==$itequ){$tsel=" selected ";}else{$tsel="";}
 			$tmp=$tmp."<option value=\"".$row["tequ_id"]."\" ".$tsel.">".$row["tequ_nombre"]."</option>";}
 		return $tmp;
-	}
+	}*/
 
 	function uiselTEqu($itequ){
  		$this->access=new ConectorDB;
-		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoequipo`;");
+		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoequipo` where `tequ_nombre` like '%".$itequ."%'");
 		$tmp="";$op=0;
 		while ($row=mysql_fetch_array($this->access->getResult())){
-			if ($row["tequ_id"]==$itequ){$tsel=" selected ";}else{$tsel="";}
-			$tmp=$tmp."<li id=\"".$row["tequ_id"]."\" data-id=\"".$op."\" ".$tsel.">".$row["tequ_nombre"]."</li>";$op++;}
+			$tmp=$tmp."<li id=\"".$row["tequ_id"]."\" data-idop=\"".$op."\" >".$row["tequ_nombre"]."</li>";$op++;}
 		return $tmp;
 	}
 
+//-------
  	function selTAtr($itAtr=0){$this->access=new ConectorDB;
 		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo`;");
 		$tmp="";
@@ -91,6 +91,16 @@ include_once("../lib/conector.php");
 		$tmp="<select onchange='changeAtrib(this)'><option></option>".$tmp."</select>";
 		return $tmp;
 	}
+
+	function uiselTAtr($itAtr=0){$this->access=new ConectorDB;
+		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo` where `tae_nombre` like '%".$itAtr."%'");
+		$tmp="";$op=0;
+		while ($row=mysql_fetch_array($this->access->getResult())){
+			$tmp=$tmp."<li id=\"".$row["tae_id"]."\" data-idop=\"".$op."\" >".$row["tae_nombre"]."</li>";$op++;}
+		return $tmp;
+
+	}
+
 
 	function saveEqu($idEqu){$this->access=new ConectorDB;
 		if($idEqu["id"]==0){

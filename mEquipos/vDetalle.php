@@ -14,14 +14,12 @@ if (!empty($_POST)){
 
 
 ?>
-		<div>
+		<div id="contentReg">
+
 			<div id="SecPrest" class="iDat v">
 				<?php include("secPrestamo.php");?>
 			</div>
 
-			<script type="text/javascript"> 
-				loadEvents();
-			</script>
 			<div id="SecInfEqu">
 				<div id="vMenu">
 					<span id="edEqu" onclick="javascript:editDlle('conRegistro','e');"> [Editar] </span>
@@ -36,9 +34,7 @@ if (!empty($_POST)){
 							<span id="tequ_nombre"><?php echo utf8_encode($iEquipo->tipo);?></span>
 							<span class="UIselect">
 								<input class="tipoElem" id="equ_tipo"  data-id="<?php echo $iEquipo->idTipo; ?>" value="<?php echo utf8_encode($iEquipo->tipo);?>" />
-								<ul id="tipo"></ul>
 							</span>
-							<select id="equ_tipo0" class="tipoElem"><option></option><?php echo utf8_encode($iEquipo->selTEqu($iEquipo->idTipo)); ?></select>
 						</div>
 					</div>
 					<div class="nDatos">
@@ -123,4 +119,7 @@ if (!empty($_POST)){
 				}
 ?>	
 			</div>
+			<script type="text/javascript"> 
+				loadEvents();
+			</script>
 		</div>
