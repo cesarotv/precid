@@ -18,19 +18,20 @@ window.onload=function() {
 	document.getElementById('BusqPrest').onkeyup = evKeys; 
 }
 
-/*
-function vDetalle(iUsr, cmpv){
+
+function vDetalle(idPrest, cmpv){
 	tcmpv=document.getElementById(cmpv);
+	vequ_id=idPrest.split('.')[1];
+	vpre_f=idPrest.split('.')[2];
 
-	procAjax=ObjAjax();procAjax.open("POST","../mUsuarios/vInfUsr.php",false);
+	procAjax=ObjAjax();procAjax.open("POST","../mPrestamos/vInfPrest.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-
 		tcmpv.innerHTML=procAjax.responseText;
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	procAjax.send("usr_id="+iUsr);
+	procAjax.send("equ_id="+vequ_id+"&pre_fecha="+vpre_f);
 }
-
+/*
 function editDlle(cmpv,ev){
 
 	switch(ev) {

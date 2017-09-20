@@ -6,13 +6,19 @@
 .iList{	border-bottom: 1px solid #dddddd;cursor:pointer;display:table-row;}
 .iList:hover{background:#dfdfdf;}
 
-.iList .colList{display:table-cell;padding: 3px 0 3px 7px;}
+.iList .colList{display:table-cell;padding: 3px 0 3px 10px;}
+.iList .colList:last-child{padding-right: 10px}
 .iList .iequ_tipo{font-size: 0.9em; margin-right: 4px;font-weight: bold;color:#999999;}
 .iList .iequ_marca, .iList .iequ_model {font-family: "Verdana"; font-size: 0.75em; color:#999999;}
 .iList .iequ_id{font-family: "Verdana";font-size: 0.9em; display:block;font-weight: bold;}
 .iList .iprest{color:#999999;font-size: 0.9em;}
 .iList .iDisp{font-size: 0.9em;color:#009000;font-weight: bold;}
-.iList .fechadev{color:#000000;font-weight: bold;}
+.iList .ifecha {white-space:nowrap;font-size: 0.9em;}
+.iList .ifecha .pre{color:#0000CD;font-size: 0.8em;}
+.iList .ifecha .dev{color:#ff9933;font-size: 0.8em;}
+.iList .ifecha .pen{color:#ff0000;font-size: 0.8em;}
+.iList .ifecha span{color:#999999;}
+
 
 div#conRegistro>div{margin:15px;position: relative;}
 

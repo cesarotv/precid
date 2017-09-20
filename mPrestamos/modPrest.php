@@ -10,6 +10,6 @@
 	</div>
 
 	<div id="conRegistro">
-		<?php	include_once("mEquipos/vDetalle.php"); ?>
+		<?php	include_once("mPrestamos/vInfPrest.php"); ?>
 	</div>
 </div>

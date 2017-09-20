@@ -27,7 +27,7 @@
 <?php  		break;
 			case 'prestamos':
 ?>					<!-- Archivos ModEquipos-->
-					<link media="screen" href="../mEquipos/modEqu.css" type="text/css" rel="stylesheet"></link>
+					<link media="screen" href="../mPrestamos/modPrest.css" type="text/css" rel="stylesheet"></link>
 					<script type="text/javascript" src="../mPrestamos/EvtsPrest.js"></script>
 <?php  		break;
 			case 'out':
@@ -70,8 +70,6 @@
 				
 				//
 
-				
-				
 			?>
 		</div>
 	</div>

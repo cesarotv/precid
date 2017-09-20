@@ -15,6 +15,8 @@ class classPrestamo{
 
 	var $ntipo=array(1=>"Interno",0=>"Externo");
 
+	var $obs = array();
+
 	function classPrestamo(){$this->access=new ConectorDB;}
 
 	function presEquipo($datsPres){
@@ -24,6 +26,7 @@ class classPrestamo{
 		return $datsPres["equ_id"];
 		
 	}
+	
 	function DevEquipo($datsPres){
 		$stSql="UPDATE `db_cid_inv`.`prestamos` SET `pre_fechadev` = CURRENT_TIMESTAMP WHERE `pre_equ_id` = :equ_id AND `pre_fechadev` is null";
 			$stSql=$this->sqlReplace($stSql,$datsPres);
@@ -32,6 +35,14 @@ class classPrestamo{
 		return $datsPres["equ_id"];
 
 	}
+
+	function infPrest($idEqu,$fPrest){
+		$stSql="SELECT * FROM db_cid_inv.prestamos where pre_equ_id=".$idEqu." and pre_fecha='".$fPrest."'";
+		//$fDev=mysql_fetch_array($this->access->getResult())[0];
+
+		return $stSql;
+	}
+
 
 	//---------- Funciones complementarias ----------------
 
