@@ -1,7 +1,7 @@
 <?php
 if (!empty($_POST)){
 include_once("../lib/conector.php");
-}//else{include_once("../lib/conector.php");}
+}else{include_once("../lib/conector.php");}
 
 
 class classPrestamo{
@@ -38,9 +38,12 @@ class classPrestamo{
 
 	function infPrest($idEqu,$fPrest){
 		$stSql="SELECT * FROM db_cid_inv.prestamos where pre_equ_id=".$idEqu." and pre_fecha='".$fPrest."'";
-		//$fDev=mysql_fetch_array($this->access->getResult())[0];
-
-		return $stSql;
+		$this->access->conectar($stSql);
+		$fDev=mysql_fetch_array($this->access->getResult())["pre_fechadev"];
+	
+		$stSql="";
+	while ($row=mysql_fetch_array($this->access->getResult())){$this->obs[] = $row;}
+		return $fDev;
 	}
 
 
