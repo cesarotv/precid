@@ -1,4 +1,9 @@
 <?php
+
+
+
+asdasdasdasdasd
+
 	session_start();
 
 	if(!isset($_SESSION['USR'])) header("location:../index.php");
