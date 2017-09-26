@@ -40,10 +40,16 @@ class classPrestamo{
 		$stSql="SELECT * FROM db_cid_inv.prestamos where pre_equ_id=".$idEqu." and pre_fecha='".$fPrest."'";
 		$this->access->conectar($stSql);
 		$fDev=mysql_fetch_array($this->access->getResult())["pre_fechadev"];
-	
-		$stSql="";
-	while ($row=mysql_fetch_array($this->access->getResult())){$this->obs[] = $row;}
-		return $fDev;
+
+		$stSql="SELECT obsequipo.*, `usuario`.usr_nombres, `usuario`.usr_apellidos FROM db_cid_inv.obsequipo 
+			left join db_cid_inv.`usuario` on `obsequipo`.obsequ_usr_id= `usuario`.usr_id  where obsequ_equ_id=".$idEqu.
+				" AND obsequipo.obsequ_fecha between '2017-09-08 11:18:28' and ";
+		$stSql=(empty($fDev))? $stSql."now()" : $stSql."'".$fDev."'";
+		$this->access->conectar($stSql);
+
+		while ($row=mysql_fetch_array($this->access->getResult())){$this->obs[] = $row;}
+		
+		//return $stSql.">>".count($this->obs);
 	}
 
 
