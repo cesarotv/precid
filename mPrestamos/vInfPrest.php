@@ -1,7 +1,7 @@
 
 <?php 
 if (!empty($_POST)){include_once("../lib/objPrestamo.php");
-	}else{include_once("lib/objPrestamo.php");$_POST["usr_id"]=-1;}
+	}else{include_once("lib/objPrestamo.php");$_POST["equ_id"]=0;$_POST["pre_fecha"]=null;}
 
 		$iPrestamo=new classPrestamo();
 		$iPrestamo->infPrest($_POST["equ_id"],$_POST["pre_fecha"]);

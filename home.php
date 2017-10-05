@@ -1,9 +1,5 @@
 <?php
 
-
-
-asdasdasdasdasd
-
 	session_start();
 
 	if(!isset($_SESSION['USR'])) header("location:../index.php");
@@ -21,16 +17,19 @@ asdasdasdasdasd
 <?php
 		switch ($_GET["mod"]) {
 			case 'usuarios':
+					$sUsr="class=\"act\"";
 ?>					<!-- Archivos ModUsuarios-->
 					<link media="screen" href="../mUsuarios/modUsr.css" type="text/css" rel="stylesheet"></link>
 					<script type="text/javascript" src="../mUsuarios/EvtsUsr.js"></script>
 <?php 			break;
 			case 'equipos':
+					$sEqu="class=\"act\"";
 ?>					<!-- Archivos ModEquipos-->
 					<link media="screen" href="../mEquipos/modEqu.css" type="text/css" rel="stylesheet"></link>
 					<script type="text/javascript" src="../mEquipos/objEvts.js"></script>
 <?php  		break;
 			case 'prestamos':
+					$sPrest="class=\"act\"";
 ?>					<!-- Archivos ModEquipos-->
 					<link media="screen" href="../mPrestamos/modPrest.css" type="text/css" rel="stylesheet"></link>
 					<script type="text/javascript" src="../mPrestamos/EvtsPrest.js"></script>
@@ -49,16 +48,16 @@ asdasdasdasdasd
 	<div id="content">
 		<div id="barSup">
 			
-			<ul id="contBarSup" >
-				<li><a href="prestamos">Prestamos</a></li>
-				<li><a href="equipos">Equipos</a></li>
-				<li><a href="usuarios">Usuarios</a></li>
+			<ul id="contBarSup">
+				<li <?php echo isset($sPrest)?$sPrest:""; ?> ><a href="prestamos">Prestamos</a></li>
+				<li <?php echo isset($sEqu)?$sEqu:""; ?> ><a href="equipos" >Equipos</a></li>
+				<li <?php echo isset($sUsr)?$sUsr:""; ?> ><a href="usuarios">Usuarios</a></li>
 				<li><a href="">LOG</a></li>
 				<li><span style="cursor:pointer;" onclick="document.getElementById('out').submit();">[Salir]</span></li>
 			</ul>
 		</div>
 		<form id="out" method="POST" action="/CID/inventario/home/out"></form>
-		<div id="contentBarSup">
+		<div id="contentMod">
 			<?php 
 							
 				switch ($_GET["mod"]) {

@@ -1,4 +1,36 @@
 
+/*------------- MODULOS ----------------------*/
+
+
+div.contMod{
+	height: 100%;width: 940px;
+	display: table;padding: 0px 30px 20px;
+}
+
+div#conListado{}
+div#conRegistro{width: 40%;overflow-y: auto;}
+
+
+div#conListado, div#conRegistro{ border: 1px solid #bbbbbb;vertical-align: top;}
+div#conListado {position: relative;}
+div#conListado>div#iListado{overflow-y: auto;margin: 0;}
+div#conListado>div#iListado{right: 0;left: 0;bottom: 0;top: 33px;}
+div#conListado .barra{padding: 5px;border-bottom: 1px solid #dddddd;background-color: #eeeeee;}
+
+div#conRegistro>div {height: 100px;}
+
+.iElemList{
+	border-bottom: 1px solid #dddddd;
+	padding: 5px;cursor:pointer;
+}
+
+.iElemList:hover{
+	background:#dfdfdf;
+}
+
+
+
+
 /*------------- MODULO EQUIPO ----------------------*/
 .b_despl {font-size: 0.6em;vertical-align: middle;}
 
@@ -10,14 +42,13 @@
 .iList .colList:last-child{padding-right: 10px}
 .iList .iequ_tipo{font-size: 0.9em; margin-right: 4px;font-weight: bold;color:#999999;}
 .iList .iequ_marca, .iList .iequ_model {font-family: "Verdana"; font-size: 0.75em; color:#999999;}
-.iList .iequ_id{font-family: "Verdana";font-size: 0.9em; display:block;font-weight: bold;}
+.iList .iequ_id{font-size: 1.0em; font-weight: bold;}
 .iList .iprest{color:#999999;font-size: 0.9em;}
 .iList .iDisp{font-size: 0.9em;color:#009000;font-weight: bold;}
-.iList .ifecha {white-space:nowrap;font-size: 0.9em;}
-.iList .ifecha .pre{color:#0000CD;font-size: 0.8em;}
+.iList .ifecha {white-space:nowrap;font-size: 0.9em;color:#999999;}
+.iList .iprest .pre{color:#0e7c3e;font-size: 0.8em;}
 .iList .ifecha .dev{color:#ff9933;font-size: 0.8em;}
 .iList .ifecha .pen{color:#ff0000;font-size: 0.8em;}
-.iList .ifecha span{color:#999999;}
 
 
 div#conRegistro>div{margin:15px;position: relative;}

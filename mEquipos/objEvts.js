@@ -33,10 +33,11 @@ function SavenPrest(){
 	idEqu=document.getElementById("equ_id").value;
 	prms="savenPrest=true&";
 	prms=prms+"equ_id="+idEqu+"&";
-	prms=prms+"pre_usr="+document.getElementById("pre_usr_id").dataset.idop+"&";
+	prms=prms+"pre_usr="+document.getElementById("pre_usr_id").dataset.id+"&";
 	prms=prms+"pre_tipo="+document.getElementById("pre_tipo").value+"&";
 	prms=prms+"pre_devprog="+document.getElementById("pre_fechadev").value+"&";
 	//alert(prms);
+
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		//alert(procAjax.responseText);

@@ -43,8 +43,7 @@
 <body>
 	<div id="cp">
 		<div id="cTit">
-			<span><img src="img/logo.jpg"></span>
-			<span>INVENTARIO</span>
+			<img src="imgs/logoIndex.jpg">
 		</div>
 		<form ID="acess" method="POST" action="index.php">
 			<div id="cDat">

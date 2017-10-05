@@ -2,9 +2,9 @@
 body{
 	margin: 0;
 	width:100%;
+	font-family: Arial, Helvetica, sans-serif;
 }
 #cp{
-	width:400px;
 	margin: 100px auto 0 auto;
 	text-align:center;
 
@@ -13,7 +13,6 @@ body{
 	border-top: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;}
 #cTit span{
-	font-family: Arial, Helvetica, sans-serif;
 	font-size:60px;
 	vertical-align: middle;
 	display: inline-block;
@@ -32,9 +31,11 @@ body{
 	margin: 10px auto;
 	padding:5px;
 	width:150px;
+	text-align: center;
+	font-size: 1em;
 }
 
-#cp a{display: block; background:#1A8C04;width:140px; padding:5px;margin:0px auto; cursor:pointer;color:#FFFFFF;}
+#cp a{display: block; background:#035629;width:140px; padding:5px;margin:0px auto; cursor:pointer;color:#FFFFFF;font-size: 1.3em;}
 
 
 #msj{border: 2px solid #F9CA00;padding: 7px;}

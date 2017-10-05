@@ -1,62 +1,41 @@
 body{
-	margin: 0;padding: 0;background:#dddddd;
+	margin: 0;padding: 0;
 	font-family: Verdaba, Geneva, Arial;
 }
 
 div#content{
 	margin:0 auto;width: 1000px;height: 100%;
 	background:#ffffff;	display: table;
+-webkit-box-shadow: 0px 0px 66px 25px rgba(222,222,222,1);
+-moz-box-shadow: 0px 0px 66px 25px rgba(222,222,222,1);
+box-shadow: 0px 0px 66px 25px rgba(222,222,222,1);
 }
 
+div#content #barSup{  padding: 0px 30px;position: relative;}
 
-ul#contBarSup{display: block;position: relative;
-	list-style: none;padding: 15px 20px 4px;
+ul#contBarSup{display: table-row;
+	list-style: none;padding: 15px 0px 4px;
     margin: 0;border-bottom: 1px solid;
 }
 
 ul#contBarSup li{
-	display: inline;border: solid;
-    border-width: 0 1px 0 0;margin: 0;
-    padding: 15px 5px 5px 5px;cursor: pointer;
+	display: table-cell; margin: 0;
+    padding: 20px 10px 5px;cursor: pointer;
     font-size: 1em;
 }
-ul#contBarSup li a{text-decoration: none;text-decoration: none;}
+
+ul#contBarSup li a{text-decoration: none;text-decoration: none;color:#0e7c3e;}
 
 ul#contBarSup li:last-child{ position: absolute;top:0;right: 10px;}
 
-div#contentBarSup{
+ul#contBarSup li.act{
+	background-color: #0e7c3e;
+}
+ul#contBarSup li.act a{color:#ffffff;}
+
+div#contentMod{
 	width: 100%;height: 100%;display: table-row;
 }
-
-/*------------- MODULOS ----------------------*/
-
-
-div.contMod{
-	height: 100%;width: 940px;
-	display: table;padding: 20px 30px;
-}
-
-div#conListado{width: 60%;}
-div#conRegistro{width: 40%;overflow-y: auto;}
-
-
-div#conListado, div#conRegistro{ border: 1px solid #bbbbbb;display: table-cell;vertical-align: top;}
-div#conListado {position: relative;}
-div#conListado>div#iListado{overflow-y: auto;margin: 0;}
-div#conListado>div#iListado{position: absolute;right: 0;left: 0;bottom: 0;top: 33px;}
-div#conListado .barra{padding: 5px;border-bottom: 1px solid #dddddd;background-color: #eeeeee;}
-
-div#conRegistro>div {height: 100px;}
-
-.iElemList{
-	border-bottom: 1px solid #dddddd;
-	padding: 5px;cursor:pointer;
-}
-
-.iElemList:hover{
-	background:#dfdfdf;
-}
-
 
 
 

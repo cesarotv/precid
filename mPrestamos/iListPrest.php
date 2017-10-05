@@ -30,19 +30,21 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 
 		echo "<div id='li.".$row["pre_equ_id"].".".$row["vpre_fecha"]."' class='iList' onclick=\"javascript:vDetalle(this.id,'conRegistro');\">".
 				"<span class='colList'>".
+					"<span class='ifecha'>".$row["pre_fecha"]."</span>".
+				"</span>".
+				"<span class='colList'>".
 				 	"<span>".
-				 		"<span class='iequ_id'>".$row["equ_cod"]."</span>".				 	
-				 		"<div>".
-				 			"<span class='iequ_tipo'>".utf8_encode($row["tequ_nombre"])."</span>".
-				 			"<span class='iequ_marca'>".utf8_encode($row["equ_marca"]." ".$row["equ_modelo"])."</span></div>".
+				 		"<span class='iequ_id'>".$row["equ_cod"]." </span>".				 	
+				 			"<span class='iequ_tipo'>&#187; ".utf8_encode($row["tequ_nombre"])."</span>".
+				 			"<span class='iequ_marca'>".utf8_encode($row["equ_marca"]." ".$row["equ_modelo"])."</span>".
 
 				 	"</span>".
 				 "</span>".
 				 "<span class='colList'>".
-				 	"<div class=\"iprest\">Prestado a <br>".utf8_encode($row["usr_nombres"]." ". $row["usr_apellidos"])."</div>".
+				 	"<div class=\"iprest\"><a class='pre'>&#9654 </a>".utf8_encode($row["usr_nombres"]." ". $row["usr_apellidos"])."</div>".
 				 "</span>".
 				 "<span class='colList'>".
-				 	"<div class='ifecha'><a class='pre'>&#9654 </a><span>".$row["pre_fecha"]."</span></div>".
+				 	
 				 	"<div class='ifecha'>".$iDev."</div>".
 				 "</span>".	 
 			 "</div>";

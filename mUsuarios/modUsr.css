@@ -1,4 +1,36 @@
 
+/*------------- MODULOS ----------------------*/
+
+
+div.contMod{
+	height: 100%;width: 940px;
+	display: table;padding: 0px 30px 20px;
+}
+
+div#conListado{width: 60%;}
+div#conRegistro{width: 40%;overflow-y: auto;}
+
+
+div#conListado, div#conRegistro{ border: 1px solid #bbbbbb;display: table-cell;vertical-align: top;}
+div#conListado {position: relative;}
+div#conListado>div#iListado{overflow-y: auto;margin: 0;}
+div#conListado>div#iListado{position: absolute;right: 0;left: 0;bottom: 0;top: 33px;}
+div#conListado .barra{padding: 5px;border-bottom: 1px solid #dddddd;background-color: #eeeeee;}
+
+div#conRegistro>div {height: 100px;}
+
+.iElemList{
+	border-bottom: 1px solid #dddddd;
+	padding: 5px;cursor:pointer;
+}
+
+.iElemList:hover{
+	background:#dfdfdf;
+}
+
+
+
+
 .iElemList>span{margin-right: 4px;}
 .iElemList .nomUsr{font-size: 1.3em; font-weight: bold;}
 .iElemList .nproceso{font-size: 0.8em; font-style: italic; color:#aaaaaa;}

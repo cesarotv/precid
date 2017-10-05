@@ -1,7 +1,7 @@
 <?php
 if (!empty($_POST)){
 include_once("../lib/conector.php");
-}else{include_once("../lib/conector.php");}
+}else{include_once("lib/conector.php");}
 
 
 class classPrestamo{
@@ -43,7 +43,7 @@ class classPrestamo{
 
 		$stSql="SELECT obsequipo.*, `usuario`.usr_nombres, `usuario`.usr_apellidos FROM db_cid_inv.obsequipo 
 			left join db_cid_inv.`usuario` on `obsequipo`.obsequ_usr_id= `usuario`.usr_id  where obsequ_equ_id=".$idEqu.
-				" AND obsequipo.obsequ_fecha between '2017-09-08 11:18:28' and ";
+				" AND obsequipo.obsequ_fecha between '".$fPrest."' and ";
 		$stSql=(empty($fDev))? $stSql."now()" : $stSql."'".$fDev."'";
 		$this->access->conectar($stSql);
 
