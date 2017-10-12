@@ -16,16 +16,16 @@ if (!empty($_POST)){
 ?>
 		<div id="contentReg">
 
-			<div id="SecPrest" class="iDat v">
+			<div id="Sec" class="iDat v">
 				<?php include("secPrestamo.php");?>
 			</div>
 
 			<div id="SecInfEqu">
 				<div id="vMenu">
-					<span id="edEqu" onclick="javascript:editDlle('conRegistro','e');"> [Editar] </span>
-					<span id="nEqu" onclick="javascript:nEqu();"> [Nuevo] </span>
-					<span id="gEqu" onclick="javascript:saveDlle();" style="display:none;"> [Guardar] </span>
-					<span id="cEqu" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;"> [Cancelar] </span>
+					<span id="edEqu" onclick="javascript:editDlle('conRegistro','e');"> <img src="../imgs/lEditar.png"/></span>
+					<span id="nEqu" onclick="javascript:nEqu();"> <img src="../imgs/lNuevo.png"/> </span>
+					<span id="gEqu" onclick="javascript:saveDlle();" style="display:none;"> <img src="../imgs/lGuardar.png"/> </span>
+					<span id="cEqu" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;"> <img src="../imgs/lCancel.png"/> </span>
 				</div>
 				<input class="idElem" id="equ_id" name="equ_id" value="<?php echo $iEquipo->id;?>" style="display:none;" />
 				<div class="iniDats">

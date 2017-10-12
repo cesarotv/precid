@@ -11,11 +11,13 @@ div#conListado{width: 60%;}
 div#conRegistro{width: 40%;overflow-y: auto;}
 
 
-div#conListado, div#conRegistro{ border: 1px solid #bbbbbb;display: table-cell;vertical-align: top;}
+div#conListado, div#conRegistro{/* border: 1px solid #bbbbbb;*/
+	display: table-cell;vertical-align: top;}
+
 div#conListado {position: relative;}
-div#conListado>div#iListado{overflow-y: auto;margin: 0;}
-div#conListado>div#iListado{position: absolute;right: 0;left: 0;bottom: 0;top: 33px;}
-div#conListado .barra{padding: 5px;border-bottom: 1px solid #dddddd;background-color: #eeeeee;}
+div#conListado>div#iListado{overflow-y: auto;margin: 0;border: 1px solid #dddddd;}
+div#conListado>div#iListado{position: absolute;right: 0;left: 0;bottom: 0;top: 30px;}
+div#conListado .barra{padding: 5px;background-color: #34a463;}
 
 div#conRegistro>div {height: 100px;}
 
@@ -37,17 +39,16 @@ div#conRegistro>div {height: 100px;}
 .iList{	border-bottom: 1px solid #dddddd;cursor:pointer;display:table-row;}
 .iList:hover{background:#dfdfdf;}
 
-.iList .colList{display:table-cell;padding: 3px 0 3px 7px;}
+.iList .colList{display:table-cell;padding: 5px 0 5px 7px;white-space: nowrap;}
 .iList .iequ_tipo{font-size: 0.9em; margin-right: 4px;font-weight: bold;color:#999999;}
 .iList .iequ_marca, .iList .iequ_model {font-family: "Verdana"; font-size: 0.75em; color:#999999;}
-.iList .iequ_id{font-family: "Verdana";font-size: 0.9em; display:block;font-weight: bold;}
-.iList .iprest{color:#999999;font-size: 0.9em;}
-.iList .iDisp{font-size: 0.9em;color:#009000;font-weight: bold;}
-.iList .fechadev{color:#000000;font-weight: bold;}
+.iList .iequ_id{font-size: 1em; display:block;font-weight: bold;color:#0e7c3e;}
+.iList .iprest{color:#999999;font-size: 0.8em;}
+.iList .fechadev{color:#ee7620;}
 
-div#conRegistro>div{margin:15px;position: relative;}
+div#conRegistro>div{margin:0 15px;position: relative;}
 
-div#conRegistro div#SecPrest{background: #dfdfdf;padding: 2px 5px;}
+div#conRegistro div#Sec{background: #dfdfdf;padding: 2px 5px;font-size: 0.9em;}
 
 #bdispon {cursor:pointer;}
 
@@ -58,7 +59,7 @@ div#SecPrest .rDatnPres span.cText{text-align:right;padding-right: 5px}
 
 div#conRegistro div#SecInfEqu{margin-top: 10px;}
 div#conRegistro #vMenu{text-align:right;font-size: 0.8em;margin:0px 0 7px;}
-div#conRegistro #vMenu span{cursor:pointer;}
+div#conRegistro #vMenu span{cursor:pointer;display:inline-block;border: 1px solid #dddddd;padding: 3px;}
 div#conRegistro .iniDats{border-bottom: 1px solid #dddddd;}
 .iniDats .Datsprinc{font-size: 0.9em;}
 

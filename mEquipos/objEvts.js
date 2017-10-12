@@ -89,9 +89,8 @@ function editDlle(cmpv,ev){
 					document.getElementById("edEqu").style.display="none";
 					document.getElementById("nEqu").style.display="none";
 	
-					document.getElementById("gEqu").style.display="initial";
-					document.getElementById("cEqu").style.display="initial";
-
+					document.getElementById("gEqu").style="";
+					document.getElementById("cEqu").style="";
 				break;
 		case 'c':	vDetalle(document.getElementById("equ_id").value,'conRegistro');
 				break;
@@ -99,9 +98,8 @@ function editDlle(cmpv,ev){
 }
 
 function nEqu(){
+	/* Aquí voy */
 
- 	document.getElementById("edEqu").style.display="none";
-	document.getElementById("nEqu").style.display="none";
  	vDetalle(0,'conRegistro');
  	editDlle('conRegistro','e');
 

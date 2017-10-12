@@ -6,8 +6,10 @@ $iPres=new classPrestamo();
 if ($iEquipo->pres_usr_id){
 ?>
 				<div id="SecPrest" >
-					<span id="bdispon" onclick="javascript:vnPrest(this);">Prestado a <?php echo utf8_encode($iEquipo->pres_usr_nombre);?>
-					<span class="b_despl">&#9660;</span></span>
+					<span id="bdispon" onclick="javascript:vnPrest(this);">Prestado a 
+					<div><?php echo utf8_encode($iEquipo->pres_usr_nombre);?>
+						<span class="b_despl">&#9660;</span></div>
+					</span>
 					</span>
 					<div id="contPrest" style="display:none;">
 						<div>

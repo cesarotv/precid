@@ -42,7 +42,7 @@ div#conRegistro>div {height: 100px;}
 .iList .colList:last-child{padding-right: 10px}
 .iList .iequ_tipo{font-size: 0.9em; margin-right: 4px;font-weight: bold;color:#999999;}
 .iList .iequ_marca, .iList .iequ_model {font-family: "Verdana"; font-size: 0.75em; color:#999999;}
-.iList .iequ_id{font-size: 1.0em; font-weight: bold;}
+.iList .iequ_id{font-size: 0.95em; font-weight: bold;color:#0e7c3e;}
 .iList .iprest{color:#999999;font-size: 0.9em;}
 .iList .iDisp{font-size: 0.9em;color:#009000;font-weight: bold;}
 .iList .ifecha {white-space:nowrap;font-size: 0.9em;color:#999999;}

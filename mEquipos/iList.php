@@ -16,21 +16,24 @@ include_once("../lib/conector.php");
 
 	while($row=mysql_fetch_array($access->getResult())){
 		if($row["pre_usr_id"]){
-			$Colp="<div class=\"iprest\">Prestado a ".utf8_encode($row["usr_nombres"]." ". $row["usr_apellidos"])."</div>".
-				  "<div class=\"iprest\">hasta el día <span class='fechadev'>".utf8_encode($row["pre_fechaprogdev"])."</span></div>";
+			$Colp="<div class=\"iprest\" style=\"text-overflow: ellipsis;overflow:hidden;white-space: nowrap; max-width:250px;\"><span class='fechadev'>".utf8_encode($row["pre_fechaprogdev"])." &#187;</span>  ".utf8_encode($row["usr_nombres"]." ". $row["usr_apellidos"])."</div>";
 
 
-		}else{$Colp="<span class=\"iDisp\">disponible</span>";}
+		}else{$Colp="";}
 
 		echo "<div id=il.".$row["equ_id"]." class='iList' onclick=\"javascript:vDetalle(this.id.split('.')[1],'conRegistro');\">".
 				"<span class='colList'>".
 				 	"<span>".
 				 		"<span class='iequ_id'>".$row["equ_cod"]."</span>".
-				 		"<div><span class='iequ_tipo'>".utf8_encode($row["tequ_nombre"])."</span>".
-				 		"<span class='iequ_marca'>".utf8_encode($row["equ_marca"]." ".$row["equ_modelo"])."<span></div> ".
 				 	"</span>".
 				 "</span>".
-				 "<span class='colList'>".$Colp.
+				 "<span class='colList'>".
+					"<div style=\"text-overflow: ellipsis;overflow:hidden;white-space: nowrap; max-width:140px;\" >".
+				 		"<span class='iequ_tipo'>".utf8_encode($row["tequ_nombre"])."</span>".
+				 		"<span class='iequ_marca'>".utf8_encode($row["equ_marca"]." ".$row["equ_modelo"])."</span> ".
+				 	"</div>".	
+				 "</span>".
+				 "<span class='colList' >".$Colp.
 				 "</span>".		 
 			 "</div>";
 	}
