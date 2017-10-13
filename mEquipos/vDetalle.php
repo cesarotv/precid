@@ -14,18 +14,23 @@ if (!empty($_POST)){
 
 
 ?>
+		<div id="Sec" class="iDat v">
+				<?php include("secPrestamo.php");?>
+		</div>
+
 		<div id="contentReg">
 
-			<div id="Sec" class="iDat v">
-				<?php include("secPrestamo.php");?>
-			</div>
-
+			
 			<div id="SecInfEqu">
 				<div id="vMenu">
-					<span id="edEqu" onclick="javascript:editDlle('conRegistro','e');"> <img src="../imgs/lEditar.png"/></span>
-					<span id="nEqu" onclick="javascript:nEqu();"> <img src="../imgs/lNuevo.png"/> </span>
-					<span id="gEqu" onclick="javascript:saveDlle();" style="display:none;"> <img src="../imgs/lGuardar.png"/> </span>
-					<span id="cEqu" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;"> <img src="../imgs/lCancel.png"/> </span>
+					<span id="edEqu" title="Editar" onclick="javascript:editDlle('conRegistro','e');">
+						<img src="../imgs/lEditar.png"/></span>
+					<span id="nEqu" title="Nuevo" onclick="javascript:nEqu();">
+						<img src="../imgs/lNuevo.png"/> </span>
+					<span id="gEqu" title="Guardar" onclick="javascript:saveDlle();" style="display:none;">
+						<img src="../imgs/lGuardar.png"/> </span>
+					<span id="cEqu" title="Cancelar" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;">
+						<img src="../imgs/lCancel.png"/> </span>
 				</div>
 				<input class="idElem" id="equ_id" name="equ_id" value="<?php echo $iEquipo->id;?>" style="display:none;" />
 				<div class="iniDats">
@@ -118,7 +123,8 @@ if (!empty($_POST)){
 						 "</div>";
 				}
 ?>	
-			</div>
+			</div><!-- AQUI VOY -->
+			<ul id="ulSelUsr"></ul><ul id="ulSel1"></ul>
 			<script type="text/javascript"> 
 				loadEvents();
 			</script>

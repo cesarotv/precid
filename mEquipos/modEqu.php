@@ -13,4 +13,5 @@
 	<div id="conRegistro">
 		<?php	include_once("mEquipos/vDetalle.php"); ?>
 	</div>
+	
 </div>

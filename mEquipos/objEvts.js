@@ -197,13 +197,13 @@ function loadEvents(){
 	iS1=new uiSelect;
 	iS1.urlList="../mEquipos/uilist.php";
 	iS1.iPOST="txtUsr";
-	iS1.ini(document.getElementById('pre_usr_id'));
+	iS1.ini(document.getElementById('pre_usr_id'),'ulSelUsr');
 
 	iSTEqu=new uiSelect;
 	iSTEqu.idContent="contentReg";
 	iSTEqu.urlList="../mEquipos/uilist.php";
 	iSTEqu.iPOST="tEqu";
-	iSTEqu.ini(document.getElementById('equ_tipo'));
+	iSTEqu.ini(document.getElementById('equ_tipo'),'ulSel1');
 
 }
 
@@ -231,7 +231,7 @@ function ObjAjax(){
 		if (!xmlhttp && typeof XMLHttpRequest!="undefined") {xmlhttp=new XMLHttpRequest();}return xmlhttp;
 	}
 
-	this.ini=function(iInputElem){
+	this.ini=function(iInputElem,nameList){
 		is=-1;
 		
 		iInput=iInputElem;
@@ -243,13 +243,14 @@ function ObjAjax(){
 
 		content=(this.idContent)?document.getElementById(this.idContent):iInput.parentNode;
 
-		iList=document.createElement("ul");
+		/*iList=document.createElement("ul");*/
+		iList=document.getElementById(nameList);
 		iList.className="UIselectUL";
-		content.appendChild(iList);
-
+		/*content.appendChild(iList);*/
+		
 		iInput.onkeyup = function(e){
 			iList.style.minWidth = iInput.offsetWidth+"px";
-	 		iList.style.top=(iInput.parentNode.offsetTop+iInput.offsetHeight+2)+"px";
+	 		iList.style.top=-1*(iInput.parentNode.offsetTop+iInput.offsetHeight+5)+"px";
 	 		iList.style.left=iInput.offsetLeft+"px";
 			if (e.keyCode=="38"){ despKey(-1);//sube
 			}else if(e.keyCode=="40"){ despKey(1);//baja

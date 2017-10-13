@@ -52,7 +52,7 @@ if (!empty($_POST)){include_once("../lib/conector.php");
 
 	function uiSelUsr($tBqu){
  		$this->access=new ConectorDB;
-		$this->access->conectar("SELECT usuario.usr_id, usuario.usr_nombres, usuario.usr_apellidos FROM db_cid_inv.usuario where concat(usuario.usr_nombres,' ', usuario.usr_apellidos) like '%".$tBqu."%'");
+		$this->access->conectar("SELECT usuario.usr_id, usuario.usr_nombres, usuario.usr_apellidos FROM db_cid_inv.usuario where concat(usuario.usr_nombres,' ', usuario.usr_apellidos) like '%".$tBqu."%' limit 7");
 		$tmp="";$op=0;
 		while ($row=mysql_fetch_array($this->access->getResult())){
 			$tmp=$tmp."<li id=\"".$row["usr_id"]."\" data-idop=\"".$op."\" >".$row["usr_nombres"]." ".$row["usr_apellidos"]."</li>";$op++;}

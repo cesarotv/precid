@@ -8,7 +8,8 @@ div.contMod{
 }
 
 div#conListado{width: 60%;}
-div#conRegistro{width: 40%;overflow-y: auto;}
+div#conRegistro{width: 40%;/*overflow-y: auto;*/
+}
 
 
 div#conListado, div#conRegistro{/* border: 1px solid #bbbbbb;*/
@@ -19,7 +20,7 @@ div#conListado>div#iListado{overflow-y: auto;margin: 0;border: 1px solid #dddddd
 div#conListado>div#iListado{position: absolute;right: 0;left: 0;bottom: 0;top: 30px;}
 div#conListado .barra{padding: 5px;background-color: #34a463;}
 
-div#conRegistro>div {height: 100px;}
+/*div#conRegistro>div {height: 100px;}*/
 
 .iElemList{
 	border-bottom: 1px solid #dddddd;
@@ -33,7 +34,7 @@ div#conRegistro>div {height: 100px;}
 
 
 /*------------- MODULO EQUIPO ----------------------*/
-.b_despl {font-size: 0.6em;vertical-align: middle;}
+
 
 .iListTable{display:table; width: 100%;border-collapse: collapse;}
 .iList{	border-bottom: 1px solid #dddddd;cursor:pointer;display:table-row;}
@@ -47,19 +48,27 @@ div#conRegistro>div {height: 100px;}
 .iList .fechadev{color:#ee7620;}
 
 div#conRegistro>div{margin:0 15px;position: relative;}
-
-div#conRegistro div#Sec{background: #dfdfdf;padding: 2px 5px;font-size: 0.9em;}
+div#conRegistro div#Sec{padding: 2px 5px;font-size: 0.8em; color: #0e7c3e;}
+div#conRegistro div#Sec #bdispon{font-weight: bold;font-size: 1em;}
+div#conRegistro div#Sec .DatnPres{font-style: italic;}
+div#conRegistro div#Sec .DatnPres select{border:none;}
+div#conRegistro div#Sec .DatnPres input{border:none;background:#FFE3CD;padding: 2px 4px;}
+div#conRegistro div#Sec .DatnPres input#pre_usr_id{width: 175px;}
+div#conRegistro div#Sec .usrPrest{font-style: italic;font-weight: bold;font-size: 1em;}
+div#conRegistro .UIselectUL>li {}
 
 #bdispon {cursor:pointer;}
 
 .DatnPres{display:table;margin-top: 5px;}
+div#SecPrest{ text-overflow: ellipsis; overflow: hidden; white-space: nowrap;max-width: 300px;}
+div#SecPrest .b_despl, div#SecDispon .b_despl {font-size: 0.6em;vertical-align: middle;position: absolute;right:5px;top:5px;}
 div#SecPrest .rDatnPres{padding: 2px 0;display:table-row;}
 div#SecPrest .rDatnPres span{padding: 2px 0;display:table-cell;}
 div#SecPrest .rDatnPres span.cText{text-align:right;padding-right: 5px}
 
-div#conRegistro div#SecInfEqu{margin-top: 10px;}
-div#conRegistro #vMenu{text-align:right;font-size: 0.8em;margin:0px 0 7px;}
-div#conRegistro #vMenu span{cursor:pointer;display:inline-block;border: 1px solid #dddddd;padding: 3px;}
+div#conRegistro #vMenu{text-align:right;font-size: 0.8em;}
+div#conRegistro #vMenu span{cursor:pointer;display:inline-block;padding: 3px;}
+div#conRegistro #vMenu span:hover{background:#FFE3CD;}
 div#conRegistro .iniDats{border-bottom: 1px solid #dddddd;}
 .iniDats .Datsprinc{font-size: 0.9em;}
 
