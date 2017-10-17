@@ -13,15 +13,16 @@ if ($iEquipo->pres_usr_id){
 					</span>
 					</span>
 					<div id="contPrest" style="display:none;">
-						<div style="white-space: normal;">
-							<span class="cText">Reprogramar la devolución para el día </span>
-							<input  class="idElem" id="pre_fechadev"  value="" />
+						<div  style="display: table-row;">
+							<div style="display:table-cell;text-align: center;width: 40%;padding-right: 5%;border-right: 1px solid #0e7c3e;">
+								<span class="cText">Pospone la devolución para el día </span>
+								<input  class="idElem" style="width: 100%;" id="pre_fechadev"  value="" />
+								<div style="padding-top: 5px;"><span class="btn" onclick="javascript:; ">Reprogramar</span></div>
+							</div>
+							<div style="display: table-cell;text-align: center;width: 40%;padding-right: 5%; vertical-align: middle">
+								<span class="btn" onclick="javascript:DevPrest(this); ">Registrar <br> Devolución</span>
+							</div>
 						</div>
-						<div>
-							<div style="text-align: center;padding-top: 10px;">
-								<span style="cursor:pointer;" onclick="javascript:DevPrest(this); ">[Registrar Devolución]</span></div>
-						</div>
-
 					</div>
 				</div>
 <?php
@@ -49,12 +50,13 @@ if ($iEquipo->pres_usr_id){
 							</p>
 						</div>
 						<div style="text-align: center;padding:5px;">
-							<span style="cursor: pointer;" onclick="javascript:SavenPrest();">[Crear Prestamo]</span></div>
+							<span class="btn" onclick="javascript:SavenPrest();">Crear Prestamo</span></div>
 					</div>
 				</div>
+
 <?php 
 
 }
-
+				
 
 ?>

@@ -200,11 +200,13 @@ function loadEvents(){
 	iS1.ini(document.getElementById('pre_usr_id'),'ulSelUsr');
 
 	iSTEqu=new uiSelect;
-	iSTEqu.idContent="contentReg";
+	//iSTEqu.idContent="contentReg";
 	iSTEqu.urlList="../mEquipos/uilist.php";
 	iSTEqu.iPOST="tEqu";
-	iSTEqu.ini(document.getElementById('equ_tipo'),'ulSel1');
+	iSTEqu.ini(document.getElementById('equ_tipo'),'ulSelEqu');
+	
 
+// --- Aqui voy: Recalculo offset top recorriendo todos los parentNode
 }
 
 //-------------=============================================----------------------------------
@@ -219,6 +221,7 @@ var uiSelect= function(){
 	var iAtrDest;
 	var iList;
 	var is;
+	var iTop;
 	var iPOST;
 	
 	var urlList;
@@ -246,16 +249,24 @@ function ObjAjax(){
 		/*iList=document.createElement("ul");*/
 		iList=document.getElementById(nameList);
 		iList.className="UIselectUL";
-		/*content.appendChild(iList);*/
+
+		//iList.style.top=-1*(iInput.offsetTop+iInput.offsetHeight+5)+"px";
+		
 		
 		iInput.onkeyup = function(e){
-			iList.style.minWidth = iInput.offsetWidth+"px";
-	 		iList.style.top=-1*(iInput.parentNode.offsetTop+iInput.offsetHeight+5)+"px";
-	 		iList.style.left=iInput.offsetLeft+"px";
+			iList.style.maxWidth = (iInput.offsetWidth*1.5)+"px";
+
+			if (typeof iTop == "undefined"){iElem=iInput;iTop=0;
+					iTop=iInput.parentNode.offsetTop+iInput.offsetHeight;
+					iList.style.left=iInput.offsetLeft+16+"px";
+			}
+
+			iList.style.top=iTop+"px";
+
 			if (e.keyCode=="38"){ despKey(-1);//sube
 			}else if(e.keyCode=="40"){ despKey(1);//baja
 			}else if(e.keyCode=="13"){ selectOp();iList.innerHTML="";//Enter
-			}else if (e.keyCode=="27"){ iList.innerHTML="";iList.style.display="none";//esc
+			}else if (e.keyCode=="27"){ iList.innerHTML="";iList.style.display="none";//Esc
 			}else{genList();}
 		}
 	}
@@ -266,7 +277,7 @@ function ObjAjax(){
 		procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 	 		iList.innerHTML=procAjax.responseText;
 	 		is=-1;
-	 		selClick();
+	 		if(iList.innerHTML.length==0){iList.style.display="none";} else{selClick();}
 		}}}
 		procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		procAjax.send(iPOST+"="+iInput.value);
@@ -287,8 +298,9 @@ function ObjAjax(){
 	}
 
 	function selectOp(){
-		iInput.setAttribute(iAtrDest,iop[is].id);iList.style.display="none";
-		iInput.value=iop[is].innerHTML;
+		iInput.setAttribute(iAtrDest,iop[is].id);
+		iList.style.display="none";
+		iInput.value=iop[is].getElementsByTagName("span")[0].innerHTML;
 		this.iInput=iInput;
 		
 		ichange();

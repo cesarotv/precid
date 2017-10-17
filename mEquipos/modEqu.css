@@ -8,8 +8,7 @@ div.contMod{
 }
 
 div#conListado{width: 60%;}
-div#conRegistro{width: 40%;/*overflow-y: auto;*/
-}
+div#conRegistro{width: 40%; position: relative;}
 
 
 div#conListado, div#conRegistro{/* border: 1px solid #bbbbbb;*/
@@ -49,22 +48,28 @@ div#conListado .barra{padding: 5px;background-color: #34a463;}
 
 div#conRegistro>div{margin:0 15px;position: relative;}
 div#conRegistro div#Sec{padding: 2px 5px;font-size: 0.8em; color: #0e7c3e;}
-div#conRegistro div#Sec #bdispon{font-weight: bold;font-size: 1em;}
+div#conRegistro div#Sec #bdispon{font-size: 1em;}
 div#conRegistro div#Sec .DatnPres{font-style: italic;}
 div#conRegistro div#Sec .DatnPres select{border:none;}
 div#conRegistro div#Sec .DatnPres input{border:none;background:#FFE3CD;padding: 2px 4px;}
 div#conRegistro div#Sec .DatnPres input#pre_usr_id{width: 175px;}
 div#conRegistro div#Sec .usrPrest{font-style: italic;font-weight: bold;font-size: 1em;}
-div#conRegistro .UIselectUL>li {}
 
-#bdispon {cursor:pointer;}
+#ulSelUsr{border: 1px solid #0e7c3e;font-size: 0.9em;color:#0e7c3e;display:none;font-weight: bold;}
+#ulSelUsr>li{border-bottom: 1px solid #ffd9bc;}
+.UIselectUL>li:hover{background-color: #FFE3CD;}
+.btn{display:inline-block; padding: 5px 10px;cursor: pointer;background-color:#0e7c3e;color: #ffffff;
+	border-radius: 5px 5px 5px 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;}
+
+#bdispon {cursor:pointer;text-overflow: ellipsis; overflow: hidden; white-space: nowrap;display: block;max-width: 325px;padding-bottom: 5px;}
 
 .DatnPres{display:table;margin-top: 5px;}
-div#SecPrest{ text-overflow: ellipsis; overflow: hidden; white-space: nowrap;max-width: 300px;}
+div#SecPrest{ }
 div#SecPrest .b_despl, div#SecDispon .b_despl {font-size: 0.6em;vertical-align: middle;position: absolute;right:5px;top:5px;}
 div#SecPrest .rDatnPres{padding: 2px 0;display:table-row;}
 div#SecPrest .rDatnPres span{padding: 2px 0;display:table-cell;}
 div#SecPrest .rDatnPres span.cText{text-align:right;padding-right: 5px}
+div#contPrest input{border:none;background:#FFE3CD;padding: 2px 4px;}
 
 div#conRegistro #vMenu{text-align:right;font-size: 0.8em;}
 div#conRegistro #vMenu span{cursor:pointer;display:inline-block;padding: 3px;}

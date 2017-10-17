@@ -1,5 +1,6 @@
 
 .UIselectUL{display: block;margin:0px;padding: 0;background-color: #ffffff;border: 1px solid #dddddd;position:absolute;}
-.UIselectUL>li{display: block;padding: 2px 3px;border-bottom: 1px solid #dddddd;cursor:pointer;}
+.UIselectUL>li{display: block;padding: 4px 3px;border-bottom: 1px solid #dddddd;cursor:pointer;
+	white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
 .UIselectUL>li.is{background-color: #dddddd !important;}
 .UIselectUL>li:hover{background-color: #dddddd;}

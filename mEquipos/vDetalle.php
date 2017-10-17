@@ -104,7 +104,8 @@ if (!empty($_POST)){
 
 				</div>
 			</div>
-
+			<ul id="ulSelEqu"></ul>
+			
 			<div id="listObs" class="iDat v">
 				<span>Observaciones</span>
 				<div id="addObs" style="text-align:center;">  
@@ -123,9 +124,10 @@ if (!empty($_POST)){
 						 "</div>";
 				}
 ?>	
-			</div><!-- AQUI VOY -->
-			<ul id="ulSelUsr"></ul><ul id="ulSel1"></ul>
-			<script type="text/javascript"> 
-				loadEvents();
-			</script>
+			</div>
+			
 		</div>
+		<ul id="ulSelUsr"></ul>
+		<script type="text/javascript"> 
+				loadEvents();
+		</script>
