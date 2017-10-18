@@ -11,7 +11,7 @@ div#conListado{width: 60%;}
 div#conRegistro{width: 40%; position: relative;}
 
 
-div#conListado, div#conRegistro{/* border: 1px solid #bbbbbb;*/
+div#conListado, div#conRegistro{ /*border: 1px solid #0e7c3e;*/
 	display: table-cell;vertical-align: top;}
 
 div#conListado {position: relative;}
@@ -37,7 +37,7 @@ div#conListado .barra{padding: 5px;background-color: #34a463;}
 
 .iListTable{display:table; width: 100%;border-collapse: collapse;}
 .iList{	border-bottom: 1px solid #dddddd;cursor:pointer;display:table-row;}
-.iList:hover{background:#dfdfdf;}
+.iList:hover{background:#FFE3CD;}
 
 .iList .colList{display:table-cell;padding: 5px 0 5px 7px;white-space: nowrap;}
 .iList .iequ_tipo{font-size: 0.9em; margin-right: 4px;font-weight: bold;color:#999999;}
@@ -46,7 +46,8 @@ div#conListado .barra{padding: 5px;background-color: #34a463;}
 .iList .iprest{color:#999999;font-size: 0.8em;}
 .iList .fechadev{color:#ee7620;}
 
-div#conRegistro>div{margin:0 15px;position: relative;}
+div#conRegistro>div{margin-left: 15px;position: relative;}
+
 div#conRegistro div#Sec{padding: 2px 5px;font-size: 0.8em; color: #0e7c3e;}
 div#conRegistro div#Sec #bdispon{font-size: 1em;}
 div#conRegistro div#Sec .DatnPres{font-style: italic;}
@@ -55,9 +56,9 @@ div#conRegistro div#Sec .DatnPres input{border:none;background:#FFE3CD;padding: 
 div#conRegistro div#Sec .DatnPres input#pre_usr_id{width: 175px;}
 div#conRegistro div#Sec .usrPrest{font-style: italic;font-weight: bold;font-size: 1em;}
 
-#ulSelUsr{border: 1px solid #0e7c3e;font-size: 0.9em;color:#0e7c3e;display:none;font-weight: bold;}
+#ulSelUsr{border: 1px solid #0e7c3e;font-size: 0.9em;color:#0e7c3e;display:none;}
 #ulSelUsr>li{border-bottom: 1px solid #ffd9bc;}
-.UIselectUL>li:hover{background-color: #FFE3CD;}
+
 .btn{display:inline-block; padding: 5px 10px;cursor: pointer;background-color:#0e7c3e;color: #ffffff;
 	border-radius: 5px 5px 5px 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;}
 
@@ -77,8 +78,18 @@ div#conRegistro #vMenu span:hover{background:#FFE3CD;}
 div#conRegistro .iniDats{border-bottom: 1px solid #dddddd;}
 .iniDats .Datsprinc{font-size: 0.9em;}
 
-div#conRegistro .tipoElem{font-size: 1.3em; font-weight: bold;}
+div#conRegistro #contentReg{height: 100%;position: absolute;right: 0;left: 0;bottom: 0;}
+
+#equ_tipo {width: 100%;font-size: 1em !important;border: 1px solid #dedede;padding: 0px 1px;}
+div#conRegistro .tipoElem{font-size: 1.4em; font-weight: bold;color:#0e7c3e;}
 div#conRegistro select.tipoElem{font-size: 1em;padding: 0;display: block;border: 1px solid #dddddd;}
+
+#ulSelEqu{min-width: 360px;margin-left: -16px;}
+#ulSelEqu{border: 1px solid #0e7c3e;font-size: 1.3em;color:#0e7c3e;display:none;font-weight: bold;}
+#ulSelEqu>li{border-bottom: 1px solid #ffd9bc;}
+
+#iSerial{font-style: italic;color:#bbbbbb;}
+#iIdEqu{color:#0e7c3e;font-size: 1.15em;}
 
 div#conRegistro #secPrest.iDat.e{display: none;}
 div#conRegistro ·tipoElem .iDat.v>input{display: none;}
@@ -89,24 +100,26 @@ div#conRegistro .tipoElem .iDat.e>.UIselect{display: initial;}
 div#conRegistro .tipoElem .iDat.v>span{display: initial;}
 div#conRegistro .tipoElem .iDat.e>span{display: none;}
 
-div#conRegistro .nDatos{padding: 7px 0;}
-div#conRegistro .nDatos .iDat.v .vpDats{display: initial;}
+div#conRegistro .nDatos{padding-bottom: 7px;}
+div#conRegistro .nDatos .iDat.v .vpDats{display: initial;font-size: 0.95em;}
 div#conRegistro .nDatos .iDat.v .epDats{display: none;}
 div#conRegistro .nDatos .iDat.e .epDats{display: initial;}
 div#conRegistro .nDatos .iDat.e .vpDats{display: none;}
 
+#SecInfEqu2{position: absolute;overflow-y: auto;bottom: 0;top: 130px;right: 0; left: 0;}
+
 .epDats{display:table;}
 .epDats .irDat{display:table-row;}
 .epDats .irDat>span{display:table-cell;}
-div#conRegistro .epDats .irDat .tDat{text-align:right;font-size: 0.9em;padding: 3px;}
-div#conRegistro input.ieDat,  div#conRegistro input.iAtrEq,  div#conRegistro input.inAtrEq{font-size: 0,95em;padding: 1px 5px;display: block;border: 1px solid #dddddd;}
+div#conRegistro .epDats .irDat .tDat{text-align:right;font-size: 0.9em;padding: 3px;font-style: italic;}
+div#conRegistro input.ieDat,  div#conRegistro input.iAtrEq,  div#conRegistro input.inAtrEq{font-size: 0,95em;padding: 1px 5px;display: block;border: 1px solid #e1e1e1;}
 div#conRegistro input.inAtrEq{text-align: right;width: 110px;margin-right: -5px; background-color:#dedede; font-weight: bold; }
 
 #contListAtrb{padding: 5px 0;}
 #contListAtrb .tit{font-size: 0.8em;font-style: italic;color:#bbbbbb;}
 div#conRegistro .ListAtrib{display:table;margin: 10px 10px; width: 100%}
 .ListAtrib .iAtr{display:table-row;}
-.ListAtrib .iAtr .tAtr, .ListAtrib .iAtr .vAtr {font-size: 0.9em;display:table-cell;padding:3px 5px;vertical-align: top;position: relative;}
+.ListAtrib .iAtr .tAtr, .ListAtrib .iAtr .vAtr {font-size: 0.9em;display:table-cell;padding:3px 2px 5px;position: relative;}
 .ListAtrib .iAtr .tAtr{text-align: right;padding-right: 5px;font-weight: bold;}
 
 div#conRegistro .iDat.v #lAtrV{display: initial;}
@@ -121,4 +134,7 @@ div#conRegistro .iDat.e #lAtrV{display: none;}
 .iObs .iContObs{max-height: 100px;font-size: 0.85em;overflow-y: auto;color: #666666;}
 
 #listObs #addObs{padding-bottom: 10px;}
-#contPrest textarea, #listObs textarea{width: 100%; display:block;font-family: Arial;}
+#contPrest textarea, #listObs textarea{
+	min-width: 100%; display:block;
+	font-family: Arial;max-width: 350px;border: 1px solid #0e7c3e;
+}

@@ -40,6 +40,8 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 
 				 	"</span>".
 				 "</span>".
+				 "<span class='colList'>0".
+				 "</span>".
 				 "<span class='colList'>".
 				 	"<div class=\"iprest\"><a class='pre'>&#9654; </a>".utf8_encode($row["usr_nombres"]." ". $row["usr_apellidos"])."</div>".
 				 "</span>".

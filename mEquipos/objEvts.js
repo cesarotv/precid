@@ -26,7 +26,8 @@ function vnPrest(cmp){
 		cmp.getElementsByClassName("b_despl")[0].innerHTML="&#9650;";
 	}else{ecmp.style.display="none";
 	    cmp.getElementsByClassName("b_despl")[0].innerHTML="&#9660;";}
-	
+
+	ajustDlle();
 }
 
 function SavenPrest(){
@@ -91,6 +92,7 @@ function editDlle(cmpv,ev){
 	
 					document.getElementById("gEqu").style="";
 					document.getElementById("cEqu").style="";
+					ajustDlle();
 				break;
 		case 'c':	vDetalle(document.getElementById("equ_id").value,'conRegistro');
 				break;
@@ -98,11 +100,9 @@ function editDlle(cmpv,ev){
 }
 
 function nEqu(){
-	/* Aquí voy */
-
  	vDetalle(0,'conRegistro');
  	editDlle('conRegistro','e');
-
+ 	ajustDlle();
 }
 
 function saveDlle(){
@@ -190,6 +190,12 @@ function descEqu(){
 	procAjax.send("idDescEqu="+document.getElementById('equ_id').value);
 }
 
+function ajustDlle(){
+	t=document.getElementById("Sec").offsetHeight+document.getElementById("SecInfEqu").offsetHeight;
+	document.getElementById("SecInfEqu2").style.top=t+"px";
+}
+
+
 function loadEvents(){
 
 	document.getElementById("pre_fechadev").value =new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear();
@@ -206,7 +212,6 @@ function loadEvents(){
 	iSTEqu.ini(document.getElementById('equ_tipo'),'ulSelEqu');
 	
 
-// --- Aqui voy: Recalculo offset top recorriendo todos los parentNode
 }
 
 //-------------=============================================----------------------------------
@@ -252,13 +257,11 @@ function ObjAjax(){
 
 		//iList.style.top=-1*(iInput.offsetTop+iInput.offsetHeight+5)+"px";
 		
-		
 		iInput.onkeyup = function(e){
 			iList.style.maxWidth = (iInput.offsetWidth*1.5)+"px";
-
 			if (typeof iTop == "undefined"){iElem=iInput;iTop=0;
 					iTop=iInput.parentNode.offsetTop+iInput.offsetHeight;
-					iList.style.left=iInput.offsetLeft+16+"px";
+					iList.style.left=iInput.parentNode.offsetLeft+16+"px";
 			}
 
 			iList.style.top=iTop+"px";
@@ -303,7 +306,7 @@ function ObjAjax(){
 		iInput.value=iop[is].getElementsByTagName("span")[0].innerHTML;
 		this.iInput=iInput;
 		
-		ichange();
+		//ichange();
 	}
 
 	this.ichange=function(){}

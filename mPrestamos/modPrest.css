@@ -15,7 +15,7 @@ div#conListado, div#conRegistro{ border: 1px solid #bbbbbb;vertical-align: top;}
 div#conListado {position: relative;}
 div#conListado>div#iListado{overflow-y: auto;margin: 0;}
 div#conListado>div#iListado{right: 0;left: 0;bottom: 0;top: 33px;}
-div#conListado .barra{padding: 5px;border-bottom: 1px solid #dddddd;background-color: #eeeeee;}
+div#conListado .barra{padding: 5px;border-bottom: 1px solid #dddddd;background-color: #34a463;}
 
 div#conRegistro>div {height: 100px;}
 

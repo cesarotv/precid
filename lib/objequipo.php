@@ -77,7 +77,7 @@ include_once("../lib/conector.php");
 		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoequipo` where `tequ_nombre` like '%".$itequ."%'");
 		$tmp="";$op=0;
 		while ($row=mysql_fetch_array($this->access->getResult())){
-			$tmp=$tmp."<li id=\"".$row["tequ_id"]."\" data-idop=\"".$op."\" >".$row["tequ_nombre"]."</li>";$op++;}
+			$tmp=$tmp."<li id=\"".$row["tequ_id"]."\" data-idop=\"".$op."\" ><span>".$row["tequ_nombre"]."</span></li>";$op++;}
 		return $tmp;
 	}
 

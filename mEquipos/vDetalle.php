@@ -14,13 +14,12 @@ if (!empty($_POST)){
 
 
 ?>
-		<div id="Sec" class="iDat v">
-				<?php include("secPrestamo.php");?>
-		</div>
 
 		<div id="contentReg">
+			<div id="Sec" class="iDat v">
+				<?php include("secPrestamo.php");?>
+			</div>
 
-			
 			<div id="SecInfEqu">
 				<div id="vMenu">
 					<span id="edEqu" title="Editar" onclick="javascript:editDlle('conRegistro','e');">
@@ -45,32 +44,33 @@ if (!empty($_POST)){
 					<div class="nDatos">
 						<div class="iDat v">
 							<div class="vpDats">
-								<b>Marca:</b><span><?php echo $iEquipo->marca;?></span>
-								<b>Modelo:</b><span><?php echo $iEquipo->modelo;?></span>
-								<b>Serial:</b><span><?php echo $iEquipo->serial;?></span>
-								<b>Código:</b><span><?php echo $iEquipo->cod;?></span>
+								<span title="Marca"><?php echo $iEquipo->marca;?></span> <span title="Modelo"><?php echo $iEquipo->modelo;?></span>
+								<span id="iSerial" title="Serial"><?php echo $iEquipo->serial;?></span><br>
+								<span id="iIdEqu" title="Código CID"><?php echo $iEquipo->cod;?></span>
 							</div>
 							<div class='epDats'>
 								<div class='irDat'>
-									<span class='tDat'><b>Marca:</b></span>
+									<span class='tDat'>Marca:</span>
 									<span class='vDat'><input id="equ_marca" class="ieDat" name="equ_marca"  value="<?php echo $iEquipo->marca;?>"/></span>
 								</div>
 								<div class='irDat'>
-									<span class='tDat'><b>Modelo:</b></span>
+									<span class='tDat'>Modelo:</span>
 									<span class='vDat'><input id="equ_modelo" class="ieDat" name="equ_modelo"  value="<?php echo $iEquipo->modelo;?>"/></span>
 								</div>
 								<div class='irDat'>
-									<span class='tDat'><b>Serial:</b></span>
+									<span class='tDat'>Serial:</span>
 									<span class='vDat'><input id="equ_serial" class="ieDat" name="equ_serial"  value="<?php echo $iEquipo->serial;?>"/></span>
 								</div>
 								<div class='irDat'>
-									<span class='tDat'><b>C&oacute;digo:</b></span>
+									<span class='tDat'>C&oacute;digo:</span>
 									<span class='vDat'><input id="equ_cod" class="ieDat" name="equ_serial"  value="<?php echo $iEquipo->cod;?>"/></span>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+			<div id="SecInfEqu2">
 				<div id="contListAtrb" class="iDat v">
 				<div class="tit">Especificaciones:</div>
 				<div id="lAtrV" class="ListAtrib">
@@ -93,39 +93,41 @@ if (!empty($_POST)){
 								 		<input id=\"".
 								 			$_POST["equ_id"]."|".$iEquipo->atributos[$i]["atr_id"]."|".$iEquipo->atributos[$i]["tae_id"].
 								 			"\" class=\"iAtrEq\" name=\"atr_atributo\"  value=\"".$iEquipo->atributos[$i]["atr_atributo"]."\"/></span>".
-								 	"<span class='vAtr' style=\"cursor:pointer;\" onclick=\"javascript:delAtrib(this.parentNode);\">[-]</span>".
+								 	"<span class='vAtr' style=\"cursor:pointer;\" onclick=\"javascript:delAtrib(this.parentNode);\">".
+								 		"<img src=\"../imgs/dAtr.png\"/></span>".
 								 "</div>";
 						}
 
 		?>				</div>	
-						<div style="text-align: center;"><span style="cursor:pointer;" onclick="javascript:nAtrib(this.parentNode.parentNode);">[+]</span></div>
+						<div style="text-align: center;">
+							<span style="cursor:pointer;" onclick="javascript:nAtrib(this.parentNode.parentNode);"><img src="../imgs/mObs.png"/></span></div>
 						<div><span style="cursor:pointer;" onclick="javascript:descEqu();">[descartar]</span></div>
 					</div>
 
 				</div>
+			
+				
+				
+				<div id="listObs" class="iDat v">
+					<div id="addObs" style="text-align:right;">  
+						<textarea placeholder="Observaciones..."></textarea>
+						<span style="cursor:pointer;padding: 4px;display: inline-block;" onclick="javascript:nObs(this.parentNode);"><img src="../imgs/mObs.png"/></span>
+					</div>
+
+	<?php
+					echo "";
+					for($i=0; $i<count($iEquipo->obs); $i++){
+						echo "<div class='iObs'>".
+							 "<div class='iFechObs'>".
+							 	"<span>".utf8_encode($iEquipo->obs[$i]["usr_nombres"]." ".$iEquipo->obs[$i]["usr_apellidos"])."</span>".
+							 	"<span style=\"position: absolute; right:0;\">".date_create($iEquipo->obs[$i]["obsequ_fecha"])->format('d/m/y  h:i a')."</span></div>".
+							 "<div class='iContObs'><div>".utf8_encode($iEquipo->obs[$i]["obsequ_observacion"])."</div></div>".
+							 "</div>";
+					}
+	?>	
+				</div>
 			</div>
 			<ul id="ulSelEqu"></ul>
-			
-			<div id="listObs" class="iDat v">
-				<span>Observaciones</span>
-				<div id="addObs" style="text-align:center;">  
-					<textarea></textarea>
-					<span style="cursor:pointer;" onclick="javascript:nObs(this.parentNode);">[+]</span>
-				</div>
-
-<?php
-				echo "";
-				for($i=0; $i<count($iEquipo->obs); $i++){
-					echo "<div class='iObs'>".
-						 "<div class='iFechObs'>".
-						 	"<span>".utf8_encode($iEquipo->obs[$i]["usr_nombres"]." ".$iEquipo->obs[$i]["usr_apellidos"])."</span>".
-						 	"<span style=\"position: absolute; right:0;\">".date_create($iEquipo->obs[$i]["obsequ_fecha"])->format('d/m/y  h:i a')."</span></div>".
-						 "<div class='iContObs'><div>".utf8_encode($iEquipo->obs[$i]["obsequ_observacion"])."</div></div>".
-						 "</div>";
-				}
-?>	
-			</div>
-			
 		</div>
 		<ul id="ulSelUsr"></ul>
 		<script type="text/javascript"> 
