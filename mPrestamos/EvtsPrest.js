@@ -1,4 +1,5 @@
 
+var iPrest;
 //------------------------------------------------------------------------------
 
 function ObjAjax(){
@@ -20,13 +21,31 @@ window.onload=function() {
 
 
 function vDetalle(idPrest, cmpv){
-	tcmpv=document.getElementById(cmpv);
+	rcmpv=document.getElementById("obs."+idPrest);
+	rcmpv.style.height="0px";
+	tcmpv=rcmpv.getElementsByClassName('icontnObs')[0];
+	
 	vequ_id=idPrest.split('.')[1];
 	vpre_f=idPrest.split('.')[2];
 
 	procAjax=ObjAjax();procAjax.open("POST","../mPrestamos/vInfPrest.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		rcmpv.style.height="0px";
+		rcmpv.parentNode.style.height="0px";
+
 		tcmpv.innerHTML=procAjax.responseText;
+		th=tcmpv.offsetHeight+"px";
+		
+		rcmpv.style.height=th;
+		rcmpv.parentNode.style.height=th;
+		if (typeof iPrest != "undefined"){
+			io=iPrest.getElementsByClassName('icontnObs')[0];
+			io.innerHTML="";
+			iPrest.style="";
+			iPrest.parentNode.style="";
+			
+		}
+		iPrest=rcmpv;
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	procAjax.send("equ_id="+vequ_id+"&pre_fecha="+vpre_f);

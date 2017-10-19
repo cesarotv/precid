@@ -6,7 +6,14 @@ include_once("../lib/conector.php");
 
 	$access=new ConectorDB;
 
-	$stSql="SELECT usuario.usr_nombres, usuario.usr_apellidos, prestamos.pre_usr_id, prestamos.pre_equ_id,DATE_FORMAT(prestamos.pre_fecha,'%d/%m/%Y %h:%i %p ') as pre_fecha, prestamos.pre_tipo, DATE_FORMAT(prestamos.pre_fechaprogdev,'%d/%m/%Y') as fechaprogdev,DATE_FORMAT(prestamos.pre_fechadev,'%d/%m/%Y %h:%i %p') as pre_fechadev, equipo.*, tipoequipo.tequ_nombre, prestamos.pre_fecha as vpre_fecha FROM db_cid_inv.prestamos, db_cid_inv.usuario,db_cid_inv.equipo,db_cid_inv.tipoequipo
+	$stSql="SELECT usuario.usr_nombres, usuario.usr_apellidos, prestamos.pre_usr_id, prestamos.pre_equ_id,
+			DATE_FORMAT(prestamos.pre_fecha,'%d/%m/%Y %h:%i %p ') as pre_fecha, prestamos.pre_tipo, 
+			DATE_FORMAT(prestamos.pre_fechaprogdev,'%d/%m/%Y') as fechaprogdev,
+			DATE_FORMAT(prestamos.pre_fechadev,'%d/%m/%Y %h:%i %p') as pre_fechadev,
+			equipo.*, tipoequipo.tequ_nombre, prestamos.pre_fecha as vpre_fecha,
+ 			(Select count(*) FROM db_cid_inv.obsequipo WHERE obsequipo.obsequ_equ_id=prestamos.pre_equ_id AND
+    			IF(prestamos.pre_fechadev IS NULL, obsequipo.obsequ_fecha>prestamos.pre_fecha, obsequipo.obsequ_fecha BETWEEN prestamos.pre_fecha AND prestamos.pre_fechadev)) AS nObs
+			FROM db_cid_inv.prestamos, db_cid_inv.usuario,db_cid_inv.equipo,db_cid_inv.tipoequipo
 WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_id AND tipoequipo.tequ_id=equipo.equ_teq_id) ";
 
 	if (!empty($_POST["txtPrest"])){
@@ -40,18 +47,23 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 
 				 	"</span>".
 				 "</span>".
-				 "<span class='colList'>0".
-				 "</span>".
+				 "<span class='colList'><img src=\"../imgs/numObs.png\"/><b class=\"nObs\">".utf8_encode($row["nObs"])."</span>".
+				 "</b>".
 				 "<span class='colList'>".
 				 	"<div class=\"iprest\"><a class='pre'>&#9654; </a>".utf8_encode($row["usr_nombres"]." ". $row["usr_apellidos"])."</div>".
 				 "</span>".
 				 "<span class='colList'>".
 				 	
 				 	"<div class='ifecha'>".$iDev."</div>".
-				 "</span>".	 
-			 "</div>";
+				 "</span>". 
+			 "</div>".
+			 "<div class='iListcontObs'>".
+			 	"<div id='obs.li.".$row["pre_equ_id"].".".$row["vpre_fecha"]."' class='iListObs' style='height: 0px;' >".
+				"<div class=\"icontnObs\"></div></div>".	
+			 "</div>"; 
 	}
-?>
+?>			
+
 			<div class="iList"><span class='colList'>asdfasdfasdf</span><span class='colList'>asdfasdfasdf</span></div>
 			<div class="iList"><span class='colList'>asdfasdfasdf</span><span class='colList'>asdfasdfasdf</span></div>
 			<div class="iList"><span class='colList'>asdfasdfasdf</span><span class='colList'>asdfasdfasdf</span></div>
