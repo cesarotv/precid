@@ -42,8 +42,7 @@ function vDetalle(idPrest, cmpv){
 			io=iPrest.getElementsByClassName('icontnObs')[0];
 			io.innerHTML="";
 			iPrest.style="";
-			iPrest.parentNode.style="";
-			
+			iPrest.parentNode.style="";						
 		}
 		iPrest=rcmpv;
 	}}}

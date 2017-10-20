@@ -51,8 +51,23 @@ function SavenPrest(){
 
 }
 
+function reprogDevDevPrest(){
+	prms="reprogDevPrest=true&";
+	prms=prms+"equ_id="+document.getElementById("equ_id").value+"&";
+	prms=prms+"pre_fechaProgDev="+document.getElementById("pre_fechaProgDev").value;
+	
+	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
+	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		//alert(procAjax.responseText);
+		vDetalle(procAjax.responseText,'conRegistro');
+		refreshList();
+	}}}
+	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	procAjax.send(prms);
+
+}
+
 function DevPrest(cmp){
-	//nObs(cmp);
 	prms="DevPrest=true&";
 	prms=prms+"equ_id="+document.getElementById("equ_id").value;
 	

@@ -27,6 +27,15 @@ class classPrestamo{
 		
 	}
 	
+	function reprogDevEquipo($datsPres){
+		$datsPres["pre_fechaProgDev"]=date('Y-m-d',strtotime($datsPres["pre_fechaProgDev"]));
+		$stSql="UPDATE `db_cid_inv`.`prestamos` SET `pre_fechaProgDev` = ':pre_fechaProgDev' WHERE `pre_equ_id` = :equ_id AND `pre_fechadev` is null";
+			$stSql=$this->sqlReplace($stSql,$datsPres);
+			$this->access->conectar($stSql);
+		//return $stSql;
+		return $datsPres["equ_id"];
+	}
+
 	function DevEquipo($datsPres){
 		$stSql="UPDATE `db_cid_inv`.`prestamos` SET `pre_fechadev` = CURRENT_TIMESTAMP WHERE `pre_equ_id` = :equ_id AND `pre_fechadev` is null";
 			$stSql=$this->sqlReplace($stSql,$datsPres);

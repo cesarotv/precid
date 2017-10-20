@@ -5,6 +5,11 @@ include_once("../lib/conector.php");
 }else{include_once("lib/conector.php");}
 
 	$access=new ConectorDB;
+	$stSql="";
+
+	if (!empty($_POST["txtPrest"])){
+		$stSql="AND concat(usuario.usr_nombres,' ', usuario.usr_apellidos,' ',equipo.equ_cod,' ',equipo.equ_marca,' ',equipo.equ_modelo,' ', equipo.equ_serial,' ',tipoequipo.tequ_nombre) like '%".utf8_decode($_POST["txtPrest"])."%' ";
+	}
 
 	$stSql="SELECT usuario.usr_nombres, usuario.usr_apellidos, prestamos.pre_usr_id, prestamos.pre_equ_id,
 			DATE_FORMAT(prestamos.pre_fecha,'%d/%m/%Y %h:%i %p ') as pre_fecha, prestamos.pre_tipo, 
@@ -14,13 +19,10 @@ include_once("../lib/conector.php");
  			(Select count(*) FROM db_cid_inv.obsequipo WHERE obsequipo.obsequ_equ_id=prestamos.pre_equ_id AND
     			IF(prestamos.pre_fechadev IS NULL, obsequipo.obsequ_fecha>prestamos.pre_fecha, obsequipo.obsequ_fecha BETWEEN prestamos.pre_fecha AND prestamos.pre_fechadev)) AS nObs
 			FROM db_cid_inv.prestamos, db_cid_inv.usuario,db_cid_inv.equipo,db_cid_inv.tipoequipo
-WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_id AND tipoequipo.tequ_id=equipo.equ_teq_id) ";
-
-	if (!empty($_POST["txtPrest"])){
-		$stSql=$stSql."AND concat(usuario.usr_nombres,' ', usuario.usr_apellidos,' ',equipo.equ_cod,' ',equipo.equ_marca,' ',equipo.equ_modelo,' ', equipo.equ_serial,' ',tipoequipo.tequ_nombre) like '%".utf8_decode($_POST["txtPrest"])."%' ";
-	}
-
-	$stSql=$stSql." order by pre_fechadev IS NULL desc,pre_fechadev desc";
+WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_id 
+	AND tipoequipo.tequ_id=equipo.equ_teq_id) ".$stSql." order by FIELD (prestamos.pre_fechadev, NULL) desc, prestamos.pre_fecha DESC";
+	
+	//$stSql=$stSql." order by pre_fechadev IS NULL desc,pre_fechadev desc";
 
 	$access->conectar($stSql);
 
@@ -64,8 +66,5 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 	}
 ?>			
 
-			<div class="iList"><span class='colList'>asdfasdfasdf</span><span class='colList'>asdfasdfasdf</span></div>
-			<div class="iList"><span class='colList'>asdfasdfasdf</span><span class='colList'>asdfasdfasdf</span></div>
-			<div class="iList"><span class='colList'>asdfasdfasdf</span><span class='colList'>asdfasdfasdf</span></div>
 
 </div>

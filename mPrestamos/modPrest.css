@@ -30,7 +30,6 @@ div#conRegistro>div {height: 100px;}
 
 
 
-
 /*------------- MODULO EQUIPO ----------------------*/
 .b_despl {font-size: 0.6em;vertical-align: middle;}
 
@@ -54,9 +53,8 @@ div#conRegistro>div {height: 100px;}
 .iList img{vertical-align: middle;}
 .iList .nObs{margin-left: 3px; color:#0e7c3e;font-size: 0.95em;}
 
-.iListcontObs{display:table-row;}
-.iListObs{overflow:hidden;width: 100%;position: absolute;}
-.iListcontObs, .iListObs{transition: all 0.5s ease;}
+.iListObs{overflow-y:auto;width: 100%;position: absolute;}
+.iListcontObs, .iListObs{transition: all 0.5s ease;max-height: 150px;}
 .iListTable .icontnObs{background-color: #0e7c3e;position: absolute; width: 100%;}
 
 
