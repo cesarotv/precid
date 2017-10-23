@@ -70,7 +70,6 @@ function saveDlle(){
 	prms=prms+"usr_apellidos="+document.getElementById("usr_apellidos").value+"&";
 	prms=prms+"usr_estado="+document.getElementById("usr_estado").value+"&";
 	prms=prms+"usr_pro_id="+document.getElementById("usr_pro_id").value+"&";
-	prms=prms+"usr_username="+document.getElementById("usr_username").value;
 
 	procAjax=ObjAjax();procAjax.open("POST","../mUsuarios/iSqlUsr.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){

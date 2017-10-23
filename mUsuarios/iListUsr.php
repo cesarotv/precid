@@ -1,3 +1,4 @@
+<div class="iListTable">
 <?php
 if (!empty($_POST)){
 include_once("../lib/conector.php");
@@ -15,46 +16,14 @@ include_once("../lib/conector.php");
 	$access->conectar($stSql);
 
 	while($row=mysql_fetch_array($access->getResult())){
-		echo "<div id=il.".$row["usr_id"]." class='iElemList' onclick=\"javascript:vDetalle(this.id.split('.')[1],'conRegistro');\">".
-			 "<span class='nomUsr'>".utf8_encode($row["usr_nombres"])." ".utf8_encode($row["usr_apellidos"])."</span>".
-			 "<span class='nproceso'>proceso:".utf8_encode($row["pro_nombre"])."</span>".
+		echo "<div id=il.".$row["usr_id"]." class='iList' onclick=\"javascript:vDetalle(this.id.split('.')[1],'conRegistro');\">".
+				"<span class='colList'>".
+			 		"<span class='nomUsr'><span>".utf8_encode($row["usr_nombres"])." ".utf8_encode($row["usr_apellidos"])."</span></span>".
+			 	"</span>".
+			 	"<span class='colList'>".
+			 		"<span class='nproceso'><span>".utf8_encode($row["pro_nombre"])."</span></span>".
+			 	"</span>".
 			 "</div>";
 	}
 ?>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">Información Usuario</div>
-			<div class="iElemList">asdfasdfasdfadfasdfasdfasdfasdfasd</div>
+</div>

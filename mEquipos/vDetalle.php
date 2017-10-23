@@ -3,11 +3,6 @@
 if (!empty($_POST)){
 		include_once("../lib/objequipo.php");
 		include_once("../lib/objPrestamo.php");
-	}else{
-		include_once("lib/objequipo.php");
-		include_once("lib/objPrestamo.php");
-		$_POST["equ_id"]=-1;
-	}
 
 		$iEquipo=new classEquipo();
 		$iEquipo->diEquipo($_POST["equ_id"]);
@@ -133,3 +128,13 @@ if (!empty($_POST)){
 		<script type="text/javascript"> 
 				loadEvents();
 		</script>
+
+<?php
+	}else{
+
+?>
+	<div align="center" style="center;padding: 0px;"><img src="../imgs/logoIni.png"/></div>
+<?php
+	}
+
+?>	

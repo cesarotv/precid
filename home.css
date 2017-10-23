@@ -20,13 +20,15 @@ ul#contBarSup{display: table-row;
 
 ul#contBarSup li{
 	display: table-cell; margin: 0;
-    padding: 20px 10px 5px;cursor: pointer;
+    cursor: pointer;
     font-size: 1em;
 }
 
-ul#contBarSup li a{text-decoration: none;text-decoration: none;color:#0e7c3e;}
+ul#contBarSup li a, ul#contBarSup li span{text-decoration: none;text-decoration: none;color:#0e7c3e;display: block;padding: 20px 10px 5px;}
 
-ul#contBarSup li:last-child{ position: absolute;top:0;right: 10px;}
+ul#contBarSup li span{background: #ff9933;font-weight: bold;color:#ffffff;}
+
+ul#contBarSup li:last-child{ position: absolute;top:0;right: 30px;}
 
 ul#contBarSup li.act{
 	background-color: #0e7c3e;
