@@ -51,7 +51,7 @@ if (!empty($_POST)){include_once("../lib/objUsuario.php");
 
 }else{
 ?>
-	<div align="center" style="center;padding: 0px;"><img src="../imgs/logoIni.png"/></div>
+	<div align="center" style="padding: 0px;"><img src="../imgs/logoIni.png"/></div>
 <?php
 }
 ?>

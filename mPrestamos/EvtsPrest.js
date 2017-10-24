@@ -17,14 +17,37 @@ function ObjAjax(){
 
 window.onload=function() {
 	document.getElementById('BusqPrest').onkeyup = evKeys; 
+	document.getElementById('iListado').addEventListener("scroll", function(){PagList(this);}, false);
 }
 
+function PagList(iList){
+	if ((iList.offsetHeight + iList.scrollTop) >= iList.scrollHeight-(iList.scrollHeight/10)) {
+
+	iTbl=iList.getElementsByClassName('iListTable')[0];
+	n=iTbl.getElementsByClassName('iList').length;
+	procAjax=ObjAjax();procAjax.open("POST","../mPrestamos/iListPrest.php",true);
+	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		iTbl.innerHTML=iTbl.innerHTML+procAjax.responseText;
+	}}}
+	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	procAjax.send("txtPrest="+document.getElementById('BusqPrest').value+"&rPag="+n);
+
+	}
+}
 
 function vDetalle(idPrest, cmpv){
 	rcmpv=document.getElementById("obs."+idPrest);
 	rcmpv.style.height="0px";
 	tcmpv=rcmpv.getElementsByClassName('icontnObs')[0];
-	
+
+	obsAnt=rcmpv.parentNode.parentNode.parentNode.getElementsByClassName('icontnObsV')[0];
+	if (typeof obsAnt != "undefined"){
+		obsAnt.className="icontnObs";
+		obsAnt.innerHTML="";
+		obsAnt.parentNode.parentNode.style="";
+		obsAnt.parentNode.style="";
+	}
+
 	vequ_id=idPrest.split('.')[1];
 	vpre_f=idPrest.split('.')[2];
 
@@ -32,23 +55,31 @@ function vDetalle(idPrest, cmpv){
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		rcmpv.style.height="0px";
 		rcmpv.parentNode.style.height="0px";
-
 		tcmpv.innerHTML=procAjax.responseText;
-		th=tcmpv.offsetHeight+"px";
-		
+		th=tcmpv.offsetHeight+10+"px";
+
 		rcmpv.style.height=th;
 		rcmpv.parentNode.style.height=th;
-		if (typeof iPrest != "undefined"){
-			io=iPrest.getElementsByClassName('icontnObs')[0];
-			io.innerHTML="";
-			iPrest.style="";
-			iPrest.parentNode.style="";						
-		}
-		iPrest=rcmpv;
+
+		tcmpv.className='icontnObsV';
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	procAjax.send("equ_id="+vequ_id+"&pre_fecha="+vpre_f);
 }
+
+function evKeys(e){refreshList();}
+
+function refreshList(){
+	iTbl=document.getElementById('iListado').getElementsByClassName('iListTable')[0];
+	procAjax=ObjAjax();procAjax.open("POST","../mPrestamos/iListPrest.php",true);
+	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		iTbl.innerHTML=procAjax.responseText;
+	}}}
+	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	procAjax.send("txtPrest="+document.getElementById('BusqPrest').value);
+}
+
+
 /*
 function editDlle(cmpv,ev){
 
@@ -101,13 +132,3 @@ function saveDlle(){
 }
 */
 
-function evKeys(e){refreshList();}
-
-function refreshList(){
-	procAjax=ObjAjax();procAjax.open("POST","../mPrestamos/iListPrest.php",true);
-	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-		document.getElementById("iListado").innerHTML=procAjax.responseText;
-	}}}
-	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	procAjax.send("txtPrest="+document.getElementById('BusqPrest').value);
-}

@@ -5,7 +5,9 @@
 			<input id="BusqPrest" />
 		</div>
 		<div id="iListado">
-			<?php	include_once("mPrestamos/iListPrest.php"); ?>
+			<div class="iListTable">
+				<?php	include_once("mPrestamos/iListPrest.php"); ?>
+			</div>
 		</div>
 	</div>
 

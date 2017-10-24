@@ -133,7 +133,7 @@ if (!empty($_POST)){
 	}else{
 
 ?>
-	<div align="center" style="center;padding: 0px;"><img src="../imgs/logoIni.png"/></div>
+	<div align="center" style="padding: 0px;"><img src="../imgs/logoIni.png"/></div>
 <?php
 	}
 

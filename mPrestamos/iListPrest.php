@@ -1,8 +1,10 @@
-<div class="iListTable">
+
 <?php
 if (!empty($_POST)){
 include_once("../lib/conector.php");
 }else{include_once("lib/conector.php");}
+
+if (empty($_POST["rPag"])){$_POST["rPag"]=0;}
 
 	$access=new ConectorDB;
 	$stSql="";
@@ -20,9 +22,8 @@ include_once("../lib/conector.php");
     			IF(prestamos.pre_fechadev IS NULL, obsequipo.obsequ_fecha>prestamos.pre_fecha, obsequipo.obsequ_fecha BETWEEN prestamos.pre_fecha AND prestamos.pre_fechadev)) AS nObs
 			FROM db_cid_inv.prestamos, db_cid_inv.usuario,db_cid_inv.equipo,db_cid_inv.tipoequipo
 WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_id 
-	AND tipoequipo.tequ_id=equipo.equ_teq_id) ".$stSql." order by FIELD (prestamos.pre_fechadev, NULL) desc, prestamos.pre_fecha DESC";
+	AND tipoequipo.tequ_id=equipo.equ_teq_id) ".$stSql." order by FIELD (prestamos.pre_fechadev, NULL) desc, prestamos.pre_fecha DESC limit 25 offset ".$_POST["rPag"];
 	
-	//$stSql=$stSql." order by pre_fechadev IS NULL desc,pre_fechadev desc";
 
 	$access->conectar($stSql);
 
@@ -37,7 +38,7 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 
 		//----------------------------------
 
-		echo "<div id='li.".$row["pre_equ_id"].".".$row["vpre_fecha"]."' class='iList' onclick=\"javascript:vDetalle(this.id,'conRegistro');\">".
+		echo "<div id='li.".$row["pre_equ_id"].".".str_replace(" ","_",$row["vpre_fecha"])."' class='iList' onclick=\"javascript:vDetalle(this.id,'conRegistro');\">".
 				"<span class='colList'>".
 					"<span class='ifecha'>".$row["pre_fecha"]."</span>".
 				"</span>".
@@ -60,11 +61,8 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 				 "</span>". 
 			 "</div>".
 			 "<div class='iListcontObs'>".
-			 	"<div id='obs.li.".$row["pre_equ_id"].".".$row["vpre_fecha"]."' class='iListObs' style='height: 0px;' >".
+			 	"<div id='obs.li.".$row["pre_equ_id"].".".str_replace(" ","_",$row["vpre_fecha"])."' class='iListObs' style='height: 0px;' >".
 				"<div class=\"icontnObs\"></div></div>".	
 			 "</div>"; 
 	}
 ?>			
-
-
-</div>
