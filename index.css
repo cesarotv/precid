@@ -1,4 +1,7 @@
 @CHARSET "ISO-8859-1";
+
+/* PRUEBA GIT HUB 2017/10/25 03:03 PM */
+
 body{
 	margin: 0;
 	width:100%;
@@ -7,7 +10,6 @@ body{
 #cp{
 	margin: 100px auto 0 auto;
 	text-align:center;
-
 }
 #cTit {
 	border-top: 1px solid #cccccc;
