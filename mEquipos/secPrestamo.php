@@ -12,7 +12,7 @@ if ($iEquipo->pres_usr_id){
 
 					</span>
 					</span>
-					<div id="contPrest" style="display:none;">
+					<div id="contPrest" style="/*display:none;*/">
 						<div  style="display: table-row;">
 							<div style="display:table-cell;text-align: center;width: 40%;padding-right: 5%;border-right: 1px solid #0e7c3e;">
 								<span class="cText">Pospone la devolución para el día </span>
@@ -32,7 +32,7 @@ if ($iEquipo->pres_usr_id){
 ?>
 				<div id="SecDispon" >
 					<span id="bdispon" onclick="javascript:vnPrest(this);"><span class="b_despl">&#9660;</span>Disponible</span>
-					<div id="contPrest" style="display:none;">
+					<div id="contPrest" style="/*display:none;*/">
 						<div class="DatnPres" ><p style="line-height: 1.8;">
 							<span class="cText">Prestamo </span>
 							<span class="UIselect">

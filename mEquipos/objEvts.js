@@ -21,8 +21,7 @@ window.onload=function() {
 
 function vnPrest(cmp){
 	ecmp=document.getElementById('contPrest');
-	if (ecmp.style.display=="none"){
-		ecmp.style.display="initial";
+	if (ecmp.style.display=="none"){ecmp.style.display="initial";
 		cmp.getElementsByClassName("b_despl")[0].innerHTML="&#9650;";
 	}else{ecmp.style.display="none";
 	    cmp.getElementsByClassName("b_despl")[0].innerHTML="&#9660;";}
@@ -213,6 +212,8 @@ function ajustDlle(){
 
 function loadEvents(){
 
+	ajustDlle();
+	
 	document.getElementById("pre_fechadev").value =new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear();
 
 	iS1=new uiSelect;

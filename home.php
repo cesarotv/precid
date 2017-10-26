@@ -35,7 +35,9 @@
 					<script type="text/javascript" src="../mPrestamos/EvtsPrest.js"></script>
 <?php  		break;
 			case 'out':
-					$_SESSION=array();header("location:../index.php");
+					$_SESSION=array();
+					include_once("Bckbd.php");
+					header("location:../index.php");
 				break;
 		}
 ?>

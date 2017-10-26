@@ -5,6 +5,7 @@
 	if (!empty($_POST["USR"])){
 		
 		if (!empty($_POST["PASS"])){
+			include_once("Bckbd.php");
 			include_once("lib/conector.php");
 			$access=new ConectorDB;
 			$tUsr=$access->access($_POST["USR"],$_POST["PASS"]);
