@@ -82,13 +82,13 @@ if (!empty($_POST)){include_once("../lib/conector.php");
 	function saveUsr($iUsr){$this->access=new ConectorDB;
 		if($iUsr["idUsr"]==0){
 			$iUsr["idUsr"] = $this->maxIdUsr()+1;
-			$stSql="INSERT INTO `db_cid_inv`.`usuario` (`usr_id`,`usr_nombres`,`usr_apellidos`,`usr_estado`,`usr_pro_id`,`usr_username`)".
-					"VALUES (:idUsr,':nombres',':apellidos',:estado,:idProceso,':username')";
+			$stSql="INSERT INTO `db_cid_inv`.`usuario` (`usr_id`,`usr_nombres`,`usr_apellidos`,`usr_estado`,`usr_pro_id`)".
+					"VALUES (:idUsr,':nombres',':apellidos',:estado,:idProceso)";
 			$stSql=$this->sqlReplace($stSql,$iUsr);
 			$this->access->conectar($stSql);
 
 		}else{
-			$stSql="UPDATE `db_cid_inv`.`usuario` SET `usr_id` = :idUsr, `usr_nombres` = ':nombres', `usr_apellidos` = ':apellidos',`usr_estado` = :estado,`usr_pro_id` = :idProceso, `usr_username` = ':username' WHERE `usr_id` = :idUsr";
+			$stSql="UPDATE `db_cid_inv`.`usuario` SET `usr_id` = :idUsr, `usr_nombres` = ':nombres', `usr_apellidos` = ':apellidos',`usr_estado` = :estado,`usr_pro_id` = :idProceso WHERE `usr_id` = :idUsr";
 			$stSql=$this->sqlReplace($stSql,$iUsr);
 			$this->access->conectar($stSql);
 		}

@@ -24,8 +24,8 @@ function vDetalle(iUsr, cmpv, iRow){
 
 	procAjax=ObjAjax();procAjax.open("POST","../mUsuarios/vInfUsr.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-		if (typeof iSel != "undefined"){iSel.className="iList";} iSel=iRow;
-		iRow.className="iList iSel";
+		if(iRow!=null){if (typeof iSel != "undefined"){iSel.className="iList";} iSel=iRow;
+			iRow.className="iList iSel";}
 
 		tcmpv.innerHTML=procAjax.responseText;
 	}}}
@@ -49,7 +49,7 @@ function editDlle(cmpv,ev){
 					document.getElementById("cUsr").style.display="initial";
 
 				break;
-		case 'c':	vDetalle(document.getElementById("usr_id").value,'conRegistro');
+		case 'c':	vDetalle(document.getElementById("usr_id").value,'conRegistro',null);
 				break;
 	}
 }
@@ -58,7 +58,7 @@ function nUsr(){
 
  	document.getElementById("edUsr").style.display="none";
 	document.getElementById("nUsr").style.display="none";
- 	vDetalle(0,'conRegistro');
+ 	vDetalle(0,'conRegistro',null);
  	editDlle('conRegistro','e');
 
 }
@@ -75,7 +75,9 @@ function saveDlle(){
 
 	procAjax=ObjAjax();procAjax.open("POST","../mUsuarios/iSqlUsr.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-		vDetalle(procAjax.responseText,'conRegistro');
+		//alert(procAjax.responseText);
+		vDetalle(procAjax.responseText,'conRegistro',null);
+		til=document.getElementById("il."+idEqu);
 		refreshList();
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");

@@ -9,7 +9,7 @@
 		$datsUsr ["apellidos"]=$_POST["usr_apellidos"];
 		$datsUsr ["estado"]=$_POST["usr_estado"];
 		$datsUsr ["idProceso"]=$_POST["usr_pro_id"];
-		$datsUsr ["username"]=$_POST["usr_username"];
+		//$datsUsr ["username"]=$_POST["usr_username"];
 
 		echo $iUsuario->saveUsr($datsUsr);
 	}
