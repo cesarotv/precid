@@ -51,7 +51,7 @@ div#conListado .barra{padding: 5px;background-color: #34a463;}
 
 div#conRegistro>div{margin-left: 15px;position: relative;}
 
-div#conRegistro div#Sec{padding: 8px;font-size: 0.8em; color: #0e7c3e;background:#e5e5e5;
+div#conRegistro div#Sec{padding: 8px;font-size: 0.8em; color: #0e7c3e;background:#e0e0e0;
 border-radius: 7px 7px 7px 7px;
 -moz-border-radius: 7px 7px 7px 7px;
 -webkit-border-radius: 7px 7px 7px 7px;}

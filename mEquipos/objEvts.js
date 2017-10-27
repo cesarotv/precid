@@ -1,4 +1,5 @@
 
+
 //------------------------------------------------------------------------------
 
 function ObjAjax(){
@@ -41,7 +42,7 @@ function SavenPrest(){
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		//alert(procAjax.responseText);
-		vDetalle(procAjax.responseText,'conRegistro');
+		vDetalle(procAjax.responseText,'conRegistro',null);
 		til=document.getElementById("il."+idEqu);
 		refreshList();
 	}}}
@@ -58,7 +59,7 @@ function reprogDevDevPrest(){
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		//alert(procAjax.responseText);
-		vDetalle(procAjax.responseText,'conRegistro');
+		vDetalle(procAjax.responseText,'conRegistro',null);
 		refreshList();
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -73,7 +74,7 @@ function DevPrest(cmp){
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		//alert(procAjax.responseText);
-		vDetalle(procAjax.responseText,'conRegistro');
+		vDetalle(procAjax.responseText,'conRegistro',null);
 		refreshList();
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -88,8 +89,8 @@ function vDetalle(iEqu, cmpv, iRow){
 
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/vDetalle.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-		if (typeof iSel != "undefined"){iSel.className="iList";} iSel=iRow;
-		iRow.className="iList iSel";
+		if(iRow!=null){if (typeof iSel != "undefined"){iSel.className="iList";} iSel=iRow;
+		iRow.className="iList iSel";}
 		
 		tcmpv.innerHTML=procAjax.responseText;
 		loadEvents();
@@ -114,13 +115,13 @@ function editDlle(cmpv,ev){
 					document.getElementById("cEqu").style="";
 					ajustDlle();
 				break;
-		case 'c':	vDetalle(document.getElementById("equ_id").value,'conRegistro');
+		case 'c':	vDetalle(document.getElementById("equ_id").value,'conRegistro', null);
 				break;
 	}
 }
 
 function nEqu(){
- 	vDetalle(0,'conRegistro');
+ 	vDetalle(0,'conRegistro',null);
  	editDlle('conRegistro','e');
  	ajustDlle();
 }
@@ -141,7 +142,7 @@ function saveDlle(){
 
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-		vDetalle(procAjax.responseText,'conRegistro');
+		vDetalle(procAjax.responseText,'conRegistro',null);
 		til=document.getElementById("il."+idEqu);
 		refreshList();
 	}}}
@@ -181,7 +182,7 @@ function nObs(cmpParent){
 	
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",true);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-		vDetalle(iEqu,'conRegistro');
+		vDetalle(iEqu,'conRegistro',null);
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	procAjax.send("iEquObs="+iEqu+"&iObs="+iObs);
@@ -203,7 +204,7 @@ function descEqu(){
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",true);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
  		
- 		vDetalle(0,'conRegistro');
+ 		vDetalle(0,'conRegistro',null);
 		refreshList();
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
