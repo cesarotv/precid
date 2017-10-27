@@ -80,11 +80,17 @@ function DevPrest(cmp){
 	procAjax.send(prms);
 }
 
-function vDetalle(iEqu, cmpv){
+//var iSel;
+
+function vDetalle(iEqu, cmpv, iRow){
+
 	tcmpv=document.getElementById(cmpv);
 
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/vDetalle.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		if (typeof iSel != "undefined"){iSel.className="iList";} iSel=iRow;
+		iRow.className="iList iSel";
+		
 		tcmpv.innerHTML=procAjax.responseText;
 		loadEvents();
 	}}}

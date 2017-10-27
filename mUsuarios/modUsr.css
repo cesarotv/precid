@@ -23,6 +23,8 @@ div#conRegistro>div {height: 100px;}
 .iList{	border-bottom: 1px solid #dddddd;
 	padding: 5px;cursor:pointer;display:table-row;}
 
+.iSel{background:#f5e6da;}
+
 .iList:hover{background:#FFE3CD;}
 
 

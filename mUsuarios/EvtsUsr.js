@@ -19,11 +19,13 @@ window.onload=function() {
 }
 
 
-function vDetalle(iUsr, cmpv){
+function vDetalle(iUsr, cmpv, iRow){
 	tcmpv=document.getElementById(cmpv);
 
 	procAjax=ObjAjax();procAjax.open("POST","../mUsuarios/vInfUsr.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		if (typeof iSel != "undefined"){iSel.className="iList";} iSel=iRow;
+		iRow.className="iList iSel";
 
 		tcmpv.innerHTML=procAjax.responseText;
 	}}}

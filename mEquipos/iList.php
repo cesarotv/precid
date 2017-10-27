@@ -22,7 +22,7 @@ include_once("../lib/conector.php");
 
 		}else{$Colp="";}
 
-		echo "<div id=il.".$row["equ_id"]." class='iList' onclick=\"javascript:vDetalle(this.id.split('.')[1],'conRegistro');\">".
+		echo "<div id=il.".$row["equ_id"]." class='iList' onclick=\"javascript:vDetalle(this.id.split('.')[1],'conRegistro',this);\">".
 				"<span class='colList'>".
 				 	"<span>".
 				 		"<span class='iequ_id'>".$row["equ_cod"]."</span>".

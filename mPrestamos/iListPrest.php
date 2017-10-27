@@ -38,7 +38,7 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 
 		//----------------------------------
 
-		echo "<div id='li.".$row["pre_equ_id"].".".str_replace(" ","_",$row["vpre_fecha"])."' class='iList' onclick=\"javascript:vDetalle(this.id,'conRegistro');\">".
+		echo "<div id='li.".$row["pre_equ_id"].".".str_replace(" ","_",$row["vpre_fecha"])."' class='iList' onclick=\"javascript:vDetalle(this.id,'conRegistro', this);\">".
 				"<span class='colList'>".
 					"<span class='ifecha'>".$row["pre_fecha"]."</span>".
 				"</span>".

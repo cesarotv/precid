@@ -35,7 +35,12 @@ function PagList(iList){
 	}
 }
 
-function vDetalle(idPrest, cmpv){
+//var iSel;
+
+function vDetalle(idPrest, cmpv, iRow){
+	//alert(iSel);
+
+
 	rcmpv=document.getElementById("obs."+idPrest);
 	rcmpv.style.height="0px";
 	tcmpv=rcmpv.getElementsByClassName('icontnObs')[0];
@@ -53,6 +58,10 @@ function vDetalle(idPrest, cmpv){
 
 	procAjax=ObjAjax();procAjax.open("POST","../mPrestamos/vInfPrest.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+
+		if (typeof iSel != "undefined"){iSel.className="iList";} iSel=iRow;
+		iRow.className="iList iSel";
+
 		rcmpv.style.height="0px";
 		rcmpv.parentNode.style.height="0px";
 		tcmpv.innerHTML=procAjax.responseText;

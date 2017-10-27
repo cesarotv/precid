@@ -37,6 +37,9 @@ div#conListado .barra{padding: 5px;background-color: #34a463;}
 
 .iListTable{display:table; width: 100%;border-collapse: collapse;}
 .iList{	border-bottom: 1px solid #dddddd;cursor:pointer;display:table-row;}
+
+.iSel{background:#f5e6da;}
+
 .iList:hover{background:#FFE3CD;}
 
 .iList .colList{display:table-cell;padding: 5px 0 5px 7px;white-space: nowrap;}
@@ -48,7 +51,10 @@ div#conListado .barra{padding: 5px;background-color: #34a463;}
 
 div#conRegistro>div{margin-left: 15px;position: relative;}
 
-div#conRegistro div#Sec{padding: 2px 5px;font-size: 0.8em; color: #0e7c3e;}
+div#conRegistro div#Sec{padding: 8px;font-size: 0.8em; color: #0e7c3e;background:#e5e5e5;
+border-radius: 7px 7px 7px 7px;
+-moz-border-radius: 7px 7px 7px 7px;
+-webkit-border-radius: 7px 7px 7px 7px;}
 div#conRegistro div#Sec #bdispon{font-size: 1em;}
 div#conRegistro div#Sec .DatnPres{font-style: italic;}
 div#conRegistro div#Sec .DatnPres select{border:none;}
@@ -66,7 +72,7 @@ div#conRegistro div#Sec .usrPrest{font-style: italic;font-weight: bold;font-size
 
 .DatnPres{display:table;margin-top: 5px;}
 div#SecPrest{ }
-div#SecPrest .b_despl, div#SecDispon .b_despl {font-size: 0.6em;vertical-align: middle;position: absolute;right:5px;top:5px;}
+div#SecPrest .b_despl, div#SecDispon .b_despl {font-size: 0.6em;vertical-align: middle;position: absolute;right:10px;top:10px;}
 div#SecPrest .rDatnPres{padding: 2px 0;display:table-row;}
 div#SecPrest .rDatnPres span{padding: 2px 0;display:table-cell;}
 div#SecPrest .rDatnPres span.cText{text-align:right;padding-right: 5px}

@@ -16,7 +16,7 @@ include_once("../lib/conector.php");
 	$access->conectar($stSql);
 
 	while($row=mysql_fetch_array($access->getResult())){
-		echo "<div id=il.".$row["usr_id"]." class='iList' onclick=\"javascript:vDetalle(this.id.split('.')[1],'conRegistro');\">".
+		echo "<div id=il.".$row["usr_id"]." class='iList' onclick=\"javascript:vDetalle(this.id.split('.')[1],'conRegistro',this);\">".
 				"<span class='colList'>".
 			 		"<span class='nomUsr'><span>".utf8_encode($row["usr_nombres"])." ".utf8_encode($row["usr_apellidos"])."</span></span>".
 			 	"</span>".
