@@ -12,7 +12,12 @@
 		 		<input id=\"".$_POST["inAtr"]."|0|0\" class=\"iAtrEq\" value=\"\"/></span>";
 	}
 
-
+	if (!empty($_POST["savetEqu"])){
+		$datsEqu= array();
+		$datsEqu ["nombre"]=$_POST["equ_tipo"];
+		echo $iEqu->savetEqu($datsEqu);
+	}	
+		
 	if (!empty($_POST["saveEqu"])){
 		$datsEqu= array();
 		$datsEqu ["id"]=$_POST["equ_id"];

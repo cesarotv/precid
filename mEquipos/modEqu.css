@@ -88,7 +88,9 @@ div#conRegistro #contentReg{height: 100%;position: absolute;right: 0;left: 0;bot
 
 #equ_tipo {width: 100%;font-size: 1em !important;border: 1px solid #dedede;padding: 0px 1px;}
 div#conRegistro .tipoElem{font-size: 1.4em; font-weight: bold;color:#0e7c3e;}
-div#conRegistro select.tipoElem{font-size: 1em;padding: 0;display: block;border: 1px solid #dddddd;}
+/*div#conRegistro select.tipoElem{font-size: 1em;padding: 0;display: block;border: 1px solid #dddddd;}*/
+div#conRegistro #tipNuevo{display: block; padding: 7px; background: #f5e6da; text-align: center;
+	font-size: 0.6em; font-weight: normal; font-style: italic;color: #ee7620; }
 
 #ulSelEqu{min-width: 360px;margin-left: -16px;}
 #ulSelEqu{border: 1px solid #0e7c3e;font-size: 1.3em;color:#0e7c3e;display:none;font-weight: bold;}

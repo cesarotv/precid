@@ -101,6 +101,14 @@ include_once("../lib/conector.php");
 
 	}
 
+	function savetEqu($idEqu){
+		$idEqu["tequ_id"] = $this->maxIdtEqu()+1;
+		$stSql="INSERT INTO `db_cid_inv`.`tipoequipo` (`tequ_id`,`tequ_nombre`) VALUES (:tequ_id,':nombre')";
+		$stSql=$this->sqlReplace($stSql,$idEqu);
+		//return $stSql;
+		return $idEqu["tequ_id"];
+			//$this->access->conectar($stSql);
+	}
 
 	function saveEqu($idEqu){$this->access=new ConectorDB;
 		if($idEqu["id"]==0){
@@ -159,6 +167,11 @@ include_once("../lib/conector.php");
 		foreach ($iCampos as $iCmp=>$vCmp) {
 			if(!is_array($vCmp))$txtSql=str_replace(":".$iCmp,$vCmp,$txtSql);}
 		return $txtSql;
+	}
+
+	function maxIdtEqu(){
+		$this->access->conectar("SELECT MAX(tequ_id) FROM db_cid_inv.tipoequipo");
+		return mysql_fetch_array($this->access->getResult())[0];
 	}
 
 	function maxIdEqu(){

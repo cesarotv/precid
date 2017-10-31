@@ -12,9 +12,13 @@ if (!empty($_POST)){
 
 		<div id="contentReg">
 			<div id="Sec" class="iDat v">
-				<?php include("secPrestamo.php");?>
+			<?php
+				if($_POST["equ_id"]!=0){ ?>
+					
+						<?php include("secPrestamo.php");?>
+					
+			<?php } ?>
 			</div>
-
 			<div id="SecInfEqu">
 				<div id="vMenu">
 					<span id="edEqu" title="Editar" onclick="javascript:editDlle('conRegistro','e');">
@@ -33,6 +37,9 @@ if (!empty($_POST)){
 							<span id="tequ_nombre"><?php echo utf8_encode($iEquipo->tipo);?></span>
 							<span class="UIselect">
 								<input class="tipoElem" id="equ_tipo"  data-id="<?php echo $iEquipo->idTipo; ?>" value="<?php echo utf8_encode($iEquipo->tipo);?>" />
+								<span id="tipNuevo" style="display:none">El tipo de equipo o dispositivo no esta registrado.  
+									<span class="btn" onclick="javascript:ntEqu(); ">Registrarlo</span>
+								</span>
 							</span>
 						</div>
 					</div>

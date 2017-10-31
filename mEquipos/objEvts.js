@@ -42,7 +42,7 @@ function SavenPrest(){
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		//alert(procAjax.responseText);
-		vDetalle(procAjax.responseText,'conRegistro',null);
+		vDetalle(null,'conRegistro',null);
 		til=document.getElementById("il."+idEqu);
 		refreshList();
 	}}}
@@ -59,7 +59,8 @@ function reprogDevDevPrest(){
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		//alert(procAjax.responseText);
-		vDetalle(procAjax.responseText,'conRegistro',null);
+		//vDetalle(procAjax.responseText,'conRegistro',null);
+		vDetalle(null,'conRegistro',null);
 		refreshList();
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -74,7 +75,8 @@ function DevPrest(cmp){
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		//alert(procAjax.responseText);
-		vDetalle(procAjax.responseText,'conRegistro',null);
+		//vDetalle(procAjax.responseText,'conRegistro',null);
+		vDetalle(null,'conRegistro',null);
 		refreshList();
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -86,6 +88,7 @@ function DevPrest(cmp){
 function vDetalle(iEqu, cmpv, iRow){
 
 	tcmpv=document.getElementById(cmpv);
+	prms=(iEqu!=null)?"equ_id="+iEqu:"";
 
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/vDetalle.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
@@ -93,10 +96,10 @@ function vDetalle(iEqu, cmpv, iRow){
 		iRow.className="iList iSel";}
 		
 		tcmpv.innerHTML=procAjax.responseText;
-		loadEvents();
+		if(iEqu!=null)loadEvents();
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	procAjax.send("equ_id="+iEqu);
+	procAjax.send(prms);
 }
 
 function editDlle(cmpv,ev){
@@ -115,7 +118,8 @@ function editDlle(cmpv,ev){
 					document.getElementById("cEqu").style="";
 					ajustDlle();
 				break;
-		case 'c':	vDetalle(document.getElementById("equ_id").value,'conRegistro', null);
+		case 'c':	n=(document.getElementById("equ_id").value!=0)?document.getElementById("equ_id").value:null;
+					vDetalle(n,'conRegistro', null);
 				break;
 	}
 }
@@ -126,8 +130,24 @@ function nEqu(){
  	ajustDlle();
 }
 
+
+function ntEqu(){
+	prms="savetEqu=true&";
+	prms=prms+"equ_tipo="+document.getElementById("equ_tipo").value;
+
+	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
+	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
+		document.getElementById("equ_tipo").dataset.id=procAjax.responseText;
+		document.getElementById("tipNuevo").style.display="none";
+	}}}
+	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	procAjax.send(prms);
+}
+
 function saveDlle(){
 
+	if(document.getElementById("equ_tipo").dataset.id=="")return;
+			
 	idEqu=document.getElementById("equ_id").value
 	prms="saveEqu=true&";
 	prms=prms+"equ_id="+idEqu+"&";
@@ -221,20 +241,23 @@ function loadEvents(){
 
 	ajustDlle();
 	
-	document.getElementById("pre_fechadev").value =new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear();
+	if(document.getElementById("pre_fechadev")){
+		document.getElementById("pre_fechadev").value =new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear();
+	}
 
 	iS1=new uiSelect;
 	iS1.urlList="../mEquipos/uilist.php";
 	iS1.iPOST="txtUsr";
 	iS1.ini(document.getElementById('pre_usr_id'),'ulSelUsr');
 
+
+
 	iSTEqu=new uiSelect;
-	//iSTEqu.idContent="contentReg";
 	iSTEqu.urlList="../mEquipos/uilist.php";
 	iSTEqu.iPOST="tEqu";
 	iSTEqu.ini(document.getElementById('equ_tipo'),'ulSelEqu');
-	
 
+	iSTEqu.nProcessDig=function(){alert('pasa');}
 }
 
 //-------------=============================================----------------------------------
@@ -264,7 +287,7 @@ function ObjAjax(){
 
 	this.ini=function(iInputElem,nameList){
 		is=-1;
-		
+		if (!iInputElem) return;
 		iInput=iInputElem;
 		iPOST=this.iPOST;
 		urlList=this.urlList;
@@ -272,7 +295,7 @@ function ObjAjax(){
 
 		iAtrDest=(this.iAtrDest)?this.iAtrDest:"data-id";
 
-		content=(this.idContent)?document.getElementById(this.idContent):iInput.parentNode;
+		//content=(this.idContent)?document.getElementById(this.idContent):iInput.parentNode;
 
 		/*iList=document.createElement("ul");*/
 		iList=document.getElementById(nameList);
