@@ -7,9 +7,13 @@
 
 
 	if (!empty($_POST["inAtr"])){
-		echo "<span class='tAtr'>".$iEqu->selTAtr()."</span>".
+/*		echo "<span class='tAtr'>".$iEqu->selTAtr()."</span>".
 		 	"<span class='vAtr'>
-		 		<input id=\"".$_POST["inAtr"]."|0|0\" class=\"iAtrEq\" value=\"\"/></span>";
+		 		<input id=\"".$_POST["inAtr"]."|0|0\" class=\"iAtrEq\" value=\"\"/></span>";*/
+		 		
+		 echo "<span class='tAtr'><input class=\"inAtrEq\" value=\"\"/></span>".
+		 	"<span class='vAtr'>
+		 		<input id='ivAtr' class=\"iAtrEq\" data-iatr=\"0\" value=\"\"/></span>";
 	}
 
 	if (!empty($_POST["savetEqu"])){

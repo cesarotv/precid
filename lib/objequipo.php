@@ -96,7 +96,7 @@ include_once("../lib/conector.php");
 		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo` where `tae_nombre` like '%".$itAtr."%'");
 		$tmp="";$op=0;
 		while ($row=mysql_fetch_array($this->access->getResult())){
-			$tmp=$tmp."<li id=\"".$row["tae_id"]."\" data-idop=\"".$op."\" >".$row["tae_nombre"]."</li>";$op++;}
+			$tmp=$tmp."<li id=\"".$row["tae_id"]."\" data-idop=\"".$op."\" ><span>".$row["tae_nombre"]."</span></li>";$op++;}
 		return $tmp;
 
 	}
@@ -105,9 +105,8 @@ include_once("../lib/conector.php");
 		$idEqu["tequ_id"] = $this->maxIdtEqu()+1;
 		$stSql="INSERT INTO `db_cid_inv`.`tipoequipo` (`tequ_id`,`tequ_nombre`) VALUES (:tequ_id,':nombre')";
 		$stSql=$this->sqlReplace($stSql,$idEqu);
-		//return $stSql;
+		$this->access->conectar($stSql);
 		return $idEqu["tequ_id"];
-			//$this->access->conectar($stSql);
 	}
 
 	function saveEqu($idEqu){$this->access=new ConectorDB;

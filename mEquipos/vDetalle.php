@@ -38,7 +38,7 @@ if (!empty($_POST)){
 							<span class="UIselect">
 								<input class="tipoElem" id="equ_tipo"  data-id="<?php echo $iEquipo->idTipo; ?>" value="<?php echo utf8_encode($iEquipo->tipo);?>" />
 								<span id="tipNuevo" style="display:none">El tipo de equipo o dispositivo no esta registrado.  
-									<span class="btn" onclick="javascript:ntEqu(); ">Registrarlo</span>
+									<span class="btn" style="margin-top: 5px;" onclick="javascript:ntEqu(); ">Registrarlo</span>
 								</span>
 							</span>
 						</div>
@@ -89,7 +89,7 @@ if (!empty($_POST)){
 						<div class="lAtr">
 		<?php
 						for($i=0; $i<count($iEquipo->atributos); $i++){
-							echo "<div class='iAtr'>".
+							/*echo "<div class='iAtr'>".
 								 	"<span class='tAtr'>".$iEquipo->selTAtr($iEquipo->atributos[$i]["tae_id"])."</span>".
 								 	"<span class='vAtr'>
 								 		<input id=\"".
@@ -97,10 +97,19 @@ if (!empty($_POST)){
 								 			"\" class=\"iAtrEq\" name=\"atr_atributo\"  value=\"".$iEquipo->atributos[$i]["atr_atributo"]."\"/></span>".
 								 	"<span class='vAtr' style=\"cursor:pointer;\" onclick=\"javascript:delAtrib(this.parentNode);\">".
 								 		"<img src=\"../imgs/dAtr.png\"/></span>".
-								 "</div>";
+								 "</div>";*/
+							echo "<div class='iAtr'>".
+									"<span class='tAtr'>".
+										"<input class=\"inAtrEq\" data-tatr='".$iEquipo->atributos[$i]["tae_id"]."' value=\"".$iEquipo->atributos[$i]["tae_nombre"]."\"/></span>".
+		 							"<span class='vAtr'>".
+		 		"						<input id='ivAtr' class=\"iAtrEq\" data-iatr=\"".$iEquipo->atributos[$i]["atr_id"]."\" value=\"".$iEquipo->atributos[$i]["atr_atributo"]."\"/></span>".
+		 							"<span class='vAtr' style=\"cursor:pointer;\" onclick=\"javascript:delAtrib(this.parentNode);\">".
+								 		"<img src=\"../imgs/dAtr.png\"/></span>".
+								"</div>";
 						}
 
-		?>				</div>	
+		?>				</div>
+						<ul id="ulSelAtr"></ul>	
 						<div style="text-align: center;">
 							<span style="cursor:pointer;" onclick="javascript:nAtrib(this.parentNode.parentNode);"><img src="../imgs/mObs.png"/></span></div>
 						<div><span style="cursor:pointer;" onclick="javascript:descEqu();">[descartar]</span></div>

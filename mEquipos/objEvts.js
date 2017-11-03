@@ -157,8 +157,16 @@ function saveDlle(){
 	prms=prms+"equ_modelo="+document.getElementById("equ_modelo").value+"&";
 	prms=prms+"equ_serial="+document.getElementById("equ_serial").value;
 
-	arrAtr= new Array();tlAtr=document.getElementById("lAtrE").getElementsByClassName("iAtrEq");
-	if(tlAtr.length>0){for (i=0;i<tlAtr.length;i++){arrAtr.push (tlAtr[i].id+":"+tlAtr[i].value);}prms=prms+"&equ_atr="+arrAtr;}
+	arrAtr= new Array();
+	tlAtr=document.getElementById("lAtrE").getElementsByClassName("inAtrEq");
+	vlAtr=document.getElementById("lAtrE").getElementsByClassName("iAtrEq");
+	if(tlAtr.length>0){for (i=0;i<tlAtr.length;i++){
+
+		//arrAtr.push (tlAtr[i].id+":"+tlAtr[i].value);    AQUI VOY----- AVERIGUAR REFLEJAR CONSECUTIVO ATRIBUTO
+		
+
+		arrAtr.push (idEqu+"|"+vlAtr[i].dataset.iatr+"|"+tlAtr[i].dataset.tatr+":"+vlAtr[i].value);
+	}prms=prms+"&equ_atr="+arrAtr;}
 
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
@@ -180,14 +188,29 @@ function nAtrib(cmpParent){
 	procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 		iAtrib.innerHTML=procAjax.responseText;
 		tList.appendChild(iAtrib);
+		evAtr(iAtrib);
+		iAtrib.getElementsByClassName("inAtrEq")[0].focus();
 	}}}
 	procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	procAjax.send("inAtr="+iEqu);
 }
 
+function evAtr(iAtr){
+	var ievAtr;
+	InpiAtr=iAtr.getElementsByClassName("inAtrEq")[0];
+	ievAtr=new uiSelect();
+	ievAtr.urlList="../mEquipos/uilist.php";
+	ievAtr.iPOST="tAtrib";
+	ievAtr.iLeft=2;
+	ievAtr.iTop=1;
+	ievAtr.iAtrDest="data-tAtr";
+	ievAtr.ini(InpiAtr,'ulSelAtr');
+
+}
+
 function delAtrib(cmpParent){
 	cmpParent.style.display="none";
-	cmpParent.getElementsByTagName('input')[0].value="";
+	cmpParent.getElementsByClassName("iAtrEq")[0].value="";
 }
 
 function changeAtrib(cmp){
@@ -245,22 +268,26 @@ function loadEvents(){
 		document.getElementById("pre_fechadev").value =new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear();
 	}
 
-	iS1=new uiSelect;
+
+	iS1=new uiSelect();
 	iS1.urlList="../mEquipos/uilist.php";
 	iS1.iPOST="txtUsr";
 	iS1.ini(document.getElementById('pre_usr_id'),'ulSelUsr');
 
 
-
-	iSTEqu=new uiSelect;
+	iSTEqu=new uiSelect();
 	iSTEqu.urlList="../mEquipos/uilist.php";
 	iSTEqu.iPOST="tEqu";
+	iSTEqu.msj=document.getElementById('tipNuevo');
 	iSTEqu.ini(document.getElementById('equ_tipo'),'ulSelEqu');
 
-	iSTEqu.nProcessDig=function(){alert('pasa');}
+	lAtr=document.getElementById('contListAtrb').getElementsByClassName("iAtr");
+	for (var i=0;i<lAtr.length;i++){evAtr(lAtr[i]);}
+
 }
 
 //-------------=============================================----------------------------------
+
 
 
 var uiSelect= function(){
@@ -274,10 +301,13 @@ var uiSelect= function(){
 	var is;
 	var iTop;
 	var iPOST;
+	var imsj;
 	
+	var iLeft;
+	var iTop; 
+
 	var urlList;
 	var params;
-
 
 function ObjAjax(){
 		var xmlhttp=false;try{ xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
@@ -286,32 +316,33 @@ function ObjAjax(){
 	}
 
 	this.ini=function(iInputElem,nameList){
+		
 		is=-1;
 		if (!iInputElem) return;
 		iInput=iInputElem;
 		iPOST=this.iPOST;
 		urlList=this.urlList;
-		ichange=this.ichange;
+		//ichange=this.ichange;
+		
 
 		iAtrDest=(this.iAtrDest)?this.iAtrDest:"data-id";
+		
+		iLeft=(typeof this.iLeft != "undefined")?this.iLeft:16;
+		iTop=(typeof this.iTop != "undefined")?this.iTop:0;
+		msj=(typeof this.msj != "undefined")?this.msj:null;
 
-		//content=(this.idContent)?document.getElementById(this.idContent):iInput.parentNode;
-
-		/*iList=document.createElement("ul");*/
+		//this.iInput=iInput;
 		iList=document.getElementById(nameList);
 		iList.className="UIselectUL";
-
-		//iList.style.top=-1*(iInput.offsetTop+iInput.offsetHeight+5)+"px";
 		
 		iInput.onkeyup = function(e){
 			iList.style.maxWidth = (iInput.offsetWidth*1.5)+"px";
-			if (typeof iTop == "undefined"){iElem=iInput;iTop=0;
-					iTop=iInput.parentNode.offsetTop+iInput.offsetHeight;
-					iList.style.left=iInput.parentNode.offsetLeft+16+"px";
-			}
-
+			
+			//iElem=iInput; 
+			iTop=iInput.parentNode.offsetTop+iInput.offsetHeight;
 			iList.style.top=iTop+"px";
-
+			iList.style.left=iInput.parentNode.offsetLeft+iLeft+"px";
+		
 			if (e.keyCode=="38"){ despKey(-1);//sube
 			}else if(e.keyCode=="40"){ despKey(1);//baja
 			}else if(e.keyCode=="13"){ selectOp();iList.innerHTML="";//Enter
@@ -326,10 +357,20 @@ function ObjAjax(){
 		procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
 	 		iList.innerHTML=procAjax.responseText;
 	 		is=-1;
-	 		if(iList.innerHTML.length==0){iList.style.display="none";} else{selClick();}
+	 		if(iList.innerHTML.length==0){iList.style.display="none";iInput.setAttribute(iAtrDest,"");
+	 		} else{selClick();}
+	 		vMsj();
 		}}}
 		procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		procAjax.send(iPOST+"="+iInput.value);
+	}
+
+	function vMsj(){
+		if(msj){if(iList.style.display=="none" && iInput.value.length>0){
+			msj.style="";}else{
+				msj.style.display="none";}
+		}
+		ajustDlle();
 	}
 
 	function despKey(iAcc){
@@ -350,11 +391,8 @@ function ObjAjax(){
 		iInput.setAttribute(iAtrDest,iop[is].id);
 		iList.style.display="none";
 		iInput.value=iop[is].getElementsByTagName("span")[0].innerHTML;
-		this.iInput=iInput;
-		
-		//ichange();
 	}
 
-	this.ichange=function(){}
+	
 
 }

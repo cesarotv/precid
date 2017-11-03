@@ -120,12 +120,19 @@ div#conRegistro .nDatos .iDat.e .vpDats{display: none;}
 .epDats .irDat{display:table-row;}
 .epDats .irDat>span{display:table-cell;}
 div#conRegistro .epDats .irDat .tDat{text-align:right;font-size: 0.9em;padding: 3px;font-style: italic;}
-div#conRegistro input.ieDat,  div#conRegistro input.iAtrEq,  div#conRegistro input.inAtrEq{font-size: 0,95em;padding: 1px 5px;display: block;border: 1px solid #e1e1e1;}
-div#conRegistro input.inAtrEq{text-align: right;width: 110px;margin-right: -5px; background-color:#dedede; font-weight: bold; }
+div#conRegistro input.ieDat {font-size: 0,95em;padding: 1px 5px;display: block;border: 1px solid #e1e1e1;}
+/*div#conRegistro input.inAtrEq{text-align: right;width: 110px;margin-right: -5px; background-color:#dedede; font-weight: bold; }
+*/
+div#conRegistro input.inAtrEq{padding: 1px 3px;border: 1px solid #e1e1e1;max-width: 120px;text-align: right;}
+div#conRegistro input.iAtrEq{background: #f5e6da;border: 1px solid #ffd4a8;padding: 1px 4px;}
 
 #contListAtrb{padding: 5px 0;}
 #contListAtrb .tit{font-size: 0.8em;font-style: italic;color:#bbbbbb;}
 div#conRegistro .ListAtrib{display:table;margin: 10px 10px; width: 100%}
+
+#ulSelAtr{font-size: 0.9em;font-style: italic;min-width: 120px;display:none;border: 1px solid #0e7c3e;}
+#ulSelAtr>li{border-bottom: 1px solid #ffd9bc;}
+
 .ListAtrib .iAtr{display:table-row;}
 .ListAtrib .iAtr .tAtr, .ListAtrib .iAtr .vAtr {font-size: 0.9em;display:table-cell;padding:3px 2px 5px;position: relative;}
 .ListAtrib .iAtr .tAtr{text-align: right;padding-right: 5px;font-weight: bold;}
