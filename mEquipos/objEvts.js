@@ -161,11 +161,9 @@ function saveDlle(){
 	tlAtr=document.getElementById("lAtrE").getElementsByClassName("inAtrEq");
 	vlAtr=document.getElementById("lAtrE").getElementsByClassName("iAtrEq");
 	if(tlAtr.length>0){for (i=0;i<tlAtr.length;i++){
-
-		//arrAtr.push (tlAtr[i].id+":"+tlAtr[i].value);    AQUI VOY----- AVERIGUAR REFLEJAR CONSECUTIVO ATRIBUTO
-		
-
-		arrAtr.push (idEqu+"|"+vlAtr[i].dataset.iatr+"|"+tlAtr[i].dataset.tatr+":"+vlAtr[i].value);
+		if(tlAtr[i].dataset.tatr.length>0){
+			arrAtr.push (idEqu+"|"+vlAtr[i].dataset.iatr+"|"+tlAtr[i].dataset.tatr+":"+vlAtr[i].value);
+		}
 	}prms=prms+"&equ_atr="+arrAtr;}
 
 	procAjax=ObjAjax();procAjax.open("POST","../mEquipos/iSqlEqu.php",false);
@@ -344,8 +342,8 @@ function ObjAjax(){
 			if (e.keyCode=="38"){ despKey(-1);//sube
 			}else if(e.keyCode=="40"){ despKey(1);//baja
 			}else if(e.keyCode=="13"){ selectOp();iList.innerHTML="";//Enter
-			}else if (e.keyCode=="27"){ iList.innerHTML="";iList.style.display="none";
-							iInput.setAttribute(iAtrDest,"");vMsj();                    //Esc
+			}else if (e.keyCode=="27"){
+				iList.innerHTML="";iList.style.display="none";iInput.setAttribute(iAtrDest,"");vMsj(); //Esc
 			}else{genList();}
 
 		}
@@ -364,12 +362,9 @@ function ObjAjax(){
 		procAjax.send(iPOST+"="+iInput.value);
 	}
 
-	function vMsj(){//
-		if(imsj){
-			if(iList.style.display=="none" && iInput.getAttribute(iAtrDest).length==0){
-			imsj.style="";}else{
-				imsj.style.display="none";}
-		}
+	function vMsj(){
+		if(imsj){if(iList.style.display=="none" && iInput.getAttribute(iAtrDest).length==0){
+			imsj.style="";}else{imsj.style.display="none";}}
 		ajustDlle();
 	}
 
