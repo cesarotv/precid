@@ -66,12 +66,13 @@
 
 	function access($USR,$PASS){
 
-		$stSql ="SELECT usuario.usr_id, usuario.usr_username, usuario.usr_password, usuario.usr_nombres, usuario.usr_apellidos FROM usuario ".
-				"WHERE usr_username='".$USR."' AND usr_password='".$PASS."'";
+		$stSql ="SELECT usuario.usr_id, usuario.usr_username, usuario.usr_password, usuario.usr_nombres, usuario.usr_apellidos FROM usuario WHERE usr_username='".$USR."' AND usr_password=md5('".$PASS."')";
 
 		$this->conectar($stSql);
 		$tUsr= mysql_fetch_array($this->getResult(), MYSQL_ASSOC);
-		if($tUsr["usr_password"]==$PASS){
+		//echo $tUsr;
+		//if($tUsr["usr_password"]==$PASS){
+		if(mysql_num_rows($this->getResult())==1){
 			$usr[0]=true;
 			$usr[1]=$tUsr["usr_id"];
 			$usr[2]=$tUsr["usr_password"];

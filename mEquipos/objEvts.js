@@ -356,7 +356,7 @@ function ObjAjax(){
 	 		iList.innerHTML=procAjax.responseText;
 	 		is=-1;
 	 		if(iList.innerHTML.length==0){iList.style.display="none";iInput.setAttribute(iAtrDest,"");
-	 		} else{selClick();}
+	 		} else{selClick();}vMsj();
 		}}}
 		procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		procAjax.send(iPOST+"="+iInput.value);
