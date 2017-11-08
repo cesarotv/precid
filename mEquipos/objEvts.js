@@ -349,6 +349,9 @@ function ObjAjax(){
 		}
 	}prueba git
 
+
+	asdasdasdasd
+
 	function genList(){
 		iList.style.display="initial";
 		procAjax=ObjAjax();procAjax.open("POST",urlList,true);
