@@ -347,7 +347,7 @@ function ObjAjax(){
 			}else{genList();}
 
 		}
-	}
+	}prueba git
 
 	function genList(){
 		iList.style.display="initial";
