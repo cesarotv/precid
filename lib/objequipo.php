@@ -82,7 +82,7 @@ include_once("../lib/conector.php");
 	}
 
 //-------
- 	function selTAtr($itAtr=0){$this->access=new ConectorDB;
+ /*	function selTAtr($itAtr=0){$this->access=new ConectorDB;
 		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo`;");
 		$tmp="";
 		while ($row=mysql_fetch_array($this->access->getResult())){
@@ -90,10 +90,10 @@ include_once("../lib/conector.php");
 			$tmp=$tmp."<option value=\"".$row["tae_id"]."\" ".$tsel.">".$row["tae_nombre"]."</option>";}
 		$tmp="<select onchange='changeAtrib(this)'><option></option>".$tmp."</select>";
 		return $tmp;
-	}
+	}*/
 
 	function uiselTAtr($itAtr=0){$this->access=new ConectorDB;
-		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo` where `tae_nombre` like '%".$itAtr."%'");
+		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo` where `tae_nombre` like '%".$itAtr."%' limit 5");
 		$tmp="";$op=0;
 		while ($row=mysql_fetch_array($this->access->getResult())){
 			$tmp=$tmp."<li id=\"".$row["tae_id"]."\" data-idop=\"".$op."\" ><span>".$row["tae_nombre"]."</span></li>";$op++;}

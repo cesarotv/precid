@@ -205,7 +205,6 @@ function evAtr(iAtr){
 	ievAtr.iTop=1;
 	ievAtr.iAtrDest="data-tAtr";
 	ievAtr.ini(InpiAtr,'ulSelAtr');
-
 }
 
 function delAtrib(cmpParent){
@@ -278,7 +277,7 @@ function loadEvents(){
 	iSTEqu=new uiSelect();
 	iSTEqu.urlList="../mEquipos/uilist.php";
 	iSTEqu.iPOST="tEqu";
-	iSTEqu.msj=document.getElementById('tipNuevo');
+	iSTEqu.imsj=document.getElementById('tipNuevo');
 	iSTEqu.ini(document.getElementById('equ_tipo'),'ulSelEqu');
 
 	lAtr=document.getElementById('contListAtrb').getElementsByClassName("iAtr");
@@ -329,7 +328,7 @@ function ObjAjax(){
 		
 		iLeft=(typeof this.iLeft != "undefined")?this.iLeft:16;
 		iTop=(typeof this.iTop != "undefined")?this.iTop:0;
-		msj=(typeof this.msj != "undefined")?this.msj:null;
+		imsj=(typeof this.imsj != "undefined")?this.imsj:null;
 
 		//this.iInput=iInput;
 		iList=document.getElementById(nameList);
@@ -338,7 +337,6 @@ function ObjAjax(){
 		iInput.onkeyup = function(e){
 			iList.style.maxWidth = (iInput.offsetWidth*1.5)+"px";
 			
-			//iElem=iInput; 
 			iTop=iInput.parentNode.offsetTop+iInput.offsetHeight;
 			iList.style.top=iTop+"px";
 			iList.style.left=iInput.parentNode.offsetLeft+iLeft+"px";
@@ -346,8 +344,10 @@ function ObjAjax(){
 			if (e.keyCode=="38"){ despKey(-1);//sube
 			}else if(e.keyCode=="40"){ despKey(1);//baja
 			}else if(e.keyCode=="13"){ selectOp();iList.innerHTML="";//Enter
-			}else if (e.keyCode=="27"){ iList.innerHTML="";iList.style.display="none";//Esc
+			}else if (e.keyCode=="27"){ iList.innerHTML="";iList.style.display="none";
+							iInput.setAttribute(iAtrDest,"");vMsj();                    //Esc
 			}else{genList();}
+
 		}
 	}
 
@@ -359,16 +359,16 @@ function ObjAjax(){
 	 		is=-1;
 	 		if(iList.innerHTML.length==0){iList.style.display="none";iInput.setAttribute(iAtrDest,"");
 	 		} else{selClick();}
-	 		vMsj();
 		}}}
 		procAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		procAjax.send(iPOST+"="+iInput.value);
 	}
 
-	function vMsj(){
-		if(msj){if(iList.style.display=="none" && iInput.value.length>0){
-			msj.style="";}else{
-				msj.style.display="none";}
+	function vMsj(){//
+		if(imsj){
+			if(iList.style.display=="none" && iInput.getAttribute(iAtrDest).length==0){
+			imsj.style="";}else{
+				imsj.style.display="none";}
 		}
 		ajustDlle();
 	}
@@ -391,6 +391,7 @@ function ObjAjax(){
 		iInput.setAttribute(iAtrDest,iop[is].id);
 		iList.style.display="none";
 		iInput.value=iop[is].getElementsByTagName("span")[0].innerHTML;
+		vMsj();
 	}
 
 	
