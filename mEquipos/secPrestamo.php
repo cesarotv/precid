@@ -46,7 +46,7 @@ if ($iEquipo->pres_usr_id){
 									<input  class="idElem" id="pre_usr_id"  value="" />
 								</span>
 							<span class="cText"> quien lo devolverá el día </span>
-								<input  class="idElem" id="pre_fechadev"  value="" />
+								<span class="UIDate"><input  class="idElem" id="pre_fechadev"  value="" /></span>
 							</p>
 						</div>
 						<div style="text-align: center;padding:5px;">

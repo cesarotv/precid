@@ -1,0 +1,16 @@
+
+/* UI Usuarios */
+
+#ulSelUsr{border: 1px solid #0e7c3e;font-size: 0.9em;color:#0e7c3e;display:none;}
+#ulSelUsr>li{border-bottom: 1px solid #ffd9bc;}
+
+/* UI Equipos */
+
+#ulSelEqu{min-width: 360px;margin-left: -16px;}
+#ulSelEqu{border: 1px solid #0e7c3e;font-size: 1.3em;color:#0e7c3e;display:none;font-weight: bold;}
+#ulSelEqu>li{border-bottom: 1px solid #ffd9bc;}
+
+/* UI Atributos */
+
+#ulSelAtr{font-size: 0.9em;font-style: italic;min-width: 120px;display:none;border: 1px solid #0e7c3e;}
+#ulSelAtr>li{border-bottom: 1px solid #ffd9bc;}

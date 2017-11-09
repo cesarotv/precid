@@ -26,6 +26,7 @@
 					$sEqu="class=\"act\"";
 ?>					<!-- Archivos ModEquipos-->
 					<link media="screen" href="../mEquipos/modEqu.css" type="text/css" rel="stylesheet"></link>
+					<link media="screen" href="../mEquipos/ui.css" type="text/css" rel="stylesheet"></link>
 					<script type="text/javascript" src="../mEquipos/objEvts.js"></script>
 <?php  		break;
 			case 'prestamos':

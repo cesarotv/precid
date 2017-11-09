@@ -62,8 +62,6 @@ div#conRegistro div#Sec .DatnPres input{border:none;background:#FFE3CD;padding: 
 div#conRegistro div#Sec .DatnPres input#pre_usr_id{width: 175px;}
 div#conRegistro div#Sec .usrPrest{font-style: italic;font-weight: bold;font-size: 1em;}
 
-#ulSelUsr{border: 1px solid #0e7c3e;font-size: 0.9em;color:#0e7c3e;display:none;}
-#ulSelUsr>li{border-bottom: 1px solid #ffd9bc;}
 
 .btn{display:inline-block; padding: 5px 10px;cursor: pointer;background-color:#0e7c3e;color: #ffffff;
 	border-radius: 5px 5px 5px 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;}
@@ -76,6 +74,7 @@ div#SecPrest .b_despl, div#SecDispon .b_despl {font-size: 0.6em;vertical-align: 
 div#SecPrest .rDatnPres{padding: 2px 0;display:table-row;}
 div#SecPrest .rDatnPres span{padding: 2px 0;display:table-cell;}
 div#SecPrest .rDatnPres span.cText{text-align:right;padding-right: 5px}
+div#contPrest {padding-top: 7px;}
 div#contPrest input{border:none;background:#FFE3CD;padding: 2px 4px;}
 
 div#conRegistro #vMenu{text-align:right;font-size: 0.8em;}
@@ -91,10 +90,6 @@ div#conRegistro .tipoElem{font-size: 1.4em; font-weight: bold;color:#0e7c3e;}
 /*div#conRegistro select.tipoElem{font-size: 1em;padding: 0;display: block;border: 1px solid #dddddd;}*/
 div#conRegistro #tipNuevo{display: block; padding: 7px; background: #f5e6da; text-align: center;
 	font-size: 0.6em; font-weight: normal; font-style: italic;color: #ee7620; }
-
-#ulSelEqu{min-width: 360px;margin-left: -16px;}
-#ulSelEqu{border: 1px solid #0e7c3e;font-size: 1.3em;color:#0e7c3e;display:none;font-weight: bold;}
-#ulSelEqu>li{border-bottom: 1px solid #ffd9bc;}
 
 #iSerial{font-style: italic;color:#bbbbbb;}
 #iIdEqu{color:#0e7c3e;font-size: 1.15em;}
@@ -130,8 +125,6 @@ div#conRegistro input.iAtrEq{background: #f5e6da;border: 1px solid #ffd4a8;paddi
 #contListAtrb .tit{font-size: 0.8em;font-style: italic;color:#bbbbbb;}
 div#conRegistro .ListAtrib{display:table;margin: 10px 10px; width: 100%}
 
-#ulSelAtr{font-size: 0.9em;font-style: italic;min-width: 120px;display:none;border: 1px solid #0e7c3e;}
-#ulSelAtr>li{border-bottom: 1px solid #ffd9bc;}
 
 .ListAtrib .iAtr{display:table-row;}
 .ListAtrib .iAtr .tAtr, .ListAtrib .iAtr .vAtr {font-size: 0.9em;display:table-cell;padding:3px 2px 5px;position: relative;}

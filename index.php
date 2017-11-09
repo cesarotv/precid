@@ -9,6 +9,7 @@
 			include_once("lib/conector.php");
 			$access=new ConectorDB;
 			$tUsr=$access->access($_POST["USR"],$_POST["PASS"]);
+			//echo $tUsr;
 			if($tUsr[0]==true){
 				$_SESSION["USR"] = $tUsr;
 				header("Location:home/equipos");

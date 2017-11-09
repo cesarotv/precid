@@ -263,6 +263,8 @@ function loadEvents(){
 	
 	if(document.getElementById("pre_fechadev")){
 		document.getElementById("pre_fechadev").value =new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear();
+		iObjdate=new uiDate();
+		iObjdate.ini(document.getElementById('pre_fechadev'));
 	}
 
 
@@ -281,33 +283,30 @@ function loadEvents(){
 	lAtr=document.getElementById('contListAtrb').getElementsByClassName("iAtr");
 	for (var i=0;i<lAtr.length;i++){evAtr(lAtr[i]);}
 
+
 }
 
-//-------------=============================================----------------------------------
-
-
+//-------------==================== UI SELECT =========================----------------------------------
 
 var uiSelect= function(){
 	
+	//==== Parametros de Usuario  ------
+	var urlList;  // * URL página que retorna el listado <texto>
+	var iInput;   // * Objeto Input <ElementHTML>
+	var iAtrDest; // * Atributo data del Input <texto>
+	var iList;    // * Objeto del Listado <ElementHTML>
+	var iPOST;    // * Nombre variable de POST para consulta <texto>
+	var imsj;       // Objeto del mensaje con el Input <ElementHTML>
 
-	var content;
+	//==== variables internos  ------
+	var is;         // Indice del Objeto Seleccionado <número>
 
-	var iInput;
-	var iAtrDest;
-	var iList;
-	var is;
-	var iTop;
-	var iPOST;
-	var imsj;
-	
-	var iLeft;
-	var iTop; 
+	var iLeft;      // Ubicación horizontal del listado <número>
+	var iTop;       // Ubicación Vertical del listado <número>
 
-	var urlList;
-	var params;
+	//var params;		// texto con la compilaciòn de parámetros de consulta para generar el listado
 
-function ObjAjax(){
-		var xmlhttp=false;try{ xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+	function ObjAjax(){var xmlhttp=false;try{ xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
 		}catch(e){try{ xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");}catch(E) {xmlhttp=false;}}
 		if (!xmlhttp && typeof XMLHttpRequest!="undefined") {xmlhttp=new XMLHttpRequest();}return xmlhttp;
 	}
@@ -321,7 +320,6 @@ function ObjAjax(){
 		urlList=this.urlList;
 		//ichange=this.ichange;
 		
-
 		iAtrDest=(this.iAtrDest)?this.iAtrDest:"data-id";
 		
 		iLeft=(typeof this.iLeft != "undefined")?this.iLeft:16;
@@ -353,8 +351,7 @@ function ObjAjax(){
 		iList.style.display="initial";
 		procAjax=ObjAjax();procAjax.open("POST",urlList,true);
 		procAjax.onreadystatechange=function(){if (procAjax.readyState==4){if (procAjax.status==200){
-	 		iList.innerHTML=procAjax.responseText;
-	 		is=-1;
+	 		iList.innerHTML=procAjax.responseText;is=-1;
 	 		if(iList.innerHTML.length==0){iList.style.display="none";iInput.setAttribute(iAtrDest,"");
 	 		} else{selClick();}vMsj();
 		}}}
@@ -362,33 +359,57 @@ function ObjAjax(){
 		procAjax.send(iPOST+"="+iInput.value);
 	}
 
-	function vMsj(){
-		if(imsj){if(iList.style.display=="none" && iInput.getAttribute(iAtrDest).length==0){
+	function vMsj(){if(imsj){if(iList.style.display=="none" && iInput.getAttribute(iAtrDest).length==0){
 			imsj.style="";}else{imsj.style.display="none";}}
 		ajustDlle();
 	}
 
 	function despKey(iAcc){
 		iop=iList.getElementsByTagName("li");
-		if((is+iAcc)>=0 && (is+iAcc)<=(iop.length-1)){
-			if(is>-1){iop[is].className="";}is=is+iAcc;iop[is].className="is";
+		if((is+iAcc)>=0 && (is+iAcc)<=(iop.length-1)){if(is>-1){iop[is].className="";}is=is+iAcc;iop[is].className="is";
 		}
 	}
 
 	function selClick(){
 		iop=iList.getElementsByTagName("li");
-		for (var i=0;i<iop.length;i++){
-			iop[i].onclick=function(){is=this.dataset.idop;selectOp();iList.innerHTML="";}
+		for (var i=0;i<iop.length;i++){iop[i].onclick=function(){is=this.dataset.idop;selectOp();iList.innerHTML="";}
 		}
 	}
 
 	function selectOp(){
-		iInput.setAttribute(iAtrDest,iop[is].id);
-		iList.style.display="none";
-		iInput.value=iop[is].getElementsByTagName("span")[0].innerHTML;
-		vMsj();
+		iInput.setAttribute(iAtrDest,iop[is].id);iList.style.display="none";
+		iInput.value=iop[is].getElementsByTagName("span")[0].innerHTML;vMsj();
 	}
 
-	
+}
+
+
+//-------------========================== DATE PICK ===================----------------------------------
+
+var uiDate= function(){
+
+	var InputDate;    // * Objeto Input <ElementHTML>
+	var iniDom=true;  // Inicio de semana con Domingo (true) o lunes (false)
+
+	function ObjAjax(){var xmlhttp=false;try{ xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+		}catch(e){try{ xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");}catch(E) {xmlhttp=false;}}
+		if (!xmlhttp && typeof XMLHttpRequest!="undefined") {xmlhttp=new XMLHttpRequest();}return xmlhttp;
+	}
+
+	this.ini=function(idCont){
+		InputDate=idCont;
+		InputDate.onfocus=function(){create(new Date());} // -- AQUI VOY
+		
+	}
+
+	function create(iDate){
+		alert(iDate);
+	}
+
+
+
+
+
 
 }
+
