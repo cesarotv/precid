@@ -52,7 +52,7 @@
 		$datsPres ["pre_tipo"]=$_POST["pre_tipo"];
 		$datsPres ["pre_progdev"]=$_POST["pre_devprog"];
 
-		//echo $datsPres["equ_id"]."/".$datsPres["usr_id"]."/".$datsPres["pre_tipo"]."/".$datsPres["pre_progdev"];
+		//echo $datsPres ["pre_progdev"];
 		echo $iPres->presEquipo($datsPres);
 	}
 
@@ -61,11 +61,12 @@
 		include_once("../lib/objPrestamo.php");
 		$iPres=new classPrestamo();
 
-		$fprogDev=explode("/",$_POST["pre_fechaProgDev"]);
+		//$fprogDev=explode("/",$_POST["pre_fechaProgDev"]);
 
 		$datsPres= array();
 		$datsPres ["equ_id"]=$_POST["equ_id"];
-		$datsPres ["pre_fechaProgDev"]=$fprogDev[1]."/".$fprogDev[0]."/".$fprogDev[2];
+		//$datsPres ["pre_fechaProgDev"]=$fprogDev[1]."/".$fprogDev[0]."/".$fprogDev[2];
+		$datsPres ["pre_fechaProgDev"]=$_POST["pre_fechaProgDev"];
 
 		echo $iPres->reprogDevEquipo($datsPres);
 	}

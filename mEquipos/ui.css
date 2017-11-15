@@ -14,3 +14,16 @@
 
 #ulSelAtr{font-size: 0.9em;font-style: italic;min-width: 120px;display:none;border: 1px solid #0e7c3e;}
 #ulSelAtr>li{border-bottom: 1px solid #ffd9bc;}
+
+/* UI fecha Prestamo */
+
+#uiCalendPrest{border: 1px solid #0e7c3e;padding:5px;}
+#uiCalendPrest .tDiasSem{font-weight: bold;font-size: 0.9em;color:#ff9933;}
+#uiCalendPrest .iMes{text-align: center;color:#0e7c3e;font-weight: bold;}
+#uiCalendPrest td{text-align: center;}
+#uiCalendPrest .ndia td{ border: 1px solid #dddddd;}
+#uiCalendPrest .ndia td div{ padding: 2px;}
+#uiCalendPrest td.Ma{}
+#uiCalendPrest td.Ms{background: #FFE3CD;}
+#uiCalendPrest td.sel{background: #34a463;color:#ffffff;}
+#uiCalendPrest td.blq{color:#cccccc;}

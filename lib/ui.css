@@ -4,3 +4,12 @@
 	white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
 .UIselectUL>li.is{background-color: #FFE3CD;}
 .UIselectUL>li:hover{background-color: #FFE3CD;}
+
+/* UI fecha */
+
+.UIdateDIV{background: #ffffff;position:absolute; display: inline-block;}
+.UIdateDIVoc{display: none;}
+.UIdateDIV table{border-collapse: collapse;}
+.UIdateDIV td{cursor:pointer;}
+.UIdateDIV td.Ma{}
+.UIdateDIV td.Ms{}

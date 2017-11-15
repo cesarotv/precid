@@ -47,7 +47,7 @@ include_once("../lib/conector.php");
 			$this->serial=$tdEqu["equ_serial"];
 
 
-			$this->access->conectar("SELECT `prestamos`.`pre_usr_id`, concat(`usuario`.`usr_nombres`, ' ', `usuario`.`usr_apellidos`) as usr_nombre,DATE_FORMAT(`prestamos`.`pre_fechaprogdev`, '%d/%m/%Y') as pre_fechaprogdev FROM db_cid_inv.prestamos,db_cid_inv.usuario where `prestamos`.`pre_usr_id`=`usuario`.`usr_id` and `prestamos`.`pre_equ_id`= ".$tID." and `prestamos`.`pre_fechadev`is null;");
+			$this->access->conectar("SELECT `prestamos`.`pre_usr_id`, concat(`usuario`.`usr_nombres`, ' ', `usuario`.`usr_apellidos`) as usr_nombre,DATE_FORMAT(`prestamos`.`pre_fechaprogdev`, '%m/%d/%Y') as pre_fechaprogdev FROM db_cid_inv.prestamos,db_cid_inv.usuario where `prestamos`.`pre_usr_id`=`usuario`.`usr_id` and `prestamos`.`pre_equ_id`= ".$tID." and `prestamos`.`pre_fechadev`is null;");
 			$row= mysql_fetch_array($this->access->getResult(), MYSQL_ASSOC);
 			$this->pres_usr_id=$row["pre_usr_id"];
 			$this->pres_usr_nombre=$row["usr_nombre"];
@@ -62,16 +62,6 @@ include_once("../lib/conector.php");
 
  	}
 
-/*	function selTEqu($itequ){
- 		$this->access=new ConectorDB;
-		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoequipo`;");
-		$tmp="";
-		while ($row=mysql_fetch_array($this->access->getResult())){
-			if ($row["tequ_id"]==$itequ){$tsel=" selected ";}else{$tsel="";}
-			$tmp=$tmp."<option value=\"".$row["tequ_id"]."\" ".$tsel.">".$row["tequ_nombre"]."</option>";}
-		return $tmp;
-	}*/
-
 	function uiselTEqu($itequ){
  		$this->access=new ConectorDB;
 		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoequipo` where `tequ_nombre` like '%".$itequ."%'");
@@ -82,15 +72,6 @@ include_once("../lib/conector.php");
 	}
 
 //-------
- /*	function selTAtr($itAtr=0){$this->access=new ConectorDB;
-		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo`;");
-		$tmp="";
-		while ($row=mysql_fetch_array($this->access->getResult())){
-			if ($row["tae_id"]==$itAtr){$tsel=" selected ";}else{$tsel="";}
-			$tmp=$tmp."<option value=\"".$row["tae_id"]."\" ".$tsel.">".$row["tae_nombre"]."</option>";}
-		$tmp="<select onchange='changeAtrib(this)'><option></option>".$tmp."</select>";
-		return $tmp;
-	}*/
 
 	function uiselTAtr($itAtr=0){$this->access=new ConectorDB;
 		$this->access->conectar("SELECT * FROM `db_cid_inv`.`tipoatributoequipo` where `tae_nombre` like '%".$itAtr."%' limit 5");

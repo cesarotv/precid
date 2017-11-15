@@ -20,15 +20,14 @@ class classPrestamo{
 	function classPrestamo(){$this->access=new ConectorDB;}
 
 	function presEquipo($datsPres){
-		$stSql="INSERT INTO `db_cid_inv`.`prestamos` (`pre_usr_id`, `pre_equ_id`, `pre_tipo`, `pre_fechaprogdev`) VALUES (:usr_id, :equ_id, :pre_tipo, STR_TO_DATE(':pre_progdev', '%d/%m/%Y'))";
+
+		$stSql="INSERT INTO `db_cid_inv`.`prestamos` (`pre_usr_id`, `pre_equ_id`, `pre_tipo`, `pre_fechaprogdev`) VALUES (:usr_id, :equ_id, :pre_tipo,':pre_progdev')";
 			$stSql=$this->sqlReplace($stSql,$datsPres);
 			$this->access->conectar($stSql);
-		return $datsPres["equ_id"];
-		
+		//return $datsPres["equ_id"];
 	}
 	
 	function reprogDevEquipo($datsPres){
-		$datsPres["pre_fechaProgDev"]=date('Y-m-d',strtotime($datsPres["pre_fechaProgDev"]));
 		$stSql="UPDATE `db_cid_inv`.`prestamos` SET `pre_fechaProgDev` = ':pre_fechaProgDev' WHERE `pre_equ_id` = :equ_id AND `pre_fechadev` is null";
 			$stSql=$this->sqlReplace($stSql,$datsPres);
 			$this->access->conectar($stSql);

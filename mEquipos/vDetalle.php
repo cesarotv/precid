@@ -141,6 +141,7 @@ if (!empty($_POST)){
 			<ul id="ulSelEqu"></ul>
 		</div>
 		<ul id="ulSelUsr"></ul>
+		<div id="uiCalendPrest" ></div>
 		<script type="text/javascript"> 
 				loadEvents();
 		</script>
