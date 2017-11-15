@@ -1,15 +1,12 @@
 
 <?php
-
+	session_start();
 
 	include_once("../lib/objequipo.php");
 	$iEqu=new classEquipo();
 
 
 	if (!empty($_POST["inAtr"])){
-/*		echo "<span class='tAtr'>".$iEqu->selTAtr()."</span>".
-		 	"<span class='vAtr'>
-		 		<input id=\"".$_POST["inAtr"]."|0|0\" class=\"iAtrEq\" value=\"\"/></span>";*/
 		 		
 		 echo "<span class='tAtr'><input class=\"inAtrEq\" value=\"\"/></span>".
 		 	"<span class='vAtr'>
@@ -51,7 +48,7 @@
 		$datsPres ["usr_id"]=$_POST["pre_usr"];
 		$datsPres ["pre_tipo"]=$_POST["pre_tipo"];
 		$datsPres ["pre_progdev"]=$_POST["pre_devprog"];
-
+		$datsPres ["usr_login"]=$_SESSION['USR']["id"];
 		//echo $datsPres ["pre_progdev"];
 		echo $iPres->presEquipo($datsPres);
 	}
@@ -78,7 +75,7 @@
 
 		$datsPres= array();
 		$datsPres ["equ_id"]=$_POST["equ_id"];
-		
+		$datsPres ["usr_login"]=$_SESSION['USR']["id"];
 		echo $iPres->DevEquipo($datsPres);
 
 	}

@@ -35,49 +35,25 @@
 	function getResult(){return $this->Result;}
 	//function getnumReg(){return odbc_num_rows($this->Result);}
 	
-	//function getResultCamps(){return $this->ResultCamps;}
-
-	
-	/*function genlCont($ID){
-			$stSql ="SELECT CodList, NomLista FROM TablaCampListas WHERE (ID='".$ID."');";
-			$this->ResultlistContacts= odbc_exec($this->DBconect,$stSql);
-	}
-	function getResultlCont(){return $this->ResultlistContacts;}*/
-	
-	/*function genContacts($ID){
-			
-			$this->ResultContacts= odbc_exec($this->DBconect,$stSql);
-	}
-	function getResultContacts(){return $this->ResultContacts;}
-
-	function getContacto($ID){
-			$stSql ="SELECT * FROM TablaContactos WHERE ID='".$ID."'";
-			$this->conectar($stSql);
-			$contacto = odbc_fetch_array($this->getResult());
-			return $contacto;
-	}
-
-	function genCamps($ID){
-			$stSql ="SELECT TablaCamp.IDCamp, TablaCamp.ASUNTO, TablaCamp.ID FROM TablaCamp WHERE (ID='".$ID."');";
-			$this->ResultCamps= odbc_exec($this->DBconect,$stSql);
-	}
-	*/
-
-
 	function access($USR,$PASS){
 
-		$stSql ="SELECT usuario.usr_id, usuario.usr_username, usuario.usr_password, usuario.usr_nombres, usuario.usr_apellidos FROM usuario WHERE usr_username='".$USR."' AND usr_password=md5('".$PASS."')";
+		$stSql ="SELECT usuario.usr_id, usuario.usr_username, usuario.usr_password,usuario.usr_perf_id, perfiles.perf_nombre,
+		 usuario.usr_nombres, usuario.usr_apellidos FROM usuario inner join perfiles ON (usuario.usr_perf_id=perfiles.perf_id)
+		  WHERE usr_username='".$USR."' AND usr_password=md5('".$PASS."')";
 
 		$this->conectar($stSql);
 		//echo $tUsr;
 		//if($tUsr["usr_password"]==$PASS){
 		if(mysql_num_rows($this->getResult())==1){
 			$tUsr= mysql_fetch_array($this->getResult(), MYSQL_ASSOC);
-			$usr[0]=true;
-			$usr[1]=$tUsr["usr_id"];
-			$usr[2]=$tUsr["usr_password"];
-			$usr[3]=$tUsr["usr_nombres"]." ".$tUsr["usr_apellidos"];			
-		}else{$usr[0]=false;}
+			$usr['login']=true;
+			$usr['id']=$tUsr["usr_id"];
+			//$usr['']=$tUsr["usr_password"];
+			$usr["nombres"]=$tUsr["usr_nombres"];
+			$usr["apellidos"]=$tUsr["usr_apellidos"];
+			$usr['id_perf']=$tUsr["usr_perf_id"];
+			$usr['perfil']=$tUsr["perf_nombre"];
+		}else{$usr['login']=false;}
 		return $usr;
 	}
  }

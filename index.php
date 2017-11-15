@@ -10,7 +10,7 @@
 			$access=new ConectorDB;
 			$tUsr=$access->access($_POST["USR"],$_POST["PASS"]);
 			//echo $tUsr;
-			if($tUsr[0]==true){
+			if($tUsr['login']==true){
 				$_SESSION["USR"] = $tUsr;
 				header("Location:home/equipos");
 				//echo "<script>alert('hola ".utf8_encode ($_SESSION["USR"][3])." te logeaste!!!!!')</script>";
@@ -55,7 +55,6 @@
 			<a onclick="document.getElementById('acess').submit();" >ACCESO</a>
 		</form>
 		<div id="msj" class="<?php echo $e;?>">
-			<span><img src="img/alert.png"></span>
 			<span>
 				<div id="titmsj">Oooops!!!!</div>
 				<div id="contmsj"><?php echo $msj;?></div>

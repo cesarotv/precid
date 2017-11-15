@@ -56,7 +56,10 @@
 				<li <?php echo isset($sEqu)?$sEqu:""; ?> ><a href="equipos" >Equipos</a></li>
 				<li <?php echo isset($sUsr)?$sUsr:""; ?> ><a href="usuarios">Usuarios</a></li>
 				<li><a href="">LOG</a></li>
-				<li><span style="cursor:pointer;" onclick="document.getElementById('out').submit();">Salir</span></li>
+				<li>
+					<span id="Usr"><?php echo $_SESSION['USR']['nombres']; ?><br><i><?php echo $_SESSION['USR']['perfil']; ?></i></span>
+					<span id="outUsr" style="cursor:pointer;" onclick="document.getElementById('out').submit();">Salir</span>
+				</li>
 			</ul>
 		</div>
 		<form id="out" method="POST" action="/CID/inventario/home/out"></form>

@@ -26,9 +26,12 @@ ul#contBarSup li{
 
 ul#contBarSup li a, ul#contBarSup li span{text-decoration: none;text-decoration: none;color:#0e7c3e;display: block;padding: 20px 10px 5px;}
 
-ul#contBarSup li span{background: #ff9933;font-weight: bold;color:#ffffff;}
+ul#contBarSup li:last-child{ position: absolute;top:0;right: 30px;background: #ff9933;}
+ul#contBarSup li:last-child span{display: inline-block;}
+ul#contBarSup li:last-child span#outUsr{font-weight: bold;color:#ffffff;vertical-align: top;}
+ul#contBarSup li:last-child span#usr{text-align: right;background: #ffffff;padding: 12px 10px 5px;font-size: 0.8em;}
+ul#contBarSup li:last-child span i{font-size: 0.8em;color: #ff9933;}
 
-ul#contBarSup li:last-child{ position: absolute;top:0;right: 30px;}
 
 ul#contBarSup li.act{
 	background-color: #0e7c3e;
