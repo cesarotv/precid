@@ -1,16 +1,30 @@
 
 <?php 
-if (!empty($_POST)){include_once("../lib/objUsuario.php");
-		$iUsuario=new classUsuario();
-		$iUsuario->diUsuario($_POST["usr_id"]);
+if (!empty($_POST)){
+	session_start();
+
+	include_once("../lib/objUsuario.php");
+	$iUsuario=new classUsuario();
+
+	$per=$iUsuario->getPermisos($_SESSION['USR']['id_perf'],1);
+
+	$iUsuario->diUsuario($_POST["usr_id"]);
 ?>
 
 <div>
 	<div id="vMenu">
+		<?php if($per["perm_E"]==1){ ?>
+
 		<span id="edUsr" title="Editar" onclick="javascript:editDlle('conRegistro','e');">
 			<img src="../imgs/lEditar.png"/></span>
+
+		<?php } if($per["perm_A"]==1){ ?>
+
 		<span id="nUsr" title="Nuevo" onclick="javascript:nUsr();">
 			<img src="../imgs/lNuevo.png"/></span>
+
+		<?php } ?>
+
 		<span id="gUsr" title="Guardar" onclick="javascript:saveDlle();" style="display:none;">
 			<img src="../imgs/lGuardar.png"/></span>
 		<span id="cUsr" title="Cancelar" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;">

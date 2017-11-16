@@ -6,6 +6,8 @@ include_once("../lib/conector.php");
  class classEquipo{
 
  	var $access;
+ 	var $permisos = array();
+
  	var $id="";
  	var $cod="";
  	var $IDbarras="";
@@ -18,6 +20,7 @@ include_once("../lib/conector.php");
  	var $atributos = array();
  	var $obs = array();
 
+
  	var $pres_usr_id=""; // Datos de prestamos vigentes a quien le ha sido prestado el equipo
  	var $pres_usr_nombre="";
  	var $pres_usr_fechadev="";
@@ -27,6 +30,13 @@ include_once("../lib/conector.php");
 
  
  	function classEquipo(){$this->access=new ConectorDB;}
+
+	function getPermisos($idUsr,$tDato){
+		$stSql ="SELECT tipoinformacion.tInf_nombre,perm_A,perm_E,perm_D FROM db_cid_inv.permisos inner join db_cid_inv.tipoinformacion on (permisos.perm_tInf_id=tipoinformacion.tInf_id) WHERE perm_perf_id=".$idUsr." AND perm_tInf_id=".$tDato;
+		$this->access->conectar($stSql);
+		
+		return mysql_fetch_array($this->access->getResult(), MYSQL_ASSOC);
+	}
 
  	function diEquipo($tID){
 

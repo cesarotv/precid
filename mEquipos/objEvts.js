@@ -261,6 +261,7 @@ function loadEvents(){
 
 	ajustDlle();
 	
+	document.getElementById("uiCalendPrest").className="UIdateDIVoc";
 	if(document.getElementById("pre_fechadev")){iObjdate=new uiDate();
 		iObjdate.ini(document.getElementById('pre_fechadev'),'uiCalendPrest');}
 

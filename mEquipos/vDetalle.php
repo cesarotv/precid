@@ -1,30 +1,44 @@
 
 <?php 
+	
+
 if (!empty($_POST)){
+		session_start();
+
 		include_once("../lib/objequipo.php");
 		include_once("../lib/objPrestamo.php");
 
 		$iEquipo=new classEquipo();
 		$iEquipo->diEquipo($_POST["equ_id"]);
 
-
 ?>
-
+	
 		<div id="contentReg">
 			<div id="Sec" class="iDat v">
 			<?php
-				if($_POST["equ_id"]!=0){ ?>
-					
-						<?php include("secPrestamo.php");?>
-					
-			<?php } ?>
+
+				if($_POST["equ_id"]!=0){ 
+						 include("secPrestamo.php");	
+				}
+
+				$per=$iEquipo->getPermisos($_SESSION['USR']['id_perf'],2);
+			 ?>
 			</div>
 			<div id="SecInfEqu">
 				<div id="vMenu">
+
+				<?php if($per["perm_E"]==1){ ?>
+
 					<span id="edEqu" title="Editar" onclick="javascript:editDlle('conRegistro','e');">
 						<img src="../imgs/lEditar.png"/></span>
+
+				<?php } if($per["perm_A"]==1){ ?>
+
 					<span id="nEqu" title="Nuevo" onclick="javascript:nEqu();">
 						<img src="../imgs/lNuevo.png"/> </span>
+
+				<?php } ?>
+
 					<span id="gEqu" title="Guardar" onclick="javascript:saveDlle();" style="display:none;">
 						<img src="../imgs/lGuardar.png"/> </span>
 					<span id="cEqu" title="Cancelar" onclick="javascript:editDlle('conRegistro','c'); " style="display:none;">
@@ -141,7 +155,7 @@ if (!empty($_POST)){
 			<ul id="ulSelEqu"></ul>
 		</div>
 		<ul id="ulSelUsr"></ul>
-		<div id="uiCalendPrest" ></div>
+		<div id="uiCalendPrest"></div>
 		<script type="text/javascript"> 
 				loadEvents();
 		</script>

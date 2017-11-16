@@ -69,7 +69,7 @@ div#conRegistro div#Sec .usrPrest{font-style: italic;font-weight: bold;font-size
 #bdispon {cursor:pointer;text-overflow: ellipsis; overflow: hidden; white-space: nowrap;display: block;max-width: 325px;}
 
 .DatnPres{display:table;margin-top: 5px;}
-div#SecPrest{ }
+
 div#SecPrest .b_despl, div#SecDispon .b_despl {font-size: 0.6em;vertical-align: middle;position: absolute;right:10px;top:10px;}
 div#SecPrest .rDatnPres{padding: 2px 0;display:table-row;}
 div#SecPrest .rDatnPres span{padding: 2px 0;display:table-cell;}
@@ -77,7 +77,7 @@ div#SecPrest .rDatnPres span.cText{text-align:right;padding-right: 5px}
 div#contPrest {padding-top: 7px;}
 div#contPrest input{border:none;background:#FFE3CD;padding: 2px 4px;}
 
-div#conRegistro #vMenu{text-align:right;font-size: 0.8em;}
+div#conRegistro #vMenu{text-align:right;font-size: 0.8em;min-height: 10px;}
 div#conRegistro #vMenu span{cursor:pointer;display:inline-block;padding: 3px;}
 div#conRegistro #vMenu span:hover{background:#FFE3CD;}
 div#conRegistro .iniDats{border-bottom: 1px solid #dddddd;}

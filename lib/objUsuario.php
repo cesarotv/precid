@@ -20,6 +20,13 @@ if (!empty($_POST)){include_once("../lib/conector.php");
 
  	function classUsuario(){$this->access=new ConectorDB;}
 
+ 	function getPermisos($idUsr,$tDato){
+		$stSql ="SELECT tipoinformacion.tInf_nombre,perm_A,perm_E,perm_D FROM db_cid_inv.permisos inner join db_cid_inv.tipoinformacion on (permisos.perm_tInf_id=tipoinformacion.tInf_id) WHERE perm_perf_id=".$idUsr." AND perm_tInf_id=".$tDato;
+		$this->access->conectar($stSql);
+		
+		return mysql_fetch_array($this->access->getResult(), MYSQL_ASSOC);
+	}
+
  	function diUsuario($tID){
 
  		$this->id=$tID;
