@@ -19,7 +19,9 @@ if (empty($_POST["rPag"])){$_POST["rPag"]=0;}
 			DATE_FORMAT(prestamos.pre_fechadev,'%d/%m/%Y %h:%i %p') as pre_fechadev,
 			equipo.*, tipoequipo.tequ_nombre, prestamos.pre_fecha as vpre_fecha,
  			(Select count(*) FROM db_cid_inv.obsequipo WHERE obsequipo.obsequ_equ_id=prestamos.pre_equ_id AND
-    			IF(prestamos.pre_fechadev IS NULL, obsequipo.obsequ_fecha>prestamos.pre_fecha, obsequipo.obsequ_fecha BETWEEN prestamos.pre_fecha AND prestamos.pre_fechadev)) AS nObs
+    			IF(prestamos.pre_fechadev IS NULL, obsequipo.obsequ_fecha>prestamos.pre_fecha, obsequipo.obsequ_fecha BETWEEN prestamos.pre_fecha AND prestamos.pre_fechadev)) AS nObs,
+    		(SELECT concat(usr_nombres, ' ' , usr_apellidos) FROM db_cid_inv.usuario where usr_id=prestamos.pre_pre_usr_id) As pre_usr_nom,
+			(SELECT concat(usr_nombres, ' ' , usr_apellidos) FROM db_cid_inv.usuario where usr_id=prestamos.pre_dev_usr_id) As dev_usr_nom
 			FROM db_cid_inv.prestamos, db_cid_inv.usuario,db_cid_inv.equipo,db_cid_inv.tipoequipo
 WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_id 
 	AND tipoequipo.tequ_id=equipo.equ_teq_id) ".$stSql." order by FIELD (prestamos.pre_fechadev, NULL) desc, prestamos.pre_fecha DESC limit 25 offset ".$_POST["rPag"];
@@ -39,7 +41,7 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 		//----------------------------------
 
 		echo "<div id='li.".$row["pre_equ_id"].".".str_replace(" ","_",$row["vpre_fecha"])."' class='iList' onclick=\"javascript:vDetalle(this.id,'conRegistro', this);\">".
-				"<span class='colList'>".
+				"<span class='colList' title='".utf8_encode($row["pre_usr_nom"])."'>".
 					"<span class='ifecha'>".$row["pre_fecha"]."</span>".
 				"</span>".
 				"<span class='colList'>".
@@ -47,16 +49,14 @@ WHERE (prestamos.pre_usr_id=usuario.usr_id AND equipo.equ_id=prestamos.pre_equ_i
 				 		"<span class='iequ_id'>".$row["equ_cod"]." </span>".				 	
 				 			"<span class='iequ_tipo'>&#187; ".utf8_encode($row["tequ_nombre"])."</span>".
 				 			"<span class='iequ_marca'>".utf8_encode($row["equ_marca"]." ".$row["equ_modelo"])."</span>".
-
 				 	"</span>".
 				 "</span>".
-				 "<span class='colList'><img src=\"../imgs/numObs.png\"/><b class=\"nObs\">".utf8_encode($row["nObs"])."</span>".
-				 "</b>".
+				 "<span class='colList'>
+				 	<img src=\"../imgs/numObs.png\"/><b class=\"nObs\">".utf8_encode($row["nObs"])."</span></b>".
 				 "<span class='colList'>".
 				 	"<div class=\"iprest\"><a class='pre'>&#9654; </a>".utf8_encode($row["usr_nombres"]." ". $row["usr_apellidos"])."</div>".
 				 "</span>".
-				 "<span class='colList'>".
-				 	
+				 "<span class='colList' title='".utf8_encode($row["dev_usr_nom"])."'>".
 				 	"<div class='ifecha'>".$iDev."</div>".
 				 "</span>". 
 			 "</div>".
